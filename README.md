@@ -6,26 +6,35 @@ Currently only supports Markdown files hosted on a Bitbucket server.
 
 ## Development
 
-### Running the tests
+To ensure the dev dependencies get installed, have this in your `composer.local.json`:
 
-From the MediaWiki root directory:
+```json
+{
+	"require": {
+		"vimeo/psalm": "^4.10",
+		"phpstan/phpstan": "^0.12.99"
+	},
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"extensions/ExternalContent/composer.json"
+			]
+		}
+	}
+}
+```
 
-    php tests/phpunit/phpunit.php -c extensions/ExternalContent/
+### Running tests and CI checks
 
-### Running the code style checks
+You can use the `Makefile` by running make commands in the `ExternalContent` directory.
 
-From the MediaWiki root directory:
+* `make ci`: Run everything
+* `make test`: Run all tests
+* `make cs`: Run all style checks and static analysis
 
-    vendor/bin/phpcs -p -s --standard=extensions/ExternalContent/phpcs.xml extensions/ExternalContent/
+Alternatively, you can execute commands from the MediaWiki root directory:
 
-### Running static analysis tools:
-
-You can run PHPStan after installing the Composer dev dependencies in the ExternalContent directory.
-Alternatively you can install PHPStan by putting it into `composer.local.json`, and then run this from the MediaWiki root:
-
-	vendor/bin/phpstan analyse --configuration=extensions/ExternalContent/phpstan.neon extensions/ExternalContent/
-
-You can run Psalm after installing the Composer dev dependencies in the ExternalContent directory.
-Alternatively you can install Psalm by putting it into `composer.local.json`, and then run this from the MediaWiki root:
-
-	php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml extensions/ExternalContent/
+* PHPUnit: `php tests/phpunit/phpunit.php -c extensions/ExternalContent/`
+* Style checks: `vendor/bin/phpcs -p -s --standard=extensions/ExternalContent/phpcs.xml`
+* PHPStan: `vendor/bin/phpstan analyse --configuration=extensions/ExternalContent/phpstan.neon --memory-limit=2G`
+* Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
