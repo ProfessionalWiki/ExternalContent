@@ -64,7 +64,15 @@ jobs:
 
       - name: Run PHPUnit
         run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/
+        if: matrix.php == 8.0
 
+      - name: Run PHPUnit with code coverage
+        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --coverage-clover coverage.xml
+        if: matrix.php == 7.4
+
+      - name: Upload code coverage
+        run: bash <(curl -s https://codecov.io/bash)
+        if: matrix.php == 7.4
 
 
   static-analysis:
