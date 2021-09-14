@@ -1,0 +1,34 @@
+{
+	"name": "External Content",
+	"version": "0.1 alpha",
+	"author": [
+		"[https://www.entropywins.wtf/mediawiki Jeroen De Dauw]",
+		"[https://professional.wiki/ Professional.Wiki]"
+	],
+	"url": "https://github.com/ProfessionalWiki/ExternalContent",
+	"descriptionmsg": "external-content-desc",
+	"requires": {
+		"MediaWiki": ">= 1.35.0",
+		"platform": {
+			"php": ">= 7.4"
+		}
+	},
+	"MessagesDirs": {
+		"ExternalContent": [
+			"i18n"
+		]
+	},
+	"HookHandlers": {
+	},
+	"Hooks": {
+	},
+	"GroupPermissions": {
+		"ResourceFileModulePaths": {
+			"localBasePath": "modules",
+			"remoteExtPath": "ExternalContent/modules"
+		},
+		"ResourceModules": {
+		},
+		"manifest_version": 2
+	}
+}

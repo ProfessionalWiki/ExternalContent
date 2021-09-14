@@ -1,0 +1,169 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_35'
+            php: 7.4
+          - mw: 'REL1_36'
+            php: 8.0
+          - mw: 'master'
+            php: 8.0
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer-php${{ matrix.php }}
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s ${{ matrix.mw }} ExternalContent
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/ExternalContent
+
+      - run: composer update
+
+      - name: Run update.php
+        run: php maintenance/update.php --quick
+
+      - name: Run PHPUnit
+        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/
+
+
+
+  static-analysis:
+    name: "Static Analysis"
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki/extensions/ExternalContent
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring
+          tools: composer, cs2pr
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_static_analysis
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer_static_analysis
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/ExternalContent
+
+      - name: Composer install
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: PHPStan
+        run: php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
+
+      - run: php vendor/bin/psalm
+        if: true
+
+
+  code-style:
+    name: "Code style"
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mediawiki/extensions/ExternalContent
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring, intl, php-ast
+          tools: composer
+
+      - name: Cache MediaWiki
+        id: cache-mediawiki
+        uses: actions/cache@v2
+        with:
+          path: |
+            mediawiki
+            !mediawiki/extensions/
+            !mediawiki/vendor/
+          key: mw_static_analysis
+
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer_static_analysis
+
+      - name: Install MediaWiki
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        working-directory: ~
+        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
+
+      - uses: actions/checkout@v2
+        with:
+          path: mediawiki/extensions/ExternalContent
+
+      - name: Composer install
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - run: vendor/bin/phpcs -p -s
+
+

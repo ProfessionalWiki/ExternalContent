@@ -1,0 +1,36 @@
+{
+	"name": "professional-wiki/external-content",
+	"type": "mediawiki-extension",
+	"description": "MediaWiki extension that allows embedding external content, specified by URL, into your wiki pages",
+	"keywords": [
+		"MediaWiki",
+		"Markdown",
+		"Bitbucket",
+		"Git"
+	],
+	"homepage": "https://github.com/ProfessionalWiki/ExternalContent",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Professional.Wiki",
+			"email": "info@professional.wiki",
+			"homepage": "https://professional.wiki",
+			"role": "Creator"
+		},
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "https://www.EntropyWins.wtf",
+			"role": "Creator and lead developer"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"composer/installers": "^2|^1.0.1"
+	},
+	"require-dev": {
+		"vimeo/psalm": "^4.10",
+		"phpstan/phpstan": "^0.12.99",
+		"mediawiki/mediawiki-codesniffer": "37.0.0"
+	}
+}
