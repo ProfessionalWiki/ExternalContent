@@ -12,6 +12,33 @@ MediaWiki extension that allows embedding external content, specified by URL, in
 
 Currently only supports Markdown files hosted on a Bitbucket server.
 
+THIS EXTENSION IS UNDER DEVELOPMENT AND NOT READY FOR USAGE
+
+## Platform requirements
+
+* PHP 7.4 or later
+* MediaWiki 1.35 or later
+
+## Installation
+
+The recommended way to install External Content is using [Composer](https://getcomposer.org) with
+[MediaWiki's built-in support for Composer](https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer).
+
+On the commandline, go to your wikis root directory. Then run these two commands:
+
+```shell script
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~1.0
+composer update professional-wiki/external-content --no-dev -o
+```
+
+Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
+
+```php
+wfLoadExtension( 'ExternalContent' );
+```
+
+You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+
 ## Development
 
 To ensure the dev dependencies get installed, have this in your `composer.local.json`:
