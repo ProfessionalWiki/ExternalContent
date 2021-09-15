@@ -1,12 +1,12 @@
 <?php
 
-namespace ProfessionalWiki\ExternalContent\Tests\Unit;
+namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\ContentPurifier;
+use ProfessionalWiki\ExternalContent\Domain\ContentPurifier;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\ContentPurifier
+ * @covers \ProfessionalWiki\ExternalContent\Domain\ContentPurifier
  */
 class ContentPurifierTest extends TestCase {
 

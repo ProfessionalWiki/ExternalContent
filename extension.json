@@ -17,6 +17,10 @@
 		}
 	},
 
+	"ExternalContentDomainWhitelist": {
+		"value": []
+	},
+
 	"MessagesDirs": {
 		"ExternalContent": [
 			"i18n"
