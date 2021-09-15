@@ -26,7 +26,11 @@
 	],
 	"require": {
 		"php": ">=7.4",
-		"composer/installers": "^2|^1.0.1"
+		"composer/installers": "^2|^1.0.1",
+		"jeroen/file-fetcher": "~6.0",
+		"jeroen/batching-iterator": "~3.0",
+		"michelf/php-markdown": "~1.9",
+		"ezyang/htmlpurifier": "~4.13"
 	},
 	"require-dev": {
 		"vimeo/psalm": "^4.10",
