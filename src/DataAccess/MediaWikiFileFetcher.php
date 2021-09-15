@@ -6,12 +6,18 @@ namespace ProfessionalWiki\ExternalContent\DataAccess;
 
 use FileFetcher\FileFetcher;
 use FileFetcher\FileFetchingException;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Http\HttpRequestFactory;
 
 class MediaWikiFileFetcher implements FileFetcher {
 
+	private HttpRequestFactory $requestFactory;
+
+	public function __construct( HttpRequestFactory $requestFactory ) {
+		$this->requestFactory = $requestFactory;
+	}
+
 	public function fetchFile( string $fileUrl ): string {
-		$result = MediaWikiServices::getInstance()->getHttpRequestFactory()->get( $fileUrl );
+		$result = $this->requestFactory->get( $fileUrl );
 
 		if ( is_string( $result ) ) {
 			return $result;

@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Integration\DataAccess;
 
 use FileFetcher\FileFetchingException;
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
@@ -12,11 +13,11 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 /**
  * @covers \ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher
  */
-class MediaWikiFileFetcherTest extends TestCase {
+class MediaWikiFileFetcherIntegrationTest extends TestCase {
 
 	public function testUnreachableFileResultsInException(): void {
 		$this->expectException( FileFetchingException::class );
-		( new MediaWikiFileFetcher() )->fetchFile( '404' );
+		( new MediaWikiFileFetcher( MediaWikiServices::getInstance()->getHttpRequestFactory() ) )->fetchFile( '404' );
 	}
 
 	public function testCanGetLocalFile(): void {
@@ -28,7 +29,7 @@ class MediaWikiFileFetcherTest extends TestCase {
 
 		$this->assertStringContainsString(
 			'https://professional.wiki/',
-			( new MediaWikiFileFetcher() )->fetchFile( $specialVersionUrl )
+			( new MediaWikiFileFetcher( MediaWikiServices::getInstance()->getHttpRequestFactory() ) )->fetchFile( $specialVersionUrl )
 		);
 	}
 
