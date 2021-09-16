@@ -1,6 +1,7 @@
 {
 	"name": "External Content",
-	"version": "0.1 alpha",
+	"version": "0.1-alpha",
+	"license-name": "GPL-2.0-or-later",
 
 	"author": [
 		"[https://www.entropywins.wtf/mediawiki Jeroen De Dauw]",
@@ -8,6 +9,7 @@
 	],
 
 	"url": "https://github.com/ProfessionalWiki/ExternalContent",
+
 	"descriptionmsg": "external-content-desc",
 
 	"requires": {
