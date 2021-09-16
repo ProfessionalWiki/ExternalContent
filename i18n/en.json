@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jeroen De Dauw"
+			"Jeroen De Dauw",
+			"Kghbln"
 		]
 	},
-
-	"external-content-desc": "Allows embedding external content, such as markdown files, in your wiki pages."
+	"external-content-desc": "Allows embedding external content, such as markdown files, in your wiki pages"
 }
