@@ -4,5 +4,5 @@ $magicWords = [];
 
 /** English (English) */
 $magicWords['en'] = [
-	'bitbucket' => [ 0, 'bitbucket' ],
+	'embed' => [ 0, 'embed' ],
 ];

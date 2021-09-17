@@ -6,11 +6,11 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
 
-final class BitbucketFunction {
+final class EmbedFunction {
 
 	public static function onParserFirstCallInit( Parser $parser ): void {
 		$parser->setFunctionHook(
-			'bitbucket',
+			'embed',
 			fn( Parser $parser, string ...$arguments )
 				=> ( new self() )->handleParserFunctionCall( $parser, ...$arguments )
 		);

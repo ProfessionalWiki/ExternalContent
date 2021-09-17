@@ -8,14 +8,14 @@ use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\EntryPoints\BitbucketFunction
+ * @covers \ProfessionalWiki\ExternalContent\EntryPoints\EmbedFunction
  */
-class BitbucketFunctionIntegrationTest extends TestCase {
+class EmbedFunctionIntegrationTest extends TestCase {
 
 	public function testTodo(): void {
 		$this->assertStringContainsString(
 			'TODO',
-			TestEnvironment::instance()->parse( '{{#bitbucket:}}' )
+			TestEnvironment::instance()->parse( '{{#embed:}}' )
 		);
 	}
 
