@@ -8,7 +8,7 @@ use Michelf\Markdown;
 
 class MarkdownRenderer implements ContentRenderer {
 
-	public function normalize( string $content, string $contentUrl ): string {
+	public function render( string $content, string $contentUrl ): string {
 		return ( new ContentPurifier() )->purify(
 			trim( $this->newMarkdownParser( $contentUrl )->transform( $content ) )
 		);

@@ -8,7 +8,7 @@ use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 class NullContentRenderer implements ContentRenderer {
 
-	public function normalize( string $content, string $contentUrl ): string {
+	public function render( string $content, string $contentUrl ): string {
 		return $content;
 	}
 

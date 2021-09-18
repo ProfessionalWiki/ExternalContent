@@ -50,7 +50,7 @@ class EmbedUseCase {
 			return;
 		}
 
-		$this->presenter->showContent( $content );
+		$this->presenter->showContent( $this->contentRenderer->render( $content, $normalizedUrl ) );
 	}
 
 }

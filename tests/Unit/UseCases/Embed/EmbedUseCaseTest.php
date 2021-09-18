@@ -84,4 +84,20 @@ class EmbedUseCaseTest extends TestCase {
 		);
 	}
 
+	public function testPresentsRenderedContent(): void {
+		$this->contentRenderer = new class() implements ContentRenderer {
+			public function render( string $content, string $contentUrl ): string {
+				return $content . ' from ' . $contentUrl;
+			}
+		};
+
+		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+
+		$this->assertSame(
+			self::KNOWN_FILE_CONTENT . ' from ' . self::KNOWN_FILE_URL,
+			$this->presenter->content
+		);
+		$this->assertSame( [], $this->presenter->errors );
+	}
+
 }
