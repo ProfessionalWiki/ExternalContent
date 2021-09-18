@@ -9,6 +9,8 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\BitbucketFunction
+ * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
+ * @covers \ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter
  */
 class BitbucketFunctionIntegrationTest extends TestCase {
 

@@ -2,9 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Tests\Unit\UseCases\Embed;
-
-use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
+namespace ProfessionalWiki\ExternalContent\Domain;
 
 class NullUrlNormalizer implements UrlNormalizer {
 

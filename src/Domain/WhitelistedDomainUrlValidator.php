@@ -13,11 +13,19 @@ class WhitelistedDomainUrlValidator implements UrlValidator {
 	}
 
 	public function getErrorCode( string $url ): ?string {
-		if ( in_array( parse_url( $url, PHP_URL_HOST ), $this->allowedDomains ) ) {
+		if ( $this->whitelistIsEmpty() || $this->domainIsInWhitelist( $url ) ) {
 			return null;
 		}
 
 		return 'domain-not-allowed';
+	}
+
+	private function whitelistIsEmpty(): bool {
+		return $this->allowedDomains === [];
+	}
+
+	private function domainIsInWhitelist( string $url ): bool {
+		return in_array( parse_url( $url, PHP_URL_HOST ), $this->allowedDomains );
 	}
 
 }

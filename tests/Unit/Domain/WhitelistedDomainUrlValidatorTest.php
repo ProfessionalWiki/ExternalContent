@@ -33,4 +33,11 @@ class WhitelistedDomainUrlValidatorTest extends TestCase {
 		);
 	}
 
+	public function testDomainIsAllowedWhenWhitelistIsEmpty(): void {
+		$this->assertNull(
+			( new WhitelistedDomainUrlValidator() )
+				->getErrorCode( 'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md' )
+		);
+	}
+
 }

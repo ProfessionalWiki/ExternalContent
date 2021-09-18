@@ -8,6 +8,7 @@ use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\SpyingFileFetcher;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;

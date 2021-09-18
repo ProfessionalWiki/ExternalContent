@@ -5,11 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
+use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
+use ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter;
 
 final class EmbedFunction {
-
-	public function __construct() {
-	}
 
 	/**
 	 * @param Parser $parser
@@ -17,7 +16,13 @@ final class EmbedFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		return 'TODO';
+		$presenter = new ParserFunctionEmbedPresenter();
+
+		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter );
+
+		$useCase->embed( $arguments[0] );
+
+		return $presenter->getParserFunctionReturnValue();
 	}
 
 }
