@@ -19,4 +19,8 @@ class SpyEmbedPresenter implements EmbedPresenter {
 		$this->content = $content;
 	}
 
+	public function showFetchingError(): void {
+		$this->errors[] = 'fetch-error';
+	}
+
 }

@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\UseCases\Embed;
 
+use FileFetcher\FileFetcher;
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\SpyingFileFetcher;
 use PHPUnit\Framework\TestCase;
@@ -20,7 +21,7 @@ class EmbedUseCaseTest extends TestCase {
 	private SpyEmbedPresenter $presenter;
 	private UrlValidator $urlValidator;
 	private UrlNormalizer $urlNormalizer;
-	private SpyingFileFetcher $fileFetcher;
+	private FileFetcher $fileFetcher;
 	private ContentRenderer $contentRenderer;
 
 	private const KNOWN_FILE_URL = 'https://example.com/Fluff.md';
@@ -46,10 +47,10 @@ class EmbedUseCaseTest extends TestCase {
 		);
 	}
 
-	public function testInvalidUrlResultsInError(): void {
+	public function testInvalidUrlResultsInPresentedError(): void {
 		$this->urlValidator = new StubUrlValidator( 'not-fluff-enough' );
 
-		$this->newUseCase()->embed( 'https://example.com/NotFluff.md' );
+		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
 
 		$this->assertSame( [ 'not-fluff-enough' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
@@ -60,6 +61,13 @@ class EmbedUseCaseTest extends TestCase {
 
 		$this->assertSame( self::KNOWN_FILE_CONTENT, $this->presenter->content );
 		$this->assertSame( [], $this->presenter->errors );
+	}
+
+	public function testFileFetchingErrorResultsInPresentedError(): void {
+		$this->newUseCase()->embed( 'https://example.com/NotFluff.md' );
+
+		$this->assertSame( [ 'fetch-error' ], $this->presenter->errors );
+		$this->assertNull( $this->presenter->content );
 	}
 
 }

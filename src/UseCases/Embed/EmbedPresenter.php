@@ -10,4 +10,6 @@ interface EmbedPresenter {
 
 	public function showContent( string $content ): void;
 
+	public function showFetchingError(): void;
+
 }

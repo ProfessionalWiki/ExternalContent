@@ -39,7 +39,13 @@ class EmbedUseCase {
 			return;
 		}
 
-		$content = $this->fileFetcher->fetchFile( $fileUrl );
+		try {
+			$content = $this->fileFetcher->fetchFile( $fileUrl );
+		}
+		catch ( \Exception $exception ) {
+			$this->presenter->showFetchingError();
+			return;
+		}
 
 		$this->presenter->showContent( $content );
 	}
