@@ -28,6 +28,8 @@ class BitbucketUrlNormalizerTest extends TestCase {
 			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/README.md'
 		];
 
+		// TODO: what about path/LICENSE?
+
 		yield 'Directory with slash should get README.md appended' => [
 			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/',
 			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/README.md'
