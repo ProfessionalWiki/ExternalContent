@@ -11,15 +11,29 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 	public function normalize( string $url ): string {
 		$parsedUrl = parse_url( $url );
 
+		$this->assertRequiredUrlPartsArePresent( $parsedUrl );
+
 		/** @psalm-suppress PossiblyUndefinedArrayOffset */
 		$parsedUrl['path'] = $this->normalizePath( $parsedUrl['path'] );
 
 		return $this->buildUrl( $parsedUrl );
 	}
 
+	private function assertRequiredUrlPartsArePresent( array $parsedUrl ): void {
+		if ( !array_key_exists( 'host', $parsedUrl ) ) {
+			throw new \RuntimeException( 'URL does not have the required host segment' );
+		}
+
+		if ( !array_key_exists( 'path', $parsedUrl ) ) {
+			throw new \RuntimeException( 'URL does not have the required path segment' );
+		}
+	}
+
 	private function normalizePath( string $url ): string {
 		// /projects/KNOW/repos/kittens/browse/Arbitrary.md
 		$urlParts = explode( '/', $url );
+
+		$this->assertIsBitbucketUrl( $urlParts );
 
 		if ( in_array( $urlParts[5] ?? '', [ 'browse', '' ] ) ) {
 			$urlParts[5] = 'raw';
@@ -28,6 +42,20 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 		$urlParts[6] = ( $urlParts[6] ?? '' ) === '' ? 'README.md' : $urlParts[6];
 
 		return implode( '/', $urlParts );
+	}
+
+	private function assertIsBitbucketUrl( array $urlParts ): void {
+		if ( ( $urlParts[1] ?? '' ) !== 'projects' ) {
+			throw new \RuntimeException( 'Not a valid Bitbucket URL' );
+		}
+
+		if ( ( $urlParts[3] ?? '' ) !== 'repos' ) {
+			throw new \RuntimeException( 'Not a valid Bitbucket URL' );
+		}
+
+		if ( ( $urlParts[4] ?? '' ) === '' ) {
+			throw new \RuntimeException( 'URL missing repository name' );
+		}
 	}
 
 	/**
