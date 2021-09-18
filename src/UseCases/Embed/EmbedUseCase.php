@@ -39,8 +39,13 @@ class EmbedUseCase {
 			return;
 		}
 
-		// TODO: error cases
-		$normalizedUrl = $this->urlNormalizer->normalize( $fileUrl );
+		try {
+			$normalizedUrl = $this->urlNormalizer->normalize( $fileUrl );
+		}
+		catch ( \RuntimeException $exception ) {
+			$this->presenter->showError( $exception->getMessage() );
+			return;
+		}
 
 		try {
 			$content = $this->fileFetcher->fetchFile( $normalizedUrl );

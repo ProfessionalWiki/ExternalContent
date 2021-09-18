@@ -100,4 +100,17 @@ class EmbedUseCaseTest extends TestCase {
 		$this->assertSame( [], $this->presenter->errors );
 	}
 
+	public function testPresentsErrorOnUrlNormalizerException(): void {
+		$this->urlNormalizer = new class() implements UrlNormalizer {
+			public function normalize( string $url ): string {
+				throw new \RuntimeException( 'url-not-fluff-enough' );
+			}
+		};
+
+		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+
+		$this->assertSame( [ 'url-not-fluff-enough' ], $this->presenter->errors );
+		$this->assertNull( $this->presenter->content );
+	}
+
 }

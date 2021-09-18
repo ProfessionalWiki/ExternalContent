@@ -21,11 +21,11 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 
 	private function assertRequiredUrlPartsArePresent( array $parsedUrl ): void {
 		if ( !array_key_exists( 'host', $parsedUrl ) ) {
-			throw new \RuntimeException( 'URL does not have the required host segment' );
+			throw new \RuntimeException( 'url-missing-host' );
 		}
 
 		if ( !array_key_exists( 'path', $parsedUrl ) ) {
-			throw new \RuntimeException( 'URL does not have the required path segment' );
+			throw new \RuntimeException( 'url-missing-path' );
 		}
 	}
 
@@ -46,15 +46,15 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 
 	private function assertIsBitbucketUrl( array $urlParts ): void {
 		if ( ( $urlParts[1] ?? '' ) !== 'projects' ) {
-			throw new \RuntimeException( 'Not a valid Bitbucket URL' );
+			throw new \RuntimeException( 'url-not-bitbucket' );
 		}
 
 		if ( ( $urlParts[3] ?? '' ) !== 'repos' ) {
-			throw new \RuntimeException( 'Not a valid Bitbucket URL' );
+			throw new \RuntimeException( 'url-not-bitbucket' );
 		}
 
 		if ( ( $urlParts[4] ?? '' ) === '' ) {
-			throw new \RuntimeException( 'URL missing repository name' );
+			throw new \RuntimeException( 'url-missing-repository' );
 		}
 	}
 

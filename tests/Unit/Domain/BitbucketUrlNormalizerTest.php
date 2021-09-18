@@ -77,20 +77,23 @@ class BitbucketUrlNormalizerTest extends TestCase {
 	/**
 	 * @dataProvider invalidUrlProvider
 	 */
-	public function testInvalidUrlsCauseRuntimeException( string $invalidUrl ): void {
+	public function testInvalidUrlsCauseRuntimeException( string $invalidUrl, string $expectedMessage ): void {
 		$this->expectException( \RuntimeException::class );
+		$this->expectExceptionMessage( $expectedMessage );
 		( new BitbucketUrlNormalizer() )->normalize( $invalidUrl );
 	}
 
 	public function invalidUrlProvider(): iterable {
-		yield 'No host' => [ '/projects/KNOW/repos/fluffy-kittens/' ];
-		yield 'No repo' => [ 'https://git.example.com/projects/KNOW/repos' ];
-		yield 'No repo (tailing slash)' => [ 'https://git.example.com/projects/KNOW/repos/' ];
-		yield 'No path' => [ 'https://git.example.com' ];
-		yield 'No path (tailing slash)' => [ 'https://git.example.com/' ];
-		yield 'Path does not start with projects' => [ 'https://git.example.com/wrong/KNOW/repos/fluffy-kittens/' ];
-		yield 'Path does not have repos' => [ 'https://git.example.com/projects/KNOW/wrong/fluffy-kittens/' ];
-		yield 'Path is entirely wrong' => [ 'https://git.example.com/foo/bar/baz' ];
+		yield 'No host' => [ '/projects/KNOW/repos/fluffy-kittens/', 'url-missing-host' ];
+		yield 'No repo' => [ 'https://git.example.com/projects/KNOW/repos', 'url-missing-repository' ];
+		yield 'No repo (tailing slash)' => [ 'https://git.example.com/projects/KNOW/repos/', 'url-missing-repository' ];
+		yield 'No path' => [ 'https://git.example.com', 'url-missing-path' ];
+		yield 'No path (tailing slash)' => [ 'https://git.example.com/', 'url-not-bitbucket' ];
+		yield 'Path does not start with projects' => [ 'https://git.example.com/wrong/KNOW/repos/fluffy-kittens/', 'url-not-bitbucket' ];
+		yield 'Path does not have repos' => [ 'https://git.example.com/projects/KNOW/wrong/fluffy-kittens/', 'url-not-bitbucket' ];
+		yield 'Path is entirely wrong' => [ 'https://git.example.com/foo/bar/baz', 'url-not-bitbucket' ];
+		yield 'Empty' => [ '', 'url-missing-host' ];
+		yield 'Slash' => [ '/', 'url-missing-host' ];
 	}
 
 }
