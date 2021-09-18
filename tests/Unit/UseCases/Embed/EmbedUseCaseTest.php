@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\UseCases\Embed;
 
-use FileFetcher\FileFetcher;
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\SpyingFileFetcher;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +20,7 @@ class EmbedUseCaseTest extends TestCase {
 	private SpyEmbedPresenter $presenter;
 	private UrlValidator $urlValidator;
 	private UrlNormalizer $urlNormalizer;
-	private FileFetcher $fileFetcher;
+	private SpyingFileFetcher $fileFetcher;
 	private ContentRenderer $contentRenderer;
 
 	private const KNOWN_FILE_URL = 'https://example.com/Fluff.md';
@@ -68,6 +67,21 @@ class EmbedUseCaseTest extends TestCase {
 
 		$this->assertSame( [ 'fetch-error' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
+	}
+
+	public function testFetchesNormalizedUrl(): void {
+		$this->urlNormalizer = new class() implements UrlNormalizer {
+			public function normalize( string $url ): string {
+				return $url . 'README.md';
+			}
+		};
+
+		$this->newUseCase()->embed( 'https://example.com/path/' );
+
+		$this->assertSame(
+			[ 'https://example.com/path/README.md' ],
+			$this->fileFetcher->getFetchedUrls()
+		);
 	}
 
 }
