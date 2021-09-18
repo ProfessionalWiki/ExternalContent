@@ -6,10 +6,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
 
-final class EmbedFunction {
-
-	public function __construct() {
-	}
+final class BitbucketFunction {
 
 	/**
 	 * @param Parser $parser
@@ -17,7 +14,7 @@ final class EmbedFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		return 'TODO';
+		return 'TODO bitbucket';
 	}
 
 }

@@ -39,7 +39,7 @@
 	},
 
 	"Hooks": {
-		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\EmbedFunction::onParserFirstCallInit"
+		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserFirstCallInit"
 	},
 
 	"ResourceFileModulePaths": {
