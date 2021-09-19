@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent;
 use FileFetcher\FileFetcher;
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher;
+use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 use ProfessionalWiki\ExternalContent\Domain\MarkdownRenderer;
 use ProfessionalWiki\ExternalContent\Domain\NullUrlNormalizer;
@@ -39,6 +40,16 @@ class EmbedExtensionFactory {
 			$presenter,
 			$this->getUrlValidator(),
 			new NullUrlNormalizer(),
+			$this->getFileFetcher(),
+			$this->getContentRender()
+		);
+	}
+
+	public function newEmbedUseCaseForBitbucketFunction( EmbedPresenter $presenter ): EmbedUseCase {
+		return new EmbedUseCase(
+			$presenter,
+			$this->getUrlValidator(),
+			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
 			$this->getContentRender()
 		);

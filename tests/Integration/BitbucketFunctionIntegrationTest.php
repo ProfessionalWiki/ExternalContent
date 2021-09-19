@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 
+use FileFetcher\InMemoryFileFetcher;
+use FileFetcher\StubFileFetcher;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
@@ -14,10 +16,23 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
  */
 class BitbucketFunctionIntegrationTest extends EmbedIntegrationTestCase {
 
-	public function testTodo(): void {
+	public function testHappyPath(): void {
+		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md' => 'I am **bold**'
+		] ) );
+
 		$this->assertStringContainsString(
-			'TODO bitbucket',
-			TestEnvironment::instance()->parse( '{{#bitbucket:}}' )
+			'<p>I am <strong>bold</strong></p>',
+			TestEnvironment::instance()->parse( '{{#bitbucket:https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse}}' )
+		);
+	}
+
+	public function testInvalidBitbucketUrl(): void {
+		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
+
+		$this->assertStringNotContainsString(
+			'I am <strong>bold</strong>', // TODO: check for error instead
+			TestEnvironment::instance()->parse( '{{#bitbucket:https://example.com/KITTENS.md}}' )
 		);
 	}
 

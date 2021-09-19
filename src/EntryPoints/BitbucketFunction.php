@@ -5,6 +5,8 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
+use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
+use ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter;
 
 final class BitbucketFunction {
 
@@ -14,7 +16,13 @@ final class BitbucketFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		return 'TODO bitbucket';
+		$presenter = new ParserFunctionEmbedPresenter();
+
+		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter );
+
+		$useCase->embed( $arguments[0] );
+
+		return $presenter->getParserFunctionReturnValue();
 	}
 
 }
