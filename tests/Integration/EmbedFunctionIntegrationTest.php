@@ -29,8 +29,8 @@ class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
 		$this->extensionFactory->setDomainWhitelist( 'www.professional.wiki' );
 
-		$this->assertStringNotContainsString(
-			'I am <strong>bold</strong>', // TODO: check for error instead
+		$this->assertStringContainsString(
+			'<span class="errorbox">⧼test-external-content-domain-not-allowed⧽</span>',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
 	}
@@ -38,8 +38,8 @@ class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
 	public function testFileNotFound(): void {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
 
-		$this->assertStringNotContainsString(
-			'I am <strong>bold</strong>', // TODO: check for error instead
+		$this->assertStringContainsString(
+			'<span class="errorbox">⧼test-external-content-fetch-failed⧽</span>',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
 	}

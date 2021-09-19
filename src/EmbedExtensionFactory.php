@@ -6,6 +6,8 @@ namespace ProfessionalWiki\ExternalContent;
 
 use FileFetcher\FileFetcher;
 use MediaWiki\MediaWikiServices;
+use Message;
+use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
@@ -26,6 +28,7 @@ class EmbedExtensionFactory {
 	}
 
 	protected ?FileFetcher $fileFetcher = null;
+	protected ?MessageLocalizer $localizer = null;
 
 	/**
 	 * @var null|array<int, string>
@@ -71,6 +74,25 @@ class EmbedExtensionFactory {
 
 	private function getContentRender(): ContentRenderer {
 		return new MarkdownRenderer();
+	}
+
+	public function getMessageLocalizer(): MessageLocalizer {
+		$this->localizer ??= $this->newMessageLocalizer();
+		return $this->localizer;
+	}
+
+	/**
+	 * @psalm-suppress MixedInferredReturnType
+	 * @psalm-suppress UndefinedFunction
+	 * @psalm-suppress MixedReturnStatement
+	 * @psalm-suppress UndefinedClass
+	 */
+	private function newMessageLocalizer(): MessageLocalizer {
+		return new class() implements MessageLocalizer {
+			public function msg( $key, ...$params ): Message {
+				return wfMessage( $key, ...$params );
+			}
+		};
 	}
 
 }

@@ -4,37 +4,44 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Presentation;
 
+use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 
 class ParserFunctionEmbedPresenter implements EmbedPresenter {
 
-	/**
-	 * @var mixed[]|string
-	 */
-	private $parserFunctionReturnValue = '';
+	private MessageLocalizer $localizer;
+
+	private string $html = '';
+
+	public function __construct( MessageLocalizer $localizer ) {
+		$this->localizer = $localizer;
+	}
 
 	public function showError( string $messageKey ): void {
-		$this->parserFunctionReturnValue = $this->buildErrorResponse( $messageKey );
+		$this->html = $this->buildErrorResponse( $messageKey );
 	}
 
 	private function buildErrorResponse( string $messageKey ): string {
-		return $messageKey; // TODO
+		return '<div><span class="errorbox">'
+			. $this->localizer->msg( 'external-content-' . $messageKey )->parse()
+			. '</span></div><br /><br />';
 	}
 
 	public function showContent( string $content ): void {
-		$this->parserFunctionReturnValue = $content; // TODO
+		$this->html = $content;
 	}
 
 	// TODO: join into showError
 	public function showFetchingError(): void {
-		$this->parserFunctionReturnValue = $this->buildErrorResponse( 'fetch-failed' );
+		$this->html = $this->buildErrorResponse( 'fetch-failed' );
 	}
 
-	/**
-	 * @return mixed[]|string
-	 */
-	public function getParserFunctionReturnValue() {
-		return $this->parserFunctionReturnValue;
+	public function getParserFunctionReturnValue(): array {
+		return [
+			$this->html,
+			'noparse' => true,
+			'isHTML' => true,
+		];
 	}
 
 }

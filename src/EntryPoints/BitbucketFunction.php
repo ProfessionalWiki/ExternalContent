@@ -16,7 +16,7 @@ final class BitbucketFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		$presenter = new ParserFunctionEmbedPresenter();
+		$presenter = new ParserFunctionEmbedPresenter( EmbedExtensionFactory::getInstance()->getMessageLocalizer() );
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter );
 

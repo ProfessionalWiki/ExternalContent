@@ -30,8 +30,8 @@ class BitbucketFunctionIntegrationTest extends EmbedIntegrationTestCase {
 	public function testInvalidBitbucketUrl(): void {
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
 
-		$this->assertStringNotContainsString(
-			'I am <strong>bold</strong>', // TODO: check for error instead
+		$this->assertStringContainsString(
+			'<span class="errorbox">⧼test-external-content-url-not-bitbucket⧽</span>',
 			TestEnvironment::instance()->parse( '{{#bitbucket:https://example.com/KITTENS.md}}' )
 		);
 	}

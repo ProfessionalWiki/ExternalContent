@@ -6,6 +6,7 @@ namespace ProfessionalWiki\ExternalContent\Tests;
 
 use FileFetcher\FileFetcher;
 use FileFetcher\NullFileFetcher;
+use Message;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 class TestFactory extends EmbedExtensionFactory {
@@ -14,6 +15,7 @@ class TestFactory extends EmbedExtensionFactory {
 		self::$instance = new static();
 		self::$instance->setFileFetcher( new NullFileFetcher() );
 		self::$instance->setDomainWhitelist();
+		self::$instance->setMessageLocalizer();
 		return self::$instance;
 	}
 
@@ -23,6 +25,14 @@ class TestFactory extends EmbedExtensionFactory {
 
 	public function setDomainWhitelist( string ...$allowedDomains ): void {
 		$this->domainWhitelist = $allowedDomains;
+	}
+
+	private function setMessageLocalizer(): void {
+		$this->localizer = new class() implements \MessageLocalizer {
+			public function msg( $key, ...$params ): Message {
+				return wfMessage( 'test-' . $key, ...$params );
+			}
+		};
 	}
 
 }

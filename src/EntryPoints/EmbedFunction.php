@@ -16,7 +16,7 @@ final class EmbedFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		$presenter = new ParserFunctionEmbedPresenter();
+		$presenter = new ParserFunctionEmbedPresenter( EmbedExtensionFactory::getInstance()->getMessageLocalizer() );
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter );
 

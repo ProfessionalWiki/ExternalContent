@@ -5,5 +5,13 @@
 			"Kghbln"
 		]
 	},
-	"external-content-desc": "Allows embedding external content, such as markdown files, in your wiki pages"
+	"external-content-desc": "Allows embedding external content, such as markdown files, in your wiki pages",
+
+	"external-content-fetch-failed": "Could not retrieve file",
+	"external-content-domain-not-allowed": "Embedding files from this domain is not allowed",
+
+	"external-content-url-missing-host": "URL is missing host",
+	"external-content-url-missing-path": "URL is missing file path",
+	"external-content-url-not-bitbucket": "Not a valid Bitbucket URL",
+	"external-content-url-missing-repository": "URL is missing repository name"
 }
