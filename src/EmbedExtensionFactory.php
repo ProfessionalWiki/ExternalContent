@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent;
 
-use Config;
 use FileFetcher\FileFetcher;
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher;
@@ -16,16 +15,24 @@ use ProfessionalWiki\ExternalContent\Domain\WhitelistedDomainUrlValidator;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
-final class EmbedExtensionFactory {
+class EmbedExtensionFactory {
 
-	private static ?self $instance;
+	protected static ?self $instance;
 
 	public static function getInstance(): self {
 		self::$instance ??= new self();
 		return self::$instance;
 	}
 
-	private ?FileFetcher $fileFetcher = null;
+	protected ?FileFetcher $fileFetcher = null;
+
+	/**
+	 * @var null|array<int, string>
+	 */
+	protected ?array $domainWhitelist = null;
+
+	final protected function __construct() {
+	}
 
 	public function newEmbedUseCaseForEmbedFunction( EmbedPresenter $presenter ): EmbedUseCase {
 		return new EmbedUseCase(
@@ -38,15 +45,12 @@ final class EmbedExtensionFactory {
 	}
 
 	private function getUrlValidator(): UrlValidator {
-		/**
-		 * @var array<int, string>
-		 */
-		$domains = $this->getConfig()->get( 'ExternalContentDomainWhitelist' );
-		return new WhitelistedDomainUrlValidator( ...$domains );
-	}
+		/** @var array<int, string> */
+		$domains = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentDomainWhitelist' );
 
-	private function getConfig(): Config {
-		return MediaWikiServices::getInstance()->getMainConfig();
+		$this->domainWhitelist ??= $domains;
+
+		return new WhitelistedDomainUrlValidator( ...$this->domainWhitelist );
 	}
 
 	private function getFileFetcher(): FileFetcher {
@@ -56,10 +60,6 @@ final class EmbedExtensionFactory {
 
 	private function getContentRender(): ContentRenderer {
 		return new MarkdownRenderer();
-	}
-
-	public function setFileFetcher( FileFetcher $fileFetcher ): void {
-		$this->fileFetcher = $fileFetcher;
 	}
 
 }
