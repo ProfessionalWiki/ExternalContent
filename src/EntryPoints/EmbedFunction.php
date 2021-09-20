@@ -5,8 +5,9 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
+use ProfessionalWiki\ExternalContent\Adapters\CategoryUsageTracker;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
-use ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter;
+use ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter;
 
 final class EmbedFunction {
 
@@ -16,7 +17,10 @@ final class EmbedFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		$presenter = new ParserFunctionEmbedPresenter( EmbedExtensionFactory::getInstance()->getMessageLocalizer() );
+		$presenter = new ParserFunctionEmbedPresenter(
+			EmbedExtensionFactory::getInstance()->getMessageLocalizer(),
+			new CategoryUsageTracker( $parser )
+		);
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter );
 

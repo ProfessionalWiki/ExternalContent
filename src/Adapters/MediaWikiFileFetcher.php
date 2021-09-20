@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\DataAccess;
+namespace ProfessionalWiki\ExternalContent\Adapters;
 
 use FileFetcher\FileFetcher;
 use FileFetcher\FileFetchingException;

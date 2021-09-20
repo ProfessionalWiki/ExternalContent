@@ -2,16 +2,16 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Tests\Integration\DataAccess;
+namespace ProfessionalWiki\ExternalContent\Tests\Integration\Adapters;
 
 use FileFetcher\FileFetchingException;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher;
+use ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\DataAccess\MediaWikiFileFetcher
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher
  */
 class MediaWikiFileFetcherIntegrationTest extends TestCase {
 

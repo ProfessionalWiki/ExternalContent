@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\Tests;
 use FileFetcher\FileFetcher;
 use FileFetcher\NullFileFetcher;
 use Message;
+use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 class TestFactory extends EmbedExtensionFactory {
@@ -28,7 +29,11 @@ class TestFactory extends EmbedExtensionFactory {
 	}
 
 	private function setMessageLocalizer(): void {
-		$this->localizer = new class() implements \MessageLocalizer {
+		$this->localizer = $this->newTestMessageLocalizer();
+	}
+
+	public function newTestMessageLocalizer(): MessageLocalizer {
+		return new class() implements MessageLocalizer {
 			public function msg( $key, ...$params ): Message {
 				return wfMessage( 'test-' . $key, ...$params );
 			}

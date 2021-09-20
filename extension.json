@@ -52,5 +52,10 @@
 	"ResourceModules": {
 	},
 
+	"TrackingCategories": [
+		"external-content-tracking-category",
+		"external-content-broken-tracking-category"
+	],
+
 	"manifest_version": 2
 }

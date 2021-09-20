@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests;
 
 use MediaWiki\MediaWikiServices;
+use Title;
 
 class TestEnvironment {
 
@@ -20,11 +21,11 @@ class TestEnvironment {
 		return null;
 	}
 
-	public function parse( string $textToParse ): string {
+	public function parse( string $textToParse, Title $contextPage = null ): string {
 		return MediaWikiServices::getInstance()->getParser()
 			->parse(
 				$textToParse,
-				\Title::newFromText( 'ContextPage' ),
+				$contextPage ?? Title::newFromText( 'ContextPage' ),
 				new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
 			)->getText();
 	}

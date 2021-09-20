@@ -6,13 +6,15 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\StubFileFetcher;
+use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\EmbedFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
- * @covers \ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
+ * @covers \ProfessionalWiki\ExternalContent\CategoryUsageTracker
  */
 class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
 
@@ -30,7 +32,7 @@ class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
 		$this->extensionFactory->setDomainWhitelist( 'www.professional.wiki' );
 
 		$this->assertStringContainsString(
-			'<span class="errorbox">⧼test-external-content-domain-not-allowed⧽</span>',
+			'⧼test-external-content-domain-not-allowed⧽',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
 	}
@@ -39,9 +41,31 @@ class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
 
 		$this->assertStringContainsString(
-			'<span class="errorbox">⧼test-external-content-fetch-failed⧽</span>',
+			'⧼test-external-content-fetch-failed⧽',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
+	}
+
+	public function testUsageIsTracked(): void {
+		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
+
+		$parser = MediaWikiServices::getInstance()->getParser();
+
+		$parser->parse(
+			'{{#embed:https://example.com/KITTENS.md}}',
+			\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
+			new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
+		)->getText();
+
+		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
+		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
+			$this->assertSame(
+				[ 'Pages_with_external_content' => '', 'Pages_with_broken_external_content' => '' ],
+				$parser->getOutput()->getCategories()
+			);
+		}
+
+		$this->assertCount( 2, $parser->getOutput()->getCategories() );
 	}
 
 }

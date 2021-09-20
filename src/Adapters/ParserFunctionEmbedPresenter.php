@@ -2,9 +2,11 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Presentation;
+namespace ProfessionalWiki\ExternalContent\Adapters;
 
+use Html;
 use MessageLocalizer;
+use ProfessionalWiki\ExternalContent\Domain\UsageTracker;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 
 class ParserFunctionEmbedPresenter implements EmbedPresenter {
@@ -12,28 +14,33 @@ class ParserFunctionEmbedPresenter implements EmbedPresenter {
 	private MessageLocalizer $localizer;
 
 	private string $html = '';
+	private UsageTracker $usageTracker;
 
-	public function __construct( MessageLocalizer $localizer ) {
+	public function __construct( MessageLocalizer $localizer, UsageTracker $usageTracker ) {
 		$this->localizer = $localizer;
+		$this->usageTracker = $usageTracker;
 	}
 
 	public function showError( string $messageKey ): void {
 		$this->html = $this->buildErrorResponse( $messageKey );
+		$this->usageTracker->trackBrokenUsage();
 	}
 
 	private function buildErrorResponse( string $messageKey ): string {
-		return '<div><span class="errorbox">'
-			. $this->localizer->msg( 'external-content-' . $messageKey )->parse()
-			. '</span></div><br /><br />';
+		return Html::errorBox(
+			$this->localizer->msg( 'external-content-' . $messageKey )->parse()
+		);
 	}
 
 	public function showContent( string $content ): void {
 		$this->html = $content;
+		$this->usageTracker->trackUsage();
 	}
 
 	// TODO: join into showError
 	public function showFetchingError(): void {
 		$this->html = $this->buildErrorResponse( 'fetch-failed' );
+		$this->usageTracker->trackBrokenUsage();
 	}
 
 	public function getParserFunctionReturnValue(): array {

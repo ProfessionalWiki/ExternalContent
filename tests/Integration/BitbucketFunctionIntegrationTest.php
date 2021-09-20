@@ -11,7 +11,7 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 /**
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\BitbucketFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
- * @covers \ProfessionalWiki\ExternalContent\Presentation\ParserFunctionEmbedPresenter
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
  */
 class BitbucketFunctionIntegrationTest extends EmbedIntegrationTestCase {
@@ -31,7 +31,7 @@ class BitbucketFunctionIntegrationTest extends EmbedIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
 
 		$this->assertStringContainsString(
-			'<span class="errorbox">⧼test-external-content-url-not-bitbucket⧽</span>',
+			'⧼test-external-content-url-not-bitbucket⧽',
 			TestEnvironment::instance()->parse( '{{#bitbucket:https://example.com/KITTENS.md}}' )
 		);
 	}
