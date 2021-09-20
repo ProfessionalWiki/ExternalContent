@@ -36,6 +36,14 @@ Example:
 {{#bitbucket:https://git.example.com/projects/HI/repos/kittens/browse}}
 ```
 
+### `RefreshExternalContent.php` script
+
+To refresh all the pages containing one of the parser functions added by this extension, run
+
+    php extensions/ExternalContent/maintenance/RefreshExternalContent.php
+
+Parameters: none
+
 ## Configuration
 
 These configuration settings are available and can be changed via "LocalSettings.php":
