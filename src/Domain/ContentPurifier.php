@@ -7,6 +7,9 @@ namespace ProfessionalWiki\ExternalContent\Domain;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
+/**
+ * TODO: use https://doc.wikimedia.org/mediawiki-core/master/php/classSanitizer.html?
+ */
 class ContentPurifier {
 
 	private HTMLPurifier $purifier;

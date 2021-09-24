@@ -9,7 +9,7 @@ use RuntimeException;
 interface UrlNormalizer {
 
 	/**
-	 * @throws RuntimeException
+	 * @throws RuntimeException Error message should be valid as part of an i18n message key
 	 */
 	public function normalize( string $url ): string;
 

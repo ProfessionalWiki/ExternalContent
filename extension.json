@@ -19,8 +19,11 @@
 		}
 	},
 
-	"ExternalContentDomainWhitelist": {
-		"value": []
+	"config": {
+		"ExternalContentDomainWhitelist": {
+			"description": "List of allowed domains to embed content from. Leave empty to have no restriction.",
+			"value": []
+		}
 	},
 
 	"MessagesDirs": {
@@ -39,7 +42,7 @@
 	},
 
 	"Hooks": {
-		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\BitbucketFunction::onParserFirstCallInit"
+		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserFirstCallInit"
 	},
 
 	"ResourceFileModulePaths": {
@@ -48,6 +51,11 @@
 	},
 	"ResourceModules": {
 	},
+
+	"TrackingCategories": [
+		"external-content-tracking-category",
+		"external-content-broken-tracking-category"
+	],
 
 	"manifest_version": 2
 }

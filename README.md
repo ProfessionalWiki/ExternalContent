@@ -10,16 +10,52 @@
 
 MediaWiki extension that allows embedding external content, specified by URL, into your wiki pages.
 
-Currently only supports Markdown files hosted on a Bitbucket server.
-
 THIS EXTENSION IS UNDER DEVELOPMENT AND NOT READY FOR USAGE
 
-## Platform requirements
+## Usage
+
+### `#embed` function
+
+Embed a file by URL. Currently only markdown is supported. 
+
+Example: 
+
+```
+{{#embed:https://example.com/fluffy/kittens.md}}
+```
+
+### `#bitbucket` function
+
+Embed a Bitbucket hosted file by URL. Currently only markdown is supported.
+
+Only valid Bitbucket URLs are accepted. Pointing to a repository root will get you `README.md`. 
+
+Example:
+
+```
+{{#bitbucket:https://git.example.com/projects/HI/repos/kittens/browse}}
+```
+
+### `RefreshExternalContent.php` script
+
+To refresh all the pages containing one of the parser functions added by this extension, run
+
+    php extensions/ExternalContent/maintenance/RefreshExternalContent.php
+
+Parameters: none
+
+## Configuration
+
+These configuration settings are available and can be changed via "LocalSettings.php":
+
+* `$wgExternalContentDomainWhitelist` – List of allowed domains to embed content from. Leave empty to have no restriction.
+
+## Installation
+
+Platform requirements:
 
 * PHP 7.4 or later
 * MediaWiki 1.35 or later
-
-## Installation
 
 The recommended way to install External Content is using [Composer](https://getcomposer.org) with
 [MediaWiki's built-in support for Composer](https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer).

@@ -9,7 +9,7 @@ use ProfessionalWiki\ExternalContent\Adapters\CategoryUsageTracker;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 use ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter;
 
-final class BitbucketFunction {
+final class EmbedFunction {
 
 	/**
 	 * @param Parser $parser
@@ -22,7 +22,7 @@ final class BitbucketFunction {
 			new CategoryUsageTracker( $parser )
 		);
 
-		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter );
+		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter );
 
 		$useCase->embed( $arguments[0] );
 
