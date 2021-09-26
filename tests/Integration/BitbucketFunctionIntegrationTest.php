@@ -14,7 +14,7 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
  * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
  */
-class BitbucketFunctionIntegrationTest extends EmbedIntegrationTestCase {
+class BitbucketFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 
 	public function testHappyPath(): void {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [

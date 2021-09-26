@@ -14,9 +14,9 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
  * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
- * @covers \ProfessionalWiki\ExternalContent\CategoryUsageTracker
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\CategoryUsageTracker
  */
-class EmbedFunctionIntegrationTest extends EmbedIntegrationTestCase {
+class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 
 	public function testHappyPath(): void {
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );

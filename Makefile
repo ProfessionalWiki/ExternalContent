@@ -1,7 +1,7 @@
-.PHONY: ci test phpunit phpcs stan psalm
+.PHONY: ci test phpunit phpcs stan psalm parser
 
 ci: test cs
-test: phpunit
+test: phpunit parser
 cs: phpcs stan psalm
 
 phpunit:
@@ -15,3 +15,6 @@ stan:
 
 psalm:
 	../../vendor/bin/psalm --config=psalm.xml
+
+parser:
+	php ../../tests/parser/parserTests.php --file=tests/parser/parserTests.txt

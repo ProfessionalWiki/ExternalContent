@@ -20,6 +20,14 @@ use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
 class EmbedExtensionFactory {
 
+	public const DEFAULT_CONFIG = [
+		'wgLanguageCode' => 'en',
+		'ExternalContentDomainWhitelist' => [],
+		'ExternalContentFileExtensionWhitelist' => [ 'md' ],
+		'wgExternalContentEnableEmbedFunction' => true,
+		'wgExternalContentEnableBitbucketFunction' => true,
+	];
+
 	protected static ?self $instance;
 
 	public static function getInstance(): self {

@@ -41,3 +41,13 @@ wgLanguageCode='en'
 !! html
 <div class="errorbox">Not a valid Bitbucket URL</div>
 !! end
+
+!! test
+Files with extensions not in the whitelist should be rejected
+!! config
+wgLanguageCode='en'
+!! wikitext
+{{#embed:https://localhost/this-does-not-exist.md}}
+!! html
+<div class="errorbox">Could not retrieve file</div>
+!! end

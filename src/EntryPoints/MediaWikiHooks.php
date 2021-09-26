@@ -6,6 +6,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use MediaWiki\MediaWikiServices;
 use Parser;
+use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 final class MediaWikiHooks {
 
@@ -42,6 +43,15 @@ final class MediaWikiHooks {
 	 */
 	private static function bitbucketFunctionIsEnabled(): bool {
 		return MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentEnableBitbucketFunction' );
+	}
+
+	public static function onParserTestGlobals( array &$globals ): void {
+		foreach ( EmbedExtensionFactory::DEFAULT_CONFIG as $key => $value ) {
+			// The globals we get here do not include values from LocalSettings.php yet
+			if ( !array_key_exists( $key, $globals ) ) {
+				$globals[$key] = $value;
+			}
+		}
 	}
 
 }

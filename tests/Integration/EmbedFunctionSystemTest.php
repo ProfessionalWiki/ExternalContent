@@ -2,12 +2,10 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\System;
+namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 
 use CommentStoreComment;
 use FileFetcher\StubFileFetcher;
-use MediaWikiIntegrationTestCase;
-use ProfessionalWiki\ExternalContent\Tests\TestFactory;
 use Title;
 use User;
 use WikiPage;
@@ -19,16 +17,13 @@ use WikiPage;
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\EmbedFunction
  */
-class EmbedFunctionTest extends MediaWikiIntegrationTestCase {
+class EmbedFunctionSystemTest extends ExternalContentIntegrationTestCase {
 
 	private const PAGE_NAME = 'ExternalContent EmbedFunctionTest';
-
-	protected TestFactory $extensionFactory;
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->extensionFactory = TestFactory::newTestInstance();
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
 
 		$this->createTestPage();
@@ -51,7 +46,7 @@ class EmbedFunctionTest extends MediaWikiIntegrationTestCase {
 
 	public function testTrackingCategories(): void {
 		$this->assertSame(
-			[ 'Category:Pages_with_external_content' => self::PAGE_NAME ], // TODO
+			[ 'Category:Pages_with_external_content' => self::PAGE_NAME ],
 			$this->getWikiPage()->getTitle()->getParentCategories()
 		);
 	}

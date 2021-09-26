@@ -24,6 +24,10 @@
 			"description": "List of allowed domains to embed content from. Leave empty to have no restriction.",
 			"value": []
 		},
+		"ExternalContentFileExtensionWhitelist": {
+			"description": "List of allowed file extensions. Empty array for no restriction.",
+			"value": [ "md" ]
+		},
 		"ExternalContentEnableEmbedFunction": {
 			"description": "If the #embed parser function should be enabled.",
 			"value": true
@@ -50,7 +54,8 @@
 	},
 
 	"Hooks": {
-		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserFirstCallInit"
+		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserFirstCallInit",
+		"ParserTestGlobals": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserTestGlobals"
 	},
 
 	"ResourceFileModulePaths": {
