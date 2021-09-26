@@ -74,6 +74,9 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
         if: matrix.php == 7.4
 
+      - name: Run parser tests
+        run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
+        if: true
 
   static-analysis:
     name: "Static Analysis"

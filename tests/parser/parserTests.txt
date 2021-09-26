@@ -1,0 +1,43 @@
+!! Version 2
+
+!! test
+Embed function should not render when it is disabled
+!! config
+wgExternalContentEnableEmbedFunction=false
+!! wikitext
+{{#embed:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+!! html
+<p>{{#embed:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+</p>
+!! end
+
+!! test
+Bitbucket function should not render when it is disabled
+!! config
+wgExternalContentEnableBitbucketFunction=false
+!! wikitext
+{{#bitbucket:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+!! html
+<p>{{#bitbucket:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+</p>
+!! end
+
+!! test
+Embed function should display not found for non-existing files
+!! config
+wgLanguageCode='en'
+!! wikitext
+{{#embed:https://localhost/this-does-not-exist.md}}
+!! html
+<div class="errorbox">Could not retrieve file</div>
+!! end
+
+!! test
+Bitbucket function should show invalid URL error
+!! config
+wgLanguageCode='en'
+!! wikitext
+{{#bitbucket:https://localhost/not-a-valid-bitbucket-url.md}}
+!! html
+<div class="errorbox">Not a valid Bitbucket URL</div>
+!! end

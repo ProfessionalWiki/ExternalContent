@@ -23,6 +23,14 @@
 		"ExternalContentDomainWhitelist": {
 			"description": "List of allowed domains to embed content from. Leave empty to have no restriction.",
 			"value": []
+		},
+		"ExternalContentEnableEmbedFunction": {
+			"description": "If the #embed parser function should be enabled.",
+			"value": true
+		},
+		"ExternalContentEnableBitbucketFunction": {
+			"description": "If the #bitbucket parser function should be enabled.",
+			"value": true
 		}
 	},
 
