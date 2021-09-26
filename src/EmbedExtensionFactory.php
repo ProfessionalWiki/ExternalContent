@@ -10,7 +10,9 @@ use Message;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
+use ProfessionalWiki\ExternalContent\Domain\CompoundUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\FileExtensionUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\MarkdownRenderer;
 use ProfessionalWiki\ExternalContent\Domain\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
@@ -67,12 +69,25 @@ class EmbedExtensionFactory {
 	}
 
 	private function getUrlValidator(): UrlValidator {
+		return new CompoundUrlValidator(
+			$this->getDomainValidator(),
+			$this->getFileExtensionValidator(),
+		);
+	}
+
+	private function getDomainValidator(): UrlValidator {
 		/** @var array<int, string> */
 		$domains = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentDomainWhitelist' );
 
 		$this->domainWhitelist ??= $domains;
 
 		return new WhitelistedDomainUrlValidator( ...$this->domainWhitelist );
+	}
+
+	private function getFileExtensionValidator(): UrlValidator {
+		/** @var array<int, string> */
+		$extensions = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentFileExtensionWhitelist' );
+		return new FileExtensionUrlValidator( ...$extensions );
 	}
 
 	private function getFileFetcher(): FileFetcher {

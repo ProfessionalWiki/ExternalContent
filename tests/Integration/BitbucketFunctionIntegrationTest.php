@@ -31,7 +31,7 @@ class BitbucketFunctionIntegrationTest extends ExternalContentIntegrationTestCas
 		$this->extensionFactory->setFileFetcher( new StubFileFetcher( 'I am **bold**' ) );
 
 		$this->assertStringContainsString(
-			'⧼test-external-content-url-not-bitbucket⧽',
+			'Not a valid Bitbucket URL',
 			TestEnvironment::instance()->parse( '{{#bitbucket:https://example.com/KITTENS.md}}' )
 		);
 	}

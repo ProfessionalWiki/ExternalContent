@@ -45,9 +45,9 @@ wgLanguageCode='en'
 !! test
 Files with extensions not in the whitelist should be rejected
 !! config
-wgLanguageCode='en'
+wgExternalContentFileExtensionWhitelist=['md']
 !! wikitext
-{{#embed:https://localhost/this-does-not-exist.md}}
+{{#embed:https://localhost/whatever.hax}}
 !! html
-<div class="errorbox">Could not retrieve file</div>
+<div class="errorbox">Embedding files with this extension is not allowed</div>
 !! end

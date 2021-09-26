@@ -9,6 +9,7 @@
 
 	"external-content-fetch-failed": "Could not retrieve file",
 	"external-content-domain-not-allowed": "Embedding files from this domain is not allowed",
+	"external-content-extension-not-allowed": "Embedding files with this extension is not allowed",
 
 	"external-content-url-missing-host": "URL is missing host",
 	"external-content-url-missing-path": "URL is missing file path",

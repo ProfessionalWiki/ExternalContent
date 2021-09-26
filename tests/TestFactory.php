@@ -15,8 +15,6 @@ class TestFactory extends EmbedExtensionFactory {
 	public static function newTestInstance(): self {
 		self::$instance = new static();
 		self::$instance->setFileFetcher( new NullFileFetcher() );
-		self::$instance->setDomainWhitelist();
-		self::$instance->setMessageLocalizer();
 		return self::$instance;
 	}
 
@@ -26,10 +24,6 @@ class TestFactory extends EmbedExtensionFactory {
 
 	public function setDomainWhitelist( string ...$allowedDomains ): void {
 		$this->domainWhitelist = $allowedDomains;
-	}
-
-	private function setMessageLocalizer(): void {
-		$this->localizer = $this->newTestMessageLocalizer();
 	}
 
 	public function newTestMessageLocalizer(): MessageLocalizer {

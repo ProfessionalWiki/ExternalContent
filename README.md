@@ -49,6 +49,7 @@ Parameters: none
 These configuration settings are available and can be changed via "LocalSettings.php":
 
 * `$wgExternalContentDomainWhitelist` – List of allowed domains to embed content from. Leave empty to have no restriction.
+* `$wgExternalContentFileExtensionWhitelist` – List of allowed file extensions. Defaults to `[ 'md' ]`.
 * `$wgExternalContentEnableEmbedFunction` - If the `#embed` parser function should be enabled. Defaults to `true`.
 * `$wgExternalContentEnableBitbucketFunction` - If the `#bitbucket` parser function should be enabled. Defaults to `true`.
 

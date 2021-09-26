@@ -33,18 +33,18 @@ class EmbedUseCase {
 	}
 
 	public function embed( string $fileUrl ): void {
-		$urlValidationError = $this->urlValidator->getErrorCode( $fileUrl );
-
-		if ( $urlValidationError !== null ) {
-			$this->presenter->showError( $urlValidationError );
-			return;
-		}
-
 		try {
 			$normalizedUrl = $this->urlNormalizer->normalize( $fileUrl );
 		}
 		catch ( \RuntimeException $exception ) {
 			$this->presenter->showError( $exception->getMessage() );
+			return;
+		}
+
+		$urlValidationError = $this->urlValidator->getErrorCode( $normalizedUrl );
+
+		if ( $urlValidationError !== null ) {
+			$this->presenter->showError( $urlValidationError );
 			return;
 		}
 

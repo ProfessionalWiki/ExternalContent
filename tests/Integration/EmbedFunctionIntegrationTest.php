@@ -32,7 +32,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		$this->extensionFactory->setDomainWhitelist( 'www.professional.wiki' );
 
 		$this->assertStringContainsString(
-			'⧼test-external-content-domain-not-allowed⧽',
+			'Embedding files from this domain is not allowed',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
 	}
@@ -41,7 +41,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
 
 		$this->assertStringContainsString(
-			'⧼test-external-content-fetch-failed⧽',
+			'Could not retrieve file',
 			TestEnvironment::instance()->parse( '{{#embed:https://example.com/KITTENS.md}}' )
 		);
 	}
