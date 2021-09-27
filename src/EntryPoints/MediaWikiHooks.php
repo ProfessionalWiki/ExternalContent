@@ -4,19 +4,22 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
+use ContentHandler;
 use MediaWiki\MediaWikiServices;
 use Parser;
+use ParserOutput;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
+use SearchEngine;
+use WikiPage;
 
 final class MediaWikiHooks {
 
 	public static function onParserFirstCallInit( Parser $parser ): void {
-
 		if ( self::embedFunctionIsEnabled() ) {
 			$parser->setFunctionHook(
 				'embed',
 				fn( Parser $parser, string ...$arguments )
-				=> ( new EmbedFunction() )->handleParserFunctionCall( $parser, ...$arguments )
+					=> ( new EmbedFunction() )->handleParserFunctionCall( $parser, ...$arguments )
 			);
 		}
 
@@ -24,7 +27,7 @@ final class MediaWikiHooks {
 			$parser->setFunctionHook(
 				'bitbucket',
 				fn( Parser $parser, string ...$arguments )
-				=> ( new BitbucketFunction() )->handleParserFunctionCall( $parser, ...$arguments )
+					=> ( new BitbucketFunction() )->handleParserFunctionCall( $parser, ...$arguments )
 			);
 		}
 	}
@@ -52,6 +55,12 @@ final class MediaWikiHooks {
 				$globals[$key] = $value;
 			}
 		}
+	}
+
+	public static function onSearchDataForIndex( array &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output, SearchEngine $engine ): void {
+	}
+
+	public static function onSearchIndexFields( array &$fields, SearchEngine $engine ): void {
 	}
 
 }

@@ -55,7 +55,9 @@
 
 	"Hooks": {
 		"ParserFirstCallInit": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserFirstCallInit",
-		"ParserTestGlobals": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserTestGlobals"
+		"ParserTestGlobals": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onParserTestGlobals",
+		"SearchDataForIndex": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onSearchDataForIndex",
+		"SearchIndexFields": "ProfessionalWiki\\ExternalContent\\EntryPoints\\MediaWikiHooks::onSearchIndexFields"
 	},
 
 	"ResourceFileModulePaths": {

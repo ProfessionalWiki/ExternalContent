@@ -14,11 +14,7 @@ class ContentPurifierTest extends TestCase {
 		$this->assertSame(
 			'<h1>my <u>test</u> <em>site</em></h1>
 <p>lorem</p>
-<ul>
-    <li>item <strong>1</strong></li>
-</ul>
-
-<img src="/logo.png" alt="wikimedia" />
+<ul><li>item <strong>1</strong></li></ul><img src="/logo.png" alt="wikimedia" />
 some<br />
 thing<br /><hr />
 new
@@ -30,11 +26,7 @@ amet
 			$this->newPurifier()->purify(
 				'<h1>my <u>test</u> <em>site</em></h1>
 <p>lorem</p>
-<ul>
-    <li>item <strong>1</strong></li>
-</ul>
-
-<img src="/logo.png" alt="wikimedia" />
+<ul><li>item <strong>1</strong></li></ul><img src="/logo.png" alt="wikimedia" />
 some<br>
 thing<br/><hr />
 new
