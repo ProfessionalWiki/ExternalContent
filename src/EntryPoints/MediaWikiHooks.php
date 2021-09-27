@@ -48,6 +48,9 @@ final class MediaWikiHooks {
 		return MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentEnableBitbucketFunction' );
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public static function onParserTestGlobals( array &$globals ): void {
 		foreach ( EmbedExtensionFactory::DEFAULT_CONFIG as $key => $value ) {
 			// The globals we get here do not include values from LocalSettings.php yet

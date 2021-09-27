@@ -15,6 +15,7 @@ use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
 /**
  * @covers \ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase
+ * @covers \ProfessionalWiki\ExternalContent\Domain\NullUrlNormalizer
  */
 class EmbedUseCaseTest extends TestCase {
 
