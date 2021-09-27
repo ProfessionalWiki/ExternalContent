@@ -60,9 +60,15 @@ final class MediaWikiHooks {
 		}
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public static function onSearchDataForIndex( array &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output, SearchEngine $engine ): void {
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public static function onSearchIndexFields( array &$fields, SearchEngine $engine ): void {
 	}
 
