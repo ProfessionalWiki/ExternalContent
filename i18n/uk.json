@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT"
+		]
+	},
+	"external-content-desc": "Дозволяє вбудовувати зовнішній вміст, наприклад файли розмітки, у ваші сторінки вікі",
+	"external-content-fetch-failed": "Не вдалося отримати файл",
+	"external-content-domain-not-allowed": "Вбудовування файлів із цього домену заборонено",
+	"external-content-url-missing-host": "У URL-адресі відсутній хост",
+	"external-content-url-missing-path": "У URL-адресі відсутній шлях до файлу",
+	"external-content-url-not-bitbucket": "Недійсна URL-адреса Bitbucket",
+	"external-content-url-missing-repository": "У URL-адресі відсутня назва сховища",
+	"external-content-tracking-category": "Сторінки із зовнішнім вмістом",
+	"external-content-tracking-category-desc": "Ця сторінка містить зовнішній вміст",
+	"external-content-broken-tracking-category": "Сторінки з пошкодженим зовнішнім вмістом",
+	"external-content-broken-tracking-category-desc": "Не вдалося вставити зовнішній вміст на цю сторінку"
+}

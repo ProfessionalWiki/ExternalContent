@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"external-content-desc": "마크다운 파일 등 외부 콘텐츠를 내 위키 문서에 임베드하는 것을 허용합니다",
+	"external-content-fetch-failed": "파일을 찾지 못했습니다",
+	"external-content-domain-not-allowed": "이 도메인에서 파일을 임베드하는 것은 허용하지 않습니다",
+	"external-content-url-missing-host": "URL에 호스트가 없습니다",
+	"external-content-url-missing-path": "URL에 파일 경로가 없습니다",
+	"external-content-url-not-bitbucket": "유효한 빗벗킷 URL이 아닙니다",
+	"external-content-url-missing-repository": "URL에 저장소 이름이 없습니다",
+	"external-content-tracking-category": "외부 콘텐츠가 있는 문서",
+	"external-content-tracking-category-desc": "이 문서에 외부 콘텐츠가 있습니다",
+	"external-content-broken-tracking-category": "깨진 외부 콘텐츠가 있는 문서",
+	"external-content-broken-tracking-category-desc": "이 문서는 외부 콘텐츠의 임베드를 실패했습니다"
+}
