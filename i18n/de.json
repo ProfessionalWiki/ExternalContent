@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kghbln"
+			"Kghbln",
+			"Umlaut"
 		]
 	},
-	"external-content-desc": "Ermöglicht das Einbetten von Inhalten auf Wikiseiten durch Angabe einer URL"
+	"external-content-desc": "Ermöglicht das Einbetten von Inhalten auf Wikiseiten durch Angabe einer URL",
+	"external-content-fetch-failed": "Datei wurde nicht gefunden",
+	"external-content-tracking-category": "Seiten mit externem Inhalt",
+	"external-content-tracking-category-desc": "Diese Seite enthält externen Inhalt"
 }

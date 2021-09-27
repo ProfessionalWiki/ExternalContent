@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mruczek",
 			"Rail"
 		]
 	},
-	"external-content-desc": "Umozliwia osadzanie zewnętrznych treści, jak np. pliki markdown na stronach wiki"
+	"external-content-desc": "Umozliwia osadzanie zewnętrznych treści, jak np. pliki markdown na stronach wiki",
+	"external-content-domain-not-allowed": "Osadzanie plików z tej domeny nie jest dozwolone",
+	"external-content-extension-not-allowed": "Osadzanie plików z tym rozszerzeniem nie jest dozwolone",
+	"external-content-url-missing-host": "W adresie URL brakuje hosta",
+	"external-content-url-missing-path": "W adresie URL brakuje ścieżki pliku",
+	"external-content-tracking-category": "Strony z zawartością zewnętrzną",
+	"external-content-broken-tracking-category": "Strony z uszkodzoną zawartością zewnętrzną"
 }

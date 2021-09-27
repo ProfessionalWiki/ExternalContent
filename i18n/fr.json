@@ -1,8 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"DreZhsh",
 			"Gomoko"
 		]
 	},
-	"external-content-desc": "Permet d’inclure de contenu externe, comme des fichiers Markdown, dans vos pages wiki"
+	"external-content-desc": "Permet d’inclure de contenu externe, comme des fichiers Markdown, dans vos pages wiki",
+	"external-content-fetch-failed": "Impossible de récupérer le fichier",
+	"external-content-domain-not-allowed": "L'incorporation de fichiers de ce domaine n'est pas autorisée.",
+	"external-content-extension-not-allowed": "L'incorporation de fichiers avec cette extension n'est pas autorisée.",
+	"external-content-url-missing-host": "L'URL ne contient pas d'hôte",
+	"external-content-url-missing-path": "L'URL ne contient pas de chemin d'accès au fichier",
+	"external-content-url-not-bitbucket": "Pas une URL Bitbucket valide",
+	"external-content-url-missing-repository": "Le nom du référentiel manque à l'URL",
+	"external-content-tracking-category": "Pages avec du contenu externe",
+	"external-content-tracking-category-desc": "Cette page intègre du contenu externe",
+	"external-content-broken-tracking-category": "Pages dont le contenu externe est brisé",
+	"external-content-broken-tracking-category-desc": "Cette page n'a pas réussi à intégrer du contenu externe"
 }
