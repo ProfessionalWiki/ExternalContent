@@ -35,6 +35,10 @@
 		"ExternalContentEnableBitbucketFunction": {
 			"description": "If the #bitbucket parser function should be enabled.",
 			"value": true
+		},
+		"ExternalContentBasicAuthCredentials": {
+			"description": "Per-domain Basic Auth credentials.",
+			"value": []
 		}
 	},
 

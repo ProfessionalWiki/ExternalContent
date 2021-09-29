@@ -8,6 +8,7 @@ use FileFetcher\FileFetcher;
 use MediaWiki\MediaWikiServices;
 use Message;
 use MessageLocalizer;
+use ProfessionalWiki\ExternalContent\Adapters\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\CompoundUrlValidator;
@@ -91,8 +92,18 @@ class EmbedExtensionFactory {
 	}
 
 	private function getFileFetcher(): FileFetcher {
-		$this->fileFetcher ??= new MediaWikiFileFetcher( MediaWikiServices::getInstance()->getHttpRequestFactory() );
+		$this->fileFetcher ??= new MediaWikiFileFetcher(
+			MediaWikiServices::getInstance()->getHttpRequestFactory(),
+			$this->getDomainCredentials()
+		);
+
 		return $this->fileFetcher;
+	}
+
+	private function getDomainCredentials(): DomainCredentials {
+		/** @var array<string, string[]> */
+		$credentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBasicAuthCredentials' );
+		return DomainCredentials::newFromArray( $credentials );
 	}
 
 	private function getContentRender(): ContentRenderer {

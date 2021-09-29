@@ -46,12 +46,68 @@ Parameters: none
 
 ## Configuration
 
-These configuration settings are available and can be changed via "LocalSettings.php":
+Configuration can be changed via "LocalSettings.php".
 
-* `$wgExternalContentDomainWhitelist` – List of allowed domains to embed content from. Leave empty to have no restriction.
-* `$wgExternalContentFileExtensionWhitelist` – List of allowed file extensions. Defaults to `[ 'md' ]`.
-* `$wgExternalContentEnableEmbedFunction` - If the `#embed` parser function should be enabled. Defaults to `true`.
-* `$wgExternalContentEnableBitbucketFunction` - If the `#bitbucket` parser function should be enabled. Defaults to `true`.
+### Domain whitelist
+
+List of allowed domains to embed content from. Leave empty to have no restriction.
+
+Variable: `$wgExternalContentDomainWhitelist`
+
+Default: `[]`
+
+Example: `[ 'git.example.com', 'another.example.com' ]`
+
+### File extension whitelist
+
+List of allowed file extensions. Leave empty to have no restriction.
+
+Variable: `$wgExternalContentDomainWhitelist`
+
+Default: `[ 'md' ]`
+
+Example: `[ 'md', 'txt' ]`
+
+Caution: The extension currently only supports markdown: any retrieved file content will be rendered ask markdown.
+
+### Enable embed function
+
+If the `#embed` parser function should be enabled.
+
+Variable: `$wgExternalContentEnableEmbedFunction`
+
+Default: `true`
+
+Example: `false` - disables the `#embed` parser function
+
+### Enable bitbucket function
+
+If the `#bitbucket` parser function should be enabled.
+
+Variable: `$wgExternalContentEnableBitbucketFunction`
+
+Default: `true`
+
+Example: `false` - disables the `#bitbucket` parser function
+
+### Basic Auth credentials
+
+Per-domain Basic Auth credentials.
+
+Variable: `$wgExternalContentBasicAuthCredentials`
+
+Default: `[]`
+
+Example:
+```php
+$wgExternalContentBasicAuthCredentials = [
+	'git.example.com' => [ 'ExampleUser', 'ExamplePassword' ],
+	'another.example.com' => [ getenv( 'BITBUCKET_USER' ), getenv( 'BITBUCKET_PASSWORD' ) ]
+];
+```
+
+The above example shows how you can get credentials from ENV vars, which might be preferred over 
+storing them as plaintext in LocalSettings.php.
 
 ## Installation
 
