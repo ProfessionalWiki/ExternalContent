@@ -7,15 +7,22 @@
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/external-content/version.png)](https://packagist.org/packages/professional-wiki/external-content)
 [![Download count](https://poser.pugx.org/professional-wiki/external-content/d/total.png)](https://packagist.org/packages/professional-wiki/external-content)
 
-MediaWiki extension that allows embedding external content, specified by URL, into your wiki pages.
+[MediaWiki] extension that allows embedding external content, specified by URL, into your wiki pages.
 
-THIS EXTENSION IS UNDER DEVELOPMENT AND NOT READY FOR USAGE
+External Content has been created and is maintained by [Professional.Wiki].
+
+- [Usage](#usage)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Development](#development)
+- [Release notes](#release-notes)
 
 ## Usage
 
-### `#embed` function
+### Embedding external content
 
-Embed a file by URL. Currently only markdown is supported. 
+External content can be embedded via the `#embed` [parser function]. This function takes a URL.
+Currently only markdown is supported. 
 
 Example: 
 
@@ -23,16 +30,20 @@ Example:
 {{#embed:https://example.com/fluffy/kittens.md}}
 ```
 
-### `#bitbucket` function
+### Embedding Bitbucket content
 
-Embed a Bitbucket hosted file by URL. Currently only markdown is supported.
+Content from Bitbucket can be embedded via the `#bitbucket` [parser function].
 
-Only valid Bitbucket URLs are accepted. Pointing to a repository root will get you `README.md`. 
+This function takes a URL and includes the following Bitbucket specific behavior:
+* Validation that the URL matches has the Bitbucket repository structure
+* `/browse` URLs are automatically turned into `/raw` URLs
+* Pointing to the repository root will automatically retrieve `README.md`
 
 Example:
 
 ```
 {{#bitbucket:https://git.example.com/projects/HI/repos/kittens/browse}}
+{{#bitbucket:https://git.example.com/projects/HI/repos/kittens/raw/README.md?at=refs%2Fheads%2Fmaster}}
 ```
 
 ### `RefreshExternalContent.php` script
@@ -43,9 +54,34 @@ To refresh all the pages containing one of the parser functions added by this ex
 
 Parameters: none
 
+## Installation
+
+Platform requirements:
+
+* [PHP] 7.4 or later
+* [MediaWiki] 1.35 or later
+
+The recommended way to install Wikibase EDTF is using [Composer] with
+[MediaWiki's built-in support for Composer][Composer install].
+
+On the commandline, go to your wikis root directory. Then run these two commands:
+
+```shell script
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~1.0
+composer update professional-wiki/external-content --no-dev -o
+```
+
+Then enable the extension by adding the following to the bottom of your wikis [LocalSettings.php] file:
+
+```php
+wfLoadExtension( 'ExternalContent' );
+```
+
+You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+
 ## Configuration
 
-Configuration can be changed via "LocalSettings.php".
+Configuration can be changed via [LocalSettings.php].
 
 ### Domain whitelist
 
@@ -106,32 +142,7 @@ $wgExternalContentBasicAuthCredentials = [
 ```
 
 The above example shows how you can get credentials from ENV vars, which might be preferred over 
-storing them as plaintext in LocalSettings.php.
-
-## Installation
-
-Platform requirements:
-
-* PHP 7.4 or later
-* MediaWiki 1.35 or later
-
-The recommended way to install External Content is using [Composer](https://getcomposer.org) with
-[MediaWiki's built-in support for Composer](https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer).
-
-On the commandline, go to your wikis root directory. Then run these two commands:
-
-```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~1.0
-composer update professional-wiki/external-content --no-dev -o
-```
-
-Then enable the extension by adding the following to the bottom of your wikis `LocalSettings.php` file:
-
-```php
-wfLoadExtension( 'ExternalContent' );
-```
-
-You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+storing them as plaintext in [LocalSettings.php].
 
 ## Development
 
@@ -184,3 +195,11 @@ Initial release for MediaWiki 1.35+ with these features:
 * Ability to refresh all embedded content via the `RefreshExternalContent.php` maintenance script
 * Ability to view pages with embedded content via the `Pages with external content` category
 * Ability to view pages with broken embedded content via the `Pages with broken external content` category
+
+[Professional.Wiki]: https://professional.wiki
+[MediaWiki]: https://www.mediawiki.org
+[PHP]: https://www.php.net
+[Composer]: https://getcomposer.org
+[Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
+[parser function]: https://www.mediawiki.org/wiki/Help:Magic_words
+[LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
