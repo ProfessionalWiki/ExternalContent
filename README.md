@@ -167,3 +167,20 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Style checks: `vendor/bin/phpcs -p -s --standard=extensions/ExternalContent/phpcs.xml`
 * PHPStan: `vendor/bin/phpstan analyse --configuration=extensions/ExternalContent/phpstan.neon --memory-limit=2G`
 * Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
+
+## Release notes
+
+### Version 1.0.0 - 2021-09-30
+
+Initial release for MediaWiki 1.35+ with these features:
+
+* Embedding of markdown files via `#embed` parser function
+* Special support for Bitbucket URLs via the` #bitbucket` parser function
+* Restricting of source domains via the `$wgExternalContentDomainWhitelist` setting
+* Restricting of file extensions via the `$wgExternalContentDomainWhitelist` setting
+* Support for Basic Auth via the `$wgExternalContentBasicAuthCredentials` setting
+* Ability to turn off `#embed` via the `$wgExternalContentEnableEmbedFunction` setting
+* Ability to turn off `#bitbucket` via the `$wgExternalContentEnableBitbucketFunction` setting
+* Ability to refresh all embedded content via the `RefreshExternalContent.php` maintenance script
+* Ability to view pages with embedded content via the `Pages with external content` category
+* Ability to view pages with broken embedded content via the `Pages with broken external content` category
