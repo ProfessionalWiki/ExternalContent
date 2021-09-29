@@ -6,8 +6,6 @@ namespace ProfessionalWiki\ExternalContent\Domain;
 
 class BitbucketUrlNormalizer implements UrlNormalizer {
 
-	// TODO: inject default branch
-
 	public function normalize( string $url ): string {
 		$parsedUrl = parse_url( $url );
 
