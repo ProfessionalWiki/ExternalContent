@@ -25,7 +25,17 @@ class FileExtensionUrlValidator implements UrlValidator {
 	}
 
 	private function extensionIsInWhitelist( string $url ): bool {
-		return in_array( pathinfo( $url, PATHINFO_EXTENSION ), $this->allowedExtensions );
+		return in_array(
+			$this->extractExtension( $url ),
+			$this->allowedExtensions
+		);
+	}
+
+	private function extractExtension( string $url ): string {
+		return pathinfo(
+			parse_url( $url, PHP_URL_PATH ),
+			PATHINFO_EXTENSION
+		);
 	}
 
 }

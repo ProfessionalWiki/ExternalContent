@@ -63,4 +63,36 @@ class FileExtensionUrlValidatorTest extends TestCase {
 		);
 	}
 
+	public function testUrlWithQuery(): void {
+		$this->assertNull(
+			( new FileExtensionUrlValidator(
+				'md'
+			) )->getErrorCode( 'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md?at=refs%2Fheads%2Fmaster' )
+		);
+	}
+
+	public function testUrlWithHash(): void {
+		$this->assertNull(
+			( new FileExtensionUrlValidator(
+				'md'
+			) )->getErrorCode( 'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md#Installation' )
+		);
+	}
+
+	public function testFileWithDot(): void {
+		$this->assertNull(
+			( new FileExtensionUrlValidator(
+				'md'
+			) )->getErrorCode( 'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/foo.bar.baz.md#hash?a=b&c=d' )
+		);
+	}
+
+	public function testFileHashAndQueryWithDot(): void {
+		$this->assertNull(
+			( new FileExtensionUrlValidator(
+				'md'
+			) )->getErrorCode( 'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md#an.example?a=b&c=d.e' )
+		);
+	}
+
 }
