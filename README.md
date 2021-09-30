@@ -97,7 +97,7 @@ Example: `[ 'git.example.com', 'another.example.com' ]`
 
 List of allowed file extensions. Leave empty to have no restriction.
 
-Variable: `$wgExternalContentDomainWhitelist`
+Variable: `$wgExternalContentFileExtensionWhitelist`
 
 Default: `[ 'md' ]`
 
