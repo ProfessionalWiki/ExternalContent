@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"external-content-fetch-failed": "Non poteva recuperar file",
+	"external-content-domain-not-allowed": "Incastrar files ab iste dominio non es permittite.",
+	"external-content-extension-not-allowed": "Incastrar files con iste extension non es permittite.",
+	"external-content-url-missing-host": "Le hospite manca in le URL",
+	"external-content-url-missing-path": "Le percurso al file manca in le URL",
+	"external-content-url-not-bitbucket": "Non es un URL Bitbucket valide",
+	"external-content-url-missing-repository": "Le nomine del repositorio manca in le URL",
+	"external-content-tracking-category": "Paginas con contento externe",
+	"external-content-tracking-category-desc": "Iste pagina incastra contento externe",
+	"external-content-broken-tracking-category": "Paginas con contento externe rupte",
+	"external-content-broken-tracking-category-desc": "Iste pagina falleva de incastrar contento externe"
+}

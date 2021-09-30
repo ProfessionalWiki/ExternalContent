@@ -7,6 +7,7 @@
 	"external-content-desc": "Дозволяє вбудовувати зовнішній вміст, наприклад файли розмітки, у ваші сторінки вікі",
 	"external-content-fetch-failed": "Не вдалося отримати файл",
 	"external-content-domain-not-allowed": "Вбудовування файлів із цього домену заборонено",
+	"external-content-extension-not-allowed": "Вбудовування файлів із цим розширенням заборонено",
 	"external-content-url-missing-host": "У URL-адресі відсутній хост",
 	"external-content-url-missing-path": "У URL-адресі відсутній шлях до файлу",
 	"external-content-url-not-bitbucket": "Недійсна URL-адреса Bitbucket",
