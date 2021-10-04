@@ -1,8 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Идеологист"
 		]
 	},
-	"external-content-desc": "Овозможува вметнување на надворешни содржини како Markdown-податотеки во вашите викистраници"
+	"external-content-desc": "Овозможува вметнување на надворешни содржини како Markdown-податотеки во вашите викистраници",
+	"external-content-fetch-failed": "Не можев да ја добијам податотеката",
+	"external-content-domain-not-allowed": "Вметнувањето на податотеки од овој домен не е допуштено",
+	"external-content-extension-not-allowed": "Вметнувањето на податотеки со овој додадок не е допуштено",
+	"external-content-url-missing-host": "На URL-то му недостасува домаќин",
+	"external-content-url-missing-path": "На URL-то му недостасува податотечна патека",
+	"external-content-url-not-bitbucket": "Ова не е важечко URL на Bitbucket",
+	"external-content-url-missing-repository": "На URL-то му недостасува име на складиште",
+	"external-content-tracking-category": "Страници со надворешна содржина",
+	"external-content-tracking-category-desc": "Во оваа страница е вметната надворешна содржина",
+	"external-content-broken-tracking-category": "Страници со неважечка надворешна содржина",
+	"external-content-broken-tracking-category-desc": "Неуспешно вметнување надворешна содржина на страницата"
 }
