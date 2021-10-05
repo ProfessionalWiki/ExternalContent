@@ -59,8 +59,8 @@ Parameters: none
 
 Platform requirements:
 
-* [PHP] 7.4 or later
-* [MediaWiki] 1.35 or later
+* [PHP] 7.4 or later (tested up to 8.1)
+* [MediaWiki] 1.35 or later (tested up to 1.37 and master)
 
 The recommended way to install External Content is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
