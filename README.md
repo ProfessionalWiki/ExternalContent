@@ -47,7 +47,7 @@ Example:
 {{#bitbucket:https://git.example.com/projects/HI/repos/kittens/raw/README.md?at=refs%2Fheads%2Fmaster}}
 ```
 
-### `RefreshExternalContent.php` script
+### Refreshing external content
 
 To refresh all the pages containing one of the parser functions added by this extension, run
 
@@ -62,7 +62,7 @@ Platform requirements:
 * [PHP] 7.4 or later
 * [MediaWiki] 1.35 or later
 
-The recommended way to install Wikibase EDTF is using [Composer] with
+The recommended way to install External Content is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
 
 On the commandline, go to your wikis root directory. Then run these two commands:
