@@ -43,8 +43,8 @@ This function takes a URL and includes the following Bitbucket specific behavior
 Example:
 
 ```
-{{#bitbucket:https://git.example.com/projects/HI/repos/kittens/browse}}
-{{#bitbucket:https://git.example.com/projects/HI/repos/kittens/raw/README.md?at=refs%2Fheads%2Fmaster}}
+{{#bitbucket:https://git.example.com/projects/HI/repos/cats/browse}}
+{{#bitbucket:https://git.example.com/projects/HI/repos/cats/raw/README.md?at=refs%2Fheads%2Fmaster}}
 ```
 
 ### Refreshing external content
