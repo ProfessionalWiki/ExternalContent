@@ -69,6 +69,8 @@ On the commandline, go to your wikis root directory. Then run these two commands
 
 ```shell script
 COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~1.0
+```
+```shell script
 composer update professional-wiki/external-content --no-dev -o
 ```
 
