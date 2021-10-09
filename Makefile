@@ -1,4 +1,4 @@
-.PHONY: ci test phpunit phpcs stan psalm parser
+.PHONY: ci test cs phpunit phpcs stan psalm parser
 
 ci: test cs
 test: phpunit parser
