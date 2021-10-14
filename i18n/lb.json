@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"external-content-fetch-failed": "Fichier konnt net ofgeruff ginn",
+	"external-content-url-not-bitbucket": "Keng valabel Bitbucket URL",
+	"external-content-tracking-category": "Säite mat externem Inhalt",
+	"external-content-tracking-category-desc": "An dëser Säit ass externen Inhalt"
+}
