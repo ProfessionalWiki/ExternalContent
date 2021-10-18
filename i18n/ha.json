@@ -1,8 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gwanki"
+			"Gwanki",
+			"Salihu aliyu"
 		]
 	},
-	"external-content-desc": "Yana ba da damar saka abun ciki na waje, kamar fayilolin alama, a cikin shafukan wiki"
+	"external-content-desc": "Yana ba da damar saka abun ciki na waje, kamar fayilolin alama, a cikin shafukan wiki",
+	"external-content-fetch-failed": "Bazai iya tsayar da fayiloli ba",
+	"external-content-domain-not-allowed": "Ba'a yarda a saka fayiloli ba a cikin wannan domain din",
+	"external-content-extension-not-allowed": "Ba'a yarda a saka fayilolin da aka tsawaita ba",
+	"external-content-url-missing-path": "Babu fayiloli a wannan hanyan ta Adireshin yanar gizo",
+	"external-content-tracking-category": "Shafukan da suke da external content",
+	"external-content-tracking-category-desc": "Wannan shafin an sanya content din waje",
+	"external-content-broken-tracking-category-desc": "Wannan shafin ya kasa sanya content din da yake daga waje"
 }
