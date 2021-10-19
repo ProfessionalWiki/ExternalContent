@@ -6,7 +6,7 @@
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/level.svg)](psalm.xml)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/external-content/version.png)](https://packagist.org/packages/professional-wiki/external-content)
 [![Download count](https://poser.pugx.org/professional-wiki/external-content/d/total.png)](https://packagist.org/packages/professional-wiki/external-content)
-[![License](https://img.shields.io/github/license/ProfessionalWiki/ExternalContent)](LICENSE)
+[![License](https://img.shields.io/packagist/l/professional-wiki/external-content)](LICENSE)
 
 [MediaWiki] extension that allows embedding external content, specified by URL, into your wiki pages.
 
