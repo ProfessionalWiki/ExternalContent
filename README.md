@@ -147,6 +147,11 @@ $wgExternalContentBasicAuthCredentials = [
 The above example shows how you can get credentials from ENV vars, which might be preferred over 
 storing them as plaintext in [LocalSettings.php].
 
+### Connection details
+
+Content of files is fetched via MediaWiki's native HTTP client. This process is affected by 
+various [HTTP client variables](https://www.mediawiki.org/wiki/Category:HTTP_client_variables).
+
 ## Development
 
 To ensure the dev dependencies get installed, have this in your `composer.local.json`:
