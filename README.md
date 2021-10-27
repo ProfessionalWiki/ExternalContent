@@ -152,6 +152,11 @@ storing them as plaintext in [LocalSettings.php].
 Content of files is fetched via MediaWiki's native HTTP client. This process is affected by 
 various [HTTP client variables](https://www.mediawiki.org/wiki/Category:HTTP_client_variables).
 
+### Search
+
+In stock MediaWiki with no extensions, embedded content is not be searchable. To make embedded content
+show up in search results, install Elasticseach and the [CirrusSearch extension].
+
 ## Development
 
 To ensure the dev dependencies get installed, have this in your `composer.local.json`:
@@ -211,3 +216,4 @@ Initial release for MediaWiki 1.35+ with these features:
 [Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
 [parser function]: https://www.mediawiki.org/wiki/Help:Magic_words
 [LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
+[CirrusSearch extension]: https://www.mediawiki.org/wiki/Extension:CirrusSearch
