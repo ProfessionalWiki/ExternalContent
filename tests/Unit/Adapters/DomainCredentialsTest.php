@@ -5,11 +5,11 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Adapters;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Adapters\BasicAuthCredentials;
-use ProfessionalWiki\ExternalContent\Adapters\DomainCredentials;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\BasicAuthCredentials;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Adapters\DomainCredentials
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials
  */
 class DomainCredentialsTest extends TestCase {
 

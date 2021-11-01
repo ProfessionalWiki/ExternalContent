@@ -7,15 +7,15 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration\Adapters;
 use FileFetcher\FileFetchingException;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Adapters\BasicAuthCredentials;
-use ProfessionalWiki\ExternalContent\Adapters\DomainCredentials;
-use ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\BasicAuthCredentials;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Adapters\MediaWikiFileFetcher
- * @covers \ProfessionalWiki\ExternalContent\Adapters\DomainCredentials
- * @covers \ProfessionalWiki\ExternalContent\Adapters\BasicAuthCredentials
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\FileFetcher\BasicAuthCredentials
  */
 class MediaWikiFileFetcherIntegrationTest extends TestCase {
 

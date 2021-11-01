@@ -2,10 +2,9 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Adapters;
+namespace ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter;
 
 use Parser;
-use ProfessionalWiki\ExternalContent\Domain\UsageTracker;
 
 class CategoryUsageTracker implements UsageTracker {
 

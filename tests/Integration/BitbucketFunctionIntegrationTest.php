@@ -11,7 +11,7 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 /**
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\BitbucketFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
- * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
  */
 class BitbucketFunctionIntegrationTest extends ExternalContentIntegrationTestCase {

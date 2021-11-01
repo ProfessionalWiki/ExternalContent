@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Adapters;
+namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher;
 
 class BasicAuthCredentials {
 

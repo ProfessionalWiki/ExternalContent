@@ -2,11 +2,10 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Adapters;
+namespace ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter;
 
 use Html;
 use MessageLocalizer;
-use ProfessionalWiki\ExternalContent\Domain\UsageTracker;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 
 class ParserFunctionEmbedPresenter implements EmbedPresenter {

@@ -5,12 +5,12 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Adapters;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter;
-use ProfessionalWiki\ExternalContent\Domain\UsageTracker;
+use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
+use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\UsageTracker;
 use ProfessionalWiki\ExternalContent\Tests\TestFactory;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter
  */
 class ParserFunctionEmbedPresenterTest extends TestCase {
 

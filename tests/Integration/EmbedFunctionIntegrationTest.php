@@ -12,9 +12,9 @@ use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 /**
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\EmbedFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
- * @covers \ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter
  * @covers \ProfessionalWiki\ExternalContent\EmbedExtensionFactory
- * @covers \ProfessionalWiki\ExternalContent\Adapters\CategoryUsageTracker
+ * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\CategoryUsageTracker
  */
 class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 

@@ -5,8 +5,8 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use Parser;
-use ProfessionalWiki\ExternalContent\Adapters\CategoryUsageTracker;
-use ProfessionalWiki\ExternalContent\Adapters\ParserFunctionEmbedPresenter;
+use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\CategoryUsageTracker;
+use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 final class EmbedFunction {
