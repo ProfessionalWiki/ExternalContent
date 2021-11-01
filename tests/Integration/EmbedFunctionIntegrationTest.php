@@ -68,4 +68,15 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		$this->assertCount( 2, $parser->getOutput()->getCategories() );
 	}
 
+	public function testGitHubNormalization(): void {
+		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [
+			'https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md' => 'How convenient'
+		] ) );
+
+		$this->assertStringContainsString(
+			'How convenient',
+			TestEnvironment::instance()->parse( '{{#embed:https://github.com/ProfessionalWiki/ExternalContent}}' )
+		);
+	}
+
 }

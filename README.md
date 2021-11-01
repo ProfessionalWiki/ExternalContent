@@ -31,6 +31,12 @@ Example:
 {{#embed:https://example.com/fluffy/kittens.md}}
 ```
 
+There is special handling for GitHub URLs, removing the need to provide the raw file URL:
+
+* https://github.com/org/repo/blob/master/whatever.md => https://raw.githubusercontent.com/org/repo/master/whatever.md
+* https://github.com/org/repo/tree/master/src => defaults to README.md in the directory
+* https://github.com/org/repo => defaults to the README.md in the repository root on the `master` branch
+
 ### Embedding Bitbucket content
 
 Content from Bitbucket can be embedded via the `#bitbucket` [parser function].
@@ -193,6 +199,10 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
 
 ## Release notes
+
+### Version 1.1.0 - 2021-11-01
+
+* Added normalization for github.com URLs to the `#embed` parser function
 
 ### Version 1.0.0 - 2021-09-30
 
