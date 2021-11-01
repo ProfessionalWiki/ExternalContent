@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Domain;
 
-class UrlPathModifier {
+class HostAndPathModifier {
 
 	public function modifyPath( string $url, callable $modificationFunction ): string {
 		$parsedUrl = parse_url( $url );
@@ -14,8 +14,9 @@ class UrlPathModifier {
 		/**
 		 * @psalm-suppress PossiblyUndefinedArrayOffset
 		 * @psalm-suppress MixedAssignment
+		 * @psalm-suppress MixedArrayAccess
 		 */
-		$parsedUrl['path'] = $modificationFunction( $parsedUrl['path'] );
+		[ $parsedUrl['host'], $parsedUrl['path'] ] = $modificationFunction( $parsedUrl['host'], $parsedUrl['path'] );
 
 		return $this->buildUrl( $parsedUrl );
 	}

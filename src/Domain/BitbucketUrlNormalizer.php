@@ -7,9 +7,9 @@ namespace ProfessionalWiki\ExternalContent\Domain;
 class BitbucketUrlNormalizer implements UrlNormalizer {
 
 	public function normalize( string $url ): string {
-		return ( new UrlPathModifier() )->modifyPath(
+		return ( new HostAndPathModifier() )->modifyPath(
 			$url,
-			fn( string $path ) => $this->normalizePath( $path )
+			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path ) ]
 		);
 	}
 
