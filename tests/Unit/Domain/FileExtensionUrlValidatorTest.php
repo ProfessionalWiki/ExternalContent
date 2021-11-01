@@ -5,10 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\FileExtensionUrlValidator;
+use ProfessionalWiki\ExternalContent\Domain\UrlValidator\FileExtensionUrlValidator;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\FileExtensionUrlValidator
+ * @covers \ProfessionalWiki\ExternalContent\Domain\UrlValidator\FileExtensionUrlValidator
  */
 class FileExtensionUrlValidatorTest extends TestCase {
 

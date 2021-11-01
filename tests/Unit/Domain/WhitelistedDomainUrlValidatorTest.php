@@ -5,10 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\WhitelistedDomainUrlValidator;
+use ProfessionalWiki\ExternalContent\Domain\UrlValidator\WhitelistedDomainUrlValidator;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\WhitelistedDomainUrlValidator
+ * @covers \ProfessionalWiki\ExternalContent\Domain\UrlValidator\WhitelistedDomainUrlValidator
  */
 class WhitelistedDomainUrlValidatorTest extends TestCase {
 

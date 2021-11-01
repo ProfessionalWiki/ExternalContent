@@ -5,10 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Integration\EntryPoints;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\MarkdownRenderer;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\MarkdownRenderer
+ * @covers \ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer
  */
 class MarkdownRendererTest extends TestCase {
 

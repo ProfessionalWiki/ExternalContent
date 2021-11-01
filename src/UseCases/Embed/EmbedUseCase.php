@@ -8,7 +8,6 @@ use FileFetcher\FileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
-use ProfessionalWiki\ExternalContent\Domain\UsageTracker;
 
 class EmbedUseCase {
 

@@ -2,7 +2,9 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Domain;
+namespace ProfessionalWiki\ExternalContent\Domain\UrlValidator;
+
+use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 
 class CompoundUrlValidator implements UrlValidator {
 

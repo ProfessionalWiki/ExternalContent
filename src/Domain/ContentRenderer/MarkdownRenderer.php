@@ -2,9 +2,10 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Domain;
+namespace ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 use Michelf\Markdown;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 class MarkdownRenderer implements ContentRenderer {
 

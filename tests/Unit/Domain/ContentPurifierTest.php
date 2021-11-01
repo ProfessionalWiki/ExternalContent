@@ -3,10 +3,10 @@
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\ContentPurifier;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\ContentPurifier;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\ContentPurifier
+ * @covers \ProfessionalWiki\ExternalContent\Domain\ContentRenderer\ContentPurifier
  */
 class ContentPurifierTest extends TestCase {
 

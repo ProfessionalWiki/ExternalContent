@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Domain;
+namespace ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;

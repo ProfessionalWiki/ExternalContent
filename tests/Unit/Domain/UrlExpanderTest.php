@@ -5,10 +5,10 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\UrlExpander;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\UrlExpander;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\UrlExpander
+ * @covers \ProfessionalWiki\ExternalContent\Domain\ContentRenderer\UrlExpander
  */
 class UrlExpanderTest extends TestCase {
 

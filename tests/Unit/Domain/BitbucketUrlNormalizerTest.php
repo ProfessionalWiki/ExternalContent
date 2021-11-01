@@ -5,11 +5,11 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
-use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
+use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 
 /**
- * @covers \ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer
- * @covers \ProfessionalWiki\ExternalContent\Domain\HostAndPathModifier
+ * @covers \ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer
+ * @covers \ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\HostAndPathModifier
  */
 class BitbucketUrlNormalizerTest extends TestCase {
 
