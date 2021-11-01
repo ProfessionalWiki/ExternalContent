@@ -9,6 +9,7 @@ use ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer;
 
 /**
  * @covers \ProfessionalWiki\ExternalContent\Domain\BitbucketUrlNormalizer
+ * @covers \ProfessionalWiki\ExternalContent\Domain\UrlPathModifier
  */
 class BitbucketUrlNormalizerTest extends TestCase {
 

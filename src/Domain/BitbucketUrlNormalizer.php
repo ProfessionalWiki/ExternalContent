@@ -7,29 +7,15 @@ namespace ProfessionalWiki\ExternalContent\Domain;
 class BitbucketUrlNormalizer implements UrlNormalizer {
 
 	public function normalize( string $url ): string {
-		$parsedUrl = parse_url( $url );
-
-		$this->assertRequiredUrlPartsArePresent( $parsedUrl );
-
-		/** @psalm-suppress PossiblyUndefinedArrayOffset */
-		$parsedUrl['path'] = $this->normalizePath( $parsedUrl['path'] );
-
-		return $this->buildUrl( $parsedUrl );
+		return ( new UrlPathModifier() )->modifyPath(
+			$url,
+			fn( string $path ) => $this->normalizePath( $path )
+		);
 	}
 
-	private function assertRequiredUrlPartsArePresent( array $parsedUrl ): void {
-		if ( !array_key_exists( 'host', $parsedUrl ) ) {
-			throw new \RuntimeException( 'url-missing-host' );
-		}
-
-		if ( !array_key_exists( 'path', $parsedUrl ) ) {
-			throw new \RuntimeException( 'url-missing-path' );
-		}
-	}
-
-	private function normalizePath( string $url ): string {
+	private function normalizePath( string $path ): string {
 		// /projects/KNOW/repos/kittens/browse/Arbitrary.md
-		$urlParts = explode( '/', $url );
+		$urlParts = explode( '/', $path );
 
 		$this->assertIsBitbucketUrl( $urlParts );
 
