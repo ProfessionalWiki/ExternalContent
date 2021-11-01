@@ -88,7 +88,7 @@ class BitbucketUrlNormalizerTest extends TestCase {
 		yield 'No host' => [ '/projects/KNOW/repos/fluffy-kittens/', 'url-missing-host' ];
 		yield 'No repo' => [ 'https://git.example.com/projects/KNOW/repos', 'url-missing-repository' ];
 		yield 'No repo (tailing slash)' => [ 'https://git.example.com/projects/KNOW/repos/', 'url-missing-repository' ];
-		yield 'No path' => [ 'https://git.example.com', 'url-missing-path' ];
+		yield 'No path' => [ 'https://git.example.com', 'url-not-bitbucket' ];
 		yield 'No path (tailing slash)' => [ 'https://git.example.com/', 'url-not-bitbucket' ];
 		yield 'Path does not start with projects' => [ 'https://git.example.com/wrong/KNOW/repos/fluffy-kittens/', 'url-not-bitbucket' ];
 		yield 'Path does not have repos' => [ 'https://git.example.com/projects/KNOW/wrong/fluffy-kittens/', 'url-not-bitbucket' ];

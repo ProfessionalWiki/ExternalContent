@@ -16,7 +16,7 @@ class HostAndPathModifier {
 		 * @psalm-suppress MixedAssignment
 		 * @psalm-suppress MixedArrayAccess
 		 */
-		[ $parsedUrl['host'], $parsedUrl['path'] ] = $modificationFunction( $parsedUrl['host'], $parsedUrl['path'] );
+		[ $parsedUrl['host'], $parsedUrl['path'] ] = $modificationFunction( $parsedUrl['host'], $parsedUrl['path'] ?? '' );
 
 		return $this->buildUrl( $parsedUrl );
 	}
@@ -24,10 +24,6 @@ class HostAndPathModifier {
 	private function assertRequiredUrlPartsArePresent( array $parsedUrl ): void {
 		if ( !array_key_exists( 'host', $parsedUrl ) ) {
 			throw new \RuntimeException( 'url-missing-host' );
-		}
-
-		if ( !array_key_exists( 'path', $parsedUrl ) ) {
-			throw new \RuntimeException( 'url-missing-path' );
 		}
 	}
 
