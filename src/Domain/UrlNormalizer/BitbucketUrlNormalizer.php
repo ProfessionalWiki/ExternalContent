@@ -44,22 +44,4 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 		}
 	}
 
-	/**
-	 * Modernized version of https://www.php.net/manual/en/function.parse-url.php#106731
-	 * @psalm-suppress MixedOperand
-	 * @psalm-suppress MixedAssignment
-	 */
-	private function buildUrl( array $parsedUrl ): string {
-		$scheme = isset( $parsedUrl['scheme'] ) ? $parsedUrl['scheme'] . '://' : '';
-		$host = $parsedUrl['host'] ?? '';
-		$port = isset( $parsedUrl['port'] ) ? ':' . $parsedUrl['port'] : '';
-		$user = $parsedUrl['user'] ?? '';
-		$pass = isset( $parsedUrl['pass'] ) ? ':' . $parsedUrl['pass'] : '';
-		$pass = ( $user || $pass ) ? "$pass@" : '';
-		$path = $parsedUrl['path'] ?? '';
-		$query = isset( $parsedUrl['query'] ) ? '?' . $parsedUrl['query'] : '';
-		$fragment = isset( $parsedUrl['fragment'] ) ? '#' . $parsedUrl['fragment'] : '';
-		return "$scheme$user$pass$host$port$path$query$fragment";
-	}
-
 }
