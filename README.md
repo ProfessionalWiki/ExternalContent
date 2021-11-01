@@ -33,9 +33,9 @@ Example:
 
 There is special handling for GitHub URLs, removing the need to provide the raw file URL:
 
-* https://github.com/org/repo/blob/master/whatever.md => https://raw.githubusercontent.com/org/repo/master/whatever.md
-* https://github.com/org/repo/tree/master/src => defaults to README.md in the directory
-* https://github.com/org/repo => defaults to the README.md in the repository root on the `master` branch
+* `https://github.com/org/repo/blob/master/hi.md` => `https://raw.githubusercontent.com/org/repo/master/hi.md`
+* `https://github.com/org/repo/tree/master/src` => defaults to README.md in the directory
+* `https://github.com/org/repo` => defaults to the README.md in the repository root on the `master` branch
 
 ### Embedding Bitbucket content
 
