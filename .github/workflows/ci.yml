@@ -17,7 +17,7 @@ jobs:
             php: 8.0
           - mw: 'REL1_37'
             php: 8.0
-          - mw: 'master'
+          - mw: 'REL1_37'
             php: 8.1
 
     runs-on: ubuntu-latest
