@@ -200,6 +200,10 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
+### Version 1.2.0 - 2021-12-02
+
+* Added support for [extended syntax markdown](https://www.markdownguide.org/extended-syntax/)
+
 ### Version 1.1.0 - 2021-11-01
 
 * Added normalization for github.com URLs to the `#embed` parser function

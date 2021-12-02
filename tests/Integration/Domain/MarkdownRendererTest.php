@@ -20,9 +20,9 @@ class MarkdownRendererTest extends TestCase {
 	}
 
 	public function testPurifiesContent(): void {
-		$this->assertSame(
+		$this->assertRendersAs(
 			'<p>I am </p><br />',
-			( new MarkdownRenderer() )->render( 'I am <script>evil</script><div><br></div>', '' )
+			'I am <script>evil</script><div><br></div>'
 		);
 	}
 
@@ -48,6 +48,24 @@ class MarkdownRendererTest extends TestCase {
 			'https://professional.wiki/hi/example.md',
 			'https://professional.wiki/hi/kittens.md'
 		];
+	}
+
+	public function testRendersFencedCodeBlock(): void {
+		$this->assertRendersAs(
+			'<pre><code>Some codeMore code</code></pre>',
+			"~~~\nSome code\nMore code\n~~~"
+		);
+	}
+
+	private function assertRendersAs( string $expectedHtml, string $markdown ): void {
+		$this->assertSame(
+			$expectedHtml,
+			preg_replace(
+				'/\n+/', // Replace newlines since they get inserted pretty randomly between HTML tags
+				'',
+				( new MarkdownRenderer() )->render( $markdown, '' )
+			)
+		);
 	}
 
 }
