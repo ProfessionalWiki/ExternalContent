@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakejason0"
+		]
+	},
+	"external-content-desc": "允许在wiki页面中嵌入外部内容，例如Markdown文件",
+	"external-content-fetch-failed": "无法获取文件",
+	"external-content-domain-not-allowed": "不允许从此域名嵌入文件",
+	"external-content-extension-not-allowed": "不允许嵌入以这种扩展名结尾的文件",
+	"external-content-url-missing-host": "URL缺少主机",
+	"external-content-url-missing-path": "URL缺少文件路径",
+	"external-content-url-not-bitbucket": "不是有效的BitBucket URL",
+	"external-content-url-missing-repository": "URL缺少储存库（Repository）名称",
+	"external-content-tracking-category": "有外部内容的页面",
+	"external-content-tracking-category-desc": "此页面上嵌入了外部内容",
+	"external-content-broken-tracking-category": "含有损坏的外部内容的页面",
+	"external-content-broken-tracking-category-desc": "此页面上未能嵌入外部内容"
+}
