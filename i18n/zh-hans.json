@@ -11,7 +11,7 @@
 	"external-content-url-missing-host": "URL缺少主机",
 	"external-content-url-missing-path": "URL缺少文件路径",
 	"external-content-url-not-bitbucket": "不是有效的BitBucket URL",
-	"external-content-url-missing-repository": "URL缺少储存库（Repository）名称",
+	"external-content-url-missing-repository": "URL缺少仓库（Repository）名称",
 	"external-content-tracking-category": "有外部内容的页面",
 	"external-content-tracking-category-desc": "此页面上嵌入了外部内容",
 	"external-content-broken-tracking-category": "含有损坏的外部内容的页面",
