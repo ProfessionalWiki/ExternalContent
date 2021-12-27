@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Mruczek",
-			"Rail"
+			"Rail",
+			"Woytecr"
 		]
 	},
-	"external-content-desc": "Umozliwia osadzanie zewnętrznych treści, jak np. pliki markdown na stronach wiki",
+	"external-content-desc": "Umożliwia osadzanie zewnętrznych treści, jak np. pliki markdown na stronach wiki",
 	"external-content-domain-not-allowed": "Osadzanie plików z tej domeny nie jest dozwolone",
 	"external-content-extension-not-allowed": "Osadzanie plików z tym rozszerzeniem nie jest dozwolone",
 	"external-content-url-missing-host": "W adresie URL brakuje hosta",
