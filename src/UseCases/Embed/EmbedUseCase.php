@@ -55,7 +55,7 @@ class EmbedUseCase {
 			return;
 		}
 
-		$this->presenter->showContent( $this->contentRenderer->render( $content, $normalizedUrl ) );
+		$this->presenter->showContent( $this->contentRenderer->render( $content, $fileUrl ) );
 	}
 
 }

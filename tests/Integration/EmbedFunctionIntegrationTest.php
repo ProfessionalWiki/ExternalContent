@@ -79,4 +79,50 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		);
 	}
 
+	public function testRelativeLink(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://example.com/foo.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			'<a href="https://example.com/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#embed:https://example.com/foo.md}}'
+			)
+		);
+	}
+
+	public function testRelativeLinkOnNormalizedUrl(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/foo.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			'<a href="https://github.com/ProfessionalWiki/ExternalContent/blob/master/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#embed:https://github.com/ProfessionalWiki/ExternalContent/blob/master/foo.md}}'
+			)
+		);
+	}
+
+	public function testRelativeLinkOnShortGitHubUrl(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			// FIXME: we want https://github.com/ProfessionalWiki/ExternalContent/blob/master/bar.md
+			'<a href="https://github.com/ProfessionalWiki/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#embed:https://github.com/ProfessionalWiki/ExternalContent}}'
+			)
+		);
+	}
+
 }

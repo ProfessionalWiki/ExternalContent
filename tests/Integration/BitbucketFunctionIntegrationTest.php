@@ -36,4 +36,34 @@ class BitbucketFunctionIntegrationTest extends ExternalContentIntegrationTestCas
 		);
 	}
 
+	public function testRelativeLink(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/foo.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			'<a href="https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#bitbucket:https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/foo.md}}'
+			)
+		);
+	}
+
+	public function testRelativeLinkOnNormalizedUrl(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/foo.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			'<a href="https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#bitbucket:https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/foo.md}}'
+			)
+		);
+	}
+
 }

@@ -23,9 +23,9 @@ External Content has been created and is maintained by [Professional.Wiki].
 ### Embedding external content
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
-Currently only markdown is supported. 
+Currently only markdown is supported.
 
-Example: 
+Example:
 
 ```
 {{#embed:https://example.com/fluffy/kittens.md}}
@@ -150,12 +150,12 @@ $wgExternalContentBasicAuthCredentials = [
 ];
 ```
 
-The above example shows how you can get credentials from ENV vars, which might be preferred over 
+The above example shows how you can get credentials from ENV vars, which might be preferred over
 storing them as plaintext in [LocalSettings.php].
 
 ### Connection details
 
-Content of files is fetched via MediaWiki's native HTTP client. This process is affected by 
+Content of files is fetched via MediaWiki's native HTTP client. This process is affected by
 various [HTTP client variables](https://www.mediawiki.org/wiki/Category:HTTP_client_variables).
 
 ### Search
@@ -199,6 +199,11 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
 
 ## Release notes
+
+### Version 1.3.0 - dev
+
+* Improved handling of relative links. They now point to the "browse" version when embedding using a "browse" URL,
+  rather than using the "raw" version.
 
 ### Version 1.2.0 - 2021-12-02
 
