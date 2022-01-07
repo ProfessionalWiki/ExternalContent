@@ -66,4 +66,20 @@ class BitbucketFunctionIntegrationTest extends ExternalContentIntegrationTestCas
 		);
 	}
 
+	public function testRelativeLinkOnAutoReadmeUrl(): void {
+		$this->extensionFactory->setFileFetcher(
+			new InMemoryFileFetcher( [
+				'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md' => '[bar link](bar.md)'
+			] )
+		);
+
+		$this->assertStringContainsString(
+			// FIXME: we want https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md
+			'<a href="https://git.example.com/projects/KNOW/repos/bar.md">bar link</a>',
+			TestEnvironment::instance()->parse(
+				'{{#bitbucket:https://git.example.com/projects/KNOW/repos/fluffy-kittens}}'
+			)
+		);
+	}
+
 }
