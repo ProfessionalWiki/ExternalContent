@@ -19,7 +19,7 @@ class GitHubUrlNormalizerTest extends TestCase {
 	public function testNormalization( string $input, string $expectedOutput ): void {
 		$this->assertSame(
 			$expectedOutput,
-			( new GitHubUrlNormalizer() )->normalize( $input )
+			( new GitHubUrlNormalizer() )->fullNormalize( $input )
 		);
 	}
 
@@ -66,7 +66,7 @@ class GitHubUrlNormalizerTest extends TestCase {
 	public function testUnchangedNormalization( string $input ): void {
 		$this->assertSame(
 			$input,
-			( new GitHubUrlNormalizer() )->normalize( $input )
+			( new GitHubUrlNormalizer() )->fullNormalize( $input )
 		);
 	}
 
@@ -85,6 +85,33 @@ class GitHubUrlNormalizerTest extends TestCase {
 
 		yield 'Path that is way too short' => [
 			'https://github.com'
+		];
+	}
+
+	/**
+	 * @dataProvider viewLevelNormalizationProvider
+	 */
+	public function testViewLevelNormalization( string $input, string $expectedOutput ): void {
+		$this->assertSame(
+			$expectedOutput,
+			( new GitHubUrlNormalizer() )->viewLevelNormalize( $input )
+		);
+	}
+
+	public function viewLevelNormalizationProvider(): iterable {
+		yield 'Normal paths are NOT turned into raw paths' => [
+			'https://github.com/ProfessionalWiki/ExternalContent/blob/master/README.md',
+			'https://github.com/ProfessionalWiki/ExternalContent/blob/master/README.md'
+		];
+
+		yield 'Raw paths are left as they are' => [
+			'https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md',
+			'https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md'
+		];
+
+		yield 'Repo root defaults to non-raw README.md on master' => [
+			'https://github.com/ProfessionalWiki/ExternalContent',
+			'https://github.com/ProfessionalWiki/ExternalContent/blob/master/README.md'
 		];
 	}
 

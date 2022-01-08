@@ -19,7 +19,7 @@ class BitbucketUrlNormalizerTest extends TestCase {
 	public function testNormalization( string $input, string $expectedOutput ): void {
 		$this->assertSame(
 			$expectedOutput,
-			( new BitbucketUrlNormalizer() )->normalize( $input )
+			( new BitbucketUrlNormalizer() )->fullNormalize( $input )
 		);
 	}
 
@@ -81,7 +81,7 @@ class BitbucketUrlNormalizerTest extends TestCase {
 	public function testInvalidUrlsCauseRuntimeException( string $invalidUrl, string $expectedMessage ): void {
 		$this->expectException( \RuntimeException::class );
 		$this->expectExceptionMessage( $expectedMessage );
-		( new BitbucketUrlNormalizer() )->normalize( $invalidUrl );
+		( new BitbucketUrlNormalizer() )->fullNormalize( $invalidUrl );
 	}
 
 	public function invalidUrlProvider(): iterable {
@@ -95,6 +95,38 @@ class BitbucketUrlNormalizerTest extends TestCase {
 		yield 'Path is entirely wrong' => [ 'https://git.example.com/foo/bar/baz', 'url-not-bitbucket' ];
 		yield 'Empty' => [ '', 'url-missing-host' ];
 		yield 'Slash' => [ '/', 'url-missing-host' ];
+	}
+
+	/**
+	 * @dataProvider viewLevelNormalizationProvider
+	 */
+	public function testViewLevelNormalization( string $input, string $expectedOutput ): void {
+		$this->assertSame(
+			$expectedOutput,
+			( new BitbucketUrlNormalizer() )->viewLevelNormalize( $input )
+		);
+	}
+
+	public function viewLevelNormalizationProvider(): iterable {
+		yield 'Raw paths should not be changed' => [
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/Arbitrary.md',
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/Arbitrary.md'
+		];
+
+		yield 'Browse paths should not be changed' => [
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/Arbitrary.md',
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/Arbitrary.md'
+		];
+
+		yield 'Repository root defaults to README.md (browse)' => [
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse',
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/browse/README.md'
+		];
+
+		yield 'Repository root defaults to README.md (raw)' => [
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw',
+			'https://git.example.com/projects/KNOW/repos/fluffy-kittens/raw/README.md'
+		];
 	}
 
 }

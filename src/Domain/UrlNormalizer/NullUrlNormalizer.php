@@ -8,7 +8,11 @@ use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 
 class NullUrlNormalizer implements UrlNormalizer {
 
-	public function normalize( string $url ): string {
+	public function fullNormalize( string $url ): string {
+		return $url;
+	}
+
+	public function viewLevelNormalize( string $url ): string {
 		return $url;
 	}
 

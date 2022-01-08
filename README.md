@@ -200,7 +200,7 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
-### Version 1.3.0 - dev
+### Version 1.3.0 - 2022-01-08
 
 * Improved handling of relative links. They now point to the "browse" version when embedding using a "browse" URL,
   rather than using the "raw" version.

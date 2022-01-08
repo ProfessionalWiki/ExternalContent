@@ -117,8 +117,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		);
 
 		$this->assertStringContainsString(
-			// FIXME: we want https://github.com/ProfessionalWiki/ExternalContent/blob/master/bar.md
-			'<a href="https://github.com/ProfessionalWiki/bar.md">bar link</a>',
+			'<a href="https://github.com/ProfessionalWiki/ExternalContent/blob/master/bar.md">bar link</a>',
 			TestEnvironment::instance()->parse(
 				'{{#embed:https://github.com/ProfessionalWiki/ExternalContent}}'
 			)

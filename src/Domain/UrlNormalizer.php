@@ -11,6 +11,13 @@ interface UrlNormalizer {
 	/**
 	 * @throws RuntimeException Error message should be valid as part of an i18n message key
 	 */
-	public function normalize( string $url ): string;
+	public function fullNormalize( string $url ): string;
+
+	/**
+	 * Normalizes without changing "view" URLs into "raw" URLs.
+	 *
+	 * @throws RuntimeException Error message should be valid as part of an i18n message key
+	 */
+	public function viewLevelNormalize( string $url ): string;
 
 }

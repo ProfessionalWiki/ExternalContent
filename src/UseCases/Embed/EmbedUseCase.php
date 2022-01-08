@@ -33,7 +33,7 @@ class EmbedUseCase {
 
 	public function embed( string $fileUrl ): void {
 		try {
-			$normalizedUrl = $this->urlNormalizer->normalize( $fileUrl );
+			$normalizedUrl = $this->urlNormalizer->fullNormalize( $fileUrl );
 		}
 		catch ( \RuntimeException $exception ) {
 			$this->presenter->showError( $exception->getMessage() );
@@ -55,7 +55,12 @@ class EmbedUseCase {
 			return;
 		}
 
-		$this->presenter->showContent( $this->contentRenderer->render( $content, $fileUrl ) );
+		$this->presenter->showContent(
+			$this->contentRenderer->render(
+				$content,
+				$this->urlNormalizer->viewLevelNormalize( $fileUrl )
+			)
+		);
 	}
 
 }

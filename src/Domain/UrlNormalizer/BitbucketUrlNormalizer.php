@@ -8,20 +8,24 @@ use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 
 class BitbucketUrlNormalizer implements UrlNormalizer {
 
-	public function normalize( string $url ): string {
+	public function fullNormalize( string $url ): string {
 		return ( new HostAndPathModifier() )->modifyPath(
 			$url,
-			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path ) ]
+			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path, true ) ]
 		);
 	}
 
-	private function normalizePath( string $path ): string {
+	private function normalizePath( string $path, bool $toRawUrl ): string {
 		// /projects/KNOW/repos/kittens/browse/Arbitrary.md
 		$urlParts = explode( '/', $path );
 
 		$this->assertIsBitbucketUrl( $urlParts );
 
-		if ( in_array( $urlParts[5] ?? '', [ 'browse', '' ] ) ) {
+		if ( ( $urlParts[5] ?? '' ) === '' ) {
+			$urlParts[5] = 'browse';
+		}
+
+		if ( $toRawUrl ) {
 			$urlParts[5] = 'raw';
 		}
 
@@ -42,6 +46,13 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 		if ( ( $urlParts[4] ?? '' ) === '' ) {
 			throw new \RuntimeException( 'url-missing-repository' );
 		}
+	}
+
+	public function viewLevelNormalize( string $url ): string {
+		return ( new HostAndPathModifier() )->modifyPath(
+			$url,
+			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path, false ) ]
+		);
 	}
 
 }

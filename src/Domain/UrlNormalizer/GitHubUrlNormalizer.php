@@ -13,7 +13,7 @@ use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
  */
 class GitHubUrlNormalizer implements UrlNormalizer {
 
-	public function normalize( string $url ): string {
+	public function fullNormalize( string $url ): string {
 		return ( new HostAndPathModifier() )->modifyPath(
 			$url,
 			function( string $host, string $path ) {
@@ -21,12 +21,12 @@ class GitHubUrlNormalizer implements UrlNormalizer {
 					return [ $host, $path ];
 				}
 
-				return [ 'raw.githubusercontent.com', $this->normalizePath( $path ) ];
+				return [ 'raw.githubusercontent.com', $this->normalizePath( $path, true ) ];
 			}
 		);
 	}
 
-	private function normalizePath( string $path ): string {
+	private function normalizePath( string $path, bool $removeBlobSegment ): string {
 		// /ProfessionalWiki/ExternalContent/blob/master/README.md => ProfessionalWiki/ExternalContent/master/README.md
 		$urlParts = explode( '/', $path );
 
@@ -47,7 +47,12 @@ class GitHubUrlNormalizer implements UrlNormalizer {
 			$urlParts[] = 'README.md';
 		}
 
-		unset( $urlParts[3] );
+		if ( $removeBlobSegment ) {
+			unset( $urlParts[3] );
+		}
+		elseif ( $urlParts[3] === '' ) {
+			$urlParts[3] = 'blob';
+		}
 
 		return implode( '/', $urlParts );
 	}
@@ -61,6 +66,19 @@ class GitHubUrlNormalizer implements UrlNormalizer {
 
 		return $urlParts[2] !== ''
 			&& in_array( $urlParts[3] ?? '', [ 'blob', 'tree', '' ] );
+	}
+
+	public function viewLevelNormalize( string $url ): string {
+		return ( new HostAndPathModifier() )->modifyPath(
+			$url,
+			function( string $host, string $path ) {
+				if ( $host !== 'github.com' || !$this->isGitHubPath( $path ) ) {
+					return [ $host, $path ];
+				}
+
+				return [ $host, $this->normalizePath( $path, false ) ];
+			}
+		);
 	}
 
 }

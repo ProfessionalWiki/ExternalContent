@@ -8,8 +8,8 @@ use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\SpyingFileFetcher;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
-use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
+use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
@@ -73,7 +73,11 @@ class EmbedUseCaseTest extends TestCase {
 
 	public function testFetchesNormalizedUrl(): void {
 		$this->urlNormalizer = new class() implements UrlNormalizer {
-			public function normalize( string $url ): string {
+			public function fullNormalize( string $url ): string {
+				return $url . 'README.md';
+			}
+
+			public function viewLevelNormalize( string $url ): string {
 				return $url . 'README.md';
 			}
 		};
@@ -104,7 +108,11 @@ class EmbedUseCaseTest extends TestCase {
 
 	public function testPresentsErrorOnUrlNormalizerException(): void {
 		$this->urlNormalizer = new class() implements UrlNormalizer {
-			public function normalize( string $url ): string {
+			public function fullNormalize( string $url ): string {
+				throw new \RuntimeException( 'url-not-fluff-enough' );
+			}
+
+			public function viewLevelNormalize( string $url ): string {
 				throw new \RuntimeException( 'url-not-fluff-enough' );
 			}
 		};

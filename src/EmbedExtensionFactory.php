@@ -14,7 +14,6 @@ use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\GitHubUrlNormalizer;
-use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\CompoundUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\FileExtensionUrlValidator;
