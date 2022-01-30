@@ -6,7 +6,10 @@
 		"MediaWiki",
 		"Markdown",
 		"Bitbucket",
-		"Git"
+		"GitHub",
+		"Git",
+		"embed",
+		"parser function"
 	],
 	"homepage": "https://github.com/ProfessionalWiki/ExternalContent",
 	"license": "GPL-2.0-or-later",
