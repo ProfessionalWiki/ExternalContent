@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"external-content-desc": "允許在您的 wiki 頁面內嵌外部內容，例如像是 markdown 檔案。",
+	"external-content-fetch-failed": "無法獲取檔案",
+	"external-content-domain-not-allowed": "不允許來自此網域的內嵌檔案。",
+	"external-content-extension-not-allowed": "不允許帶有此副檔名的內嵌檔案。",
+	"external-content-url-missing-host": "URL 缺少主機名",
+	"external-content-url-missing-path": "URL 缺少檔案路徑",
+	"external-content-url-not-bitbucket": "不是有效的 Bitbucket URL",
+	"external-content-url-missing-repository": "URL 缺少存儲庫名稱",
+	"external-content-tracking-category": "有外部內容的頁面",
+	"external-content-tracking-category-desc": "此頁面內嵌了外部內容",
+	"external-content-broken-tracking-category": "帶有損壞外部內容的頁面",
+	"external-content-broken-tracking-category-desc": "此頁面內嵌外部內容失敗"
+}
