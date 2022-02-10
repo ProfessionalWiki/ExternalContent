@@ -25,8 +25,8 @@ class EmbedExtensionFactory {
 
 	public const DEFAULT_CONFIG = [
 		'wgLanguageCode' => 'en',
-		'ExternalContentDomainWhitelist' => [],
-		'ExternalContentFileExtensionWhitelist' => [ 'md' ],
+		'wgExternalContentDomainWhitelist' => [],
+		'wgExternalContentFileExtensionWhitelist' => [ 'md' ],
 		'wgExternalContentEnableEmbedFunction' => true,
 		'wgExternalContentEnableBitbucketFunction' => true,
 	];
