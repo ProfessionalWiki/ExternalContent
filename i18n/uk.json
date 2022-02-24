@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"DDPAT"
+			"DDPAT",
+			"Ice bulldog"
 		]
 	},
 	"external-content-desc": "Дозволяє вбудовувати зовнішній вміст, наприклад файли розмітки, у ваші сторінки вікі",
