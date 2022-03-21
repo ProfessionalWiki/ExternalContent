@@ -1,10 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cantons-de-l'Est",
 			"Kghbln"
 		]
 	},
 	"external-content-desc": "{{Desc|name=ExternalContent|url=https://github.com/ProfessionalWiki/ExternalContent}}",
+	"external-content-fetch-failed": "Ne peut récupérer le fichier",
+	"external-content-domain-not-allowed": "L'incrustation de fichiers de ce domaine n'est pas permise",
+	"external-content-extension-not-allowed": "L'incrustation de fichiers pour cette extension n'est pas permise",
+	"external-content-url-missing-host": "Le nom de l'hôte est manquant dans l'URL",
+	"external-content-url-missing-path": "Le chemin d'accès est manquant dans l'URL",
+	"external-content-url-not-bitbucket": "L'URL Bitbucket est invalide",
+	"external-content-url-missing-repository": "L'URL ne comprend pas le nom de l'entrepôt",
 	"external-content-tracking-category": "Name of the tracking category",
 	"external-content-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|external-content-tracking-category}} tracking category.",
 	"external-content-broken-tracking-category": "Name of the tracking category",
