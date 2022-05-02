@@ -20,6 +20,8 @@ External Content has been created and is maintained by [Professional.Wiki].
 
 ## Usage
 
+<a href="https://www.youtube.com/watch?v=U65NhBwnCMU"><img src=".github/youtube.png" width="430px" title="Play video" /></a>
+
 ### Embedding external content
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
