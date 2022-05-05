@@ -25,7 +25,7 @@ wgExternalContentEnableBitbucketFunction=false
 !! test
 Embed function should display not found for non-existing files
 !! config
-wgLanguageCode='en'
+wgLanguageCode="en"
 !! wikitext
 {{#embed:https://localhost/this-does-not-exist.md}}
 !! html
@@ -35,7 +35,7 @@ wgLanguageCode='en'
 !! test
 Bitbucket function should show invalid URL error
 !! config
-wgLanguageCode='en'
+wgLanguageCode="en"
 !! wikitext
 {{#bitbucket:https://localhost/not-a-valid-bitbucket-url.md}}
 !! html
@@ -45,7 +45,7 @@ wgLanguageCode='en'
 !! test
 Files with extensions not in the whitelist should be rejected
 !! config
-wgExternalContentFileExtensionWhitelist=['md']
+wgExternalContentFileExtensionWhitelist=["md"]
 !! wikitext
 {{#embed:https://localhost/whatever.hax}}
 !! html
