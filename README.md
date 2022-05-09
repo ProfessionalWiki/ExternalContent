@@ -155,6 +155,25 @@ $wgExternalContentBasicAuthCredentials = [
 The above example shows how you can get credentials from ENV vars, which might be preferred over
 storing them as plaintext in [LocalSettings.php].
 
+### Disable Caching
+
+Variable: `$wgExternalContentDisableCache`
+
+Default: `false`
+
+Note: changing this to `true` is NOT advised. It will have a negative effect on performance since every page view where External Content
+is used will require an external file fetch.
+
+### Default Content Cache Expiry
+
+Variable: `$wgExternalContentDefaultExpiry`
+
+Default: `86400` (24 hours)
+
+Example: `604800` (1 week) `0` (no caching)
+
+See also: run the [maintenance script](#refreshing-external-content) to expire the cache for all External Content
+
 ### Connection details
 
 Content of files is fetched via MediaWiki's native HTTP client. This process is affected by

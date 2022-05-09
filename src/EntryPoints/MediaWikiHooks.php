@@ -15,6 +15,14 @@ use WikiPage;
 final class MediaWikiHooks {
 
 	public static function onParserFirstCallInit( Parser $parser ): void {
+		if ( $parser ) {
+			if ( self::cacheIsDisabled() ) {
+				$parser->getOutput()->updateCacheExpiry( 0 );
+				// We only need to set the External Content cache expiry if it is lower than the sitewide expiry
+			} elseif ( is_int( self::getCacheExpiry() ) && !self::hasReducedExpiry() ) {
+				$parser->getOutput()->updateCacheExpiry( self::getCacheExpiry() );
+			}
+		}
 		if ( self::embedFunctionIsEnabled() ) {
 			$parser->setFunctionHook(
 				'embed',
@@ -30,6 +38,22 @@ final class MediaWikiHooks {
 					=> ( new BitbucketFunction() )->handleParserFunctionCall( $parser, ...$arguments )
 			);
 		}
+	}
+
+	/**
+	 * Compatibility shim for hasReducedExpiry() coming in 1.37
+	 */
+	private static function hasReducedExpiry(): bool {
+		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get( 'ParserCacheExpireTime' );
+		return self::getCacheExpiry() < $parserCacheExpireTime;
+	}
+
+	private static function cacheIsDisabled(): bool {
+		return MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentDisableCache' );
+	}
+
+	private static function getCacheExpiry(): int {
+		return MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentDefaultExpiry' );
 	}
 
 	/**
