@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"external-content-desc": "אפשרות להטמיע תוכן חיצוני, כגון קובצי markdown, בדפי הוויקי שלך",
+	"external-content-fetch-failed": "לא היה אפשר לאחזר קובץ",
+	"external-content-domain-not-allowed": "הטמעת קבצים בתחום הזה אסורה",
+	"external-content-extension-not-allowed": "הטמעת קבצים עם ההרחבה הזאת אינה מותרת",
+	"external-content-url-missing-host": "ב־URL חסר שם שרת",
+	"external-content-url-missing-path": "ב־URL חסר נתיב קובץ",
+	"external-content-url-not-bitbucket": "לא URL תקין של Bitbucket",
+	"external-content-url-missing-repository": "ב־URL חסר שם המאגר",
+	"external-content-tracking-category": "דפים עם תוכן חיצוני",
+	"external-content-tracking-category-desc": "הדף הזה מטמיע תוכן חיצוני",
+	"external-content-broken-tracking-category": "דפים עם תוכן חיצוני מקולקל",
+	"external-content-broken-tracking-category-desc": "הדף הזה לא הצליח להטמיע תוכן חיצוני"
+}
