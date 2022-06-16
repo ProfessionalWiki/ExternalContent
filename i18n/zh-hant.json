@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Winston Sung"
 		]
 	},
 	"external-content-desc": "允許在您的 wiki 頁面內嵌外部內容，例如像是 markdown 檔案。",
-	"external-content-fetch-failed": "無法獲取檔案",
+	"external-content-fetch-failed": "無法取得檔案",
 	"external-content-domain-not-allowed": "不允許來自此網域的內嵌檔案。",
 	"external-content-extension-not-allowed": "不允許帶有此副檔名的內嵌檔案。",
 	"external-content-url-missing-host": "URL 缺少主機名",
