@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"external-content-desc": "Permite incorporar conteúdo externo, como ficheiros Markdown, nas suas páginas wiki",
+	"external-content-fetch-failed": "Não foi possível obter o arquivo",
+	"external-content-domain-not-allowed": "Não é permitido incorporar ficheiros deste domínio",
+	"external-content-extension-not-allowed": "Não é permitido incorporar ficheiros com esta extensão",
+	"external-content-url-missing-host": "O URL tem em falta o servidor de alojamento",
+	"external-content-url-missing-path": "O URL tem em falta o caminho do ficheiro",
+	"external-content-url-not-bitbucket": "Não é um URL de Bitbucket válido",
+	"external-content-url-missing-repository": "O URL tem em falta o nome do repositório",
+	"external-content-tracking-category": "Páginas com conteúdo externo",
+	"external-content-tracking-category-desc": "Esta página incorpora conteúdo externo",
+	"external-content-broken-tracking-category": "Páginas com conteúdo externo corrompido",
+	"external-content-broken-tracking-category-desc": "Esta página não conseguiu incorporar conteúdo externo"
+}
