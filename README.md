@@ -1,6 +1,6 @@
 # External Content
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ProfessionalWiki/ExternalContent/CI)](https://github.com/ProfessionalWiki/ExternalContent/actions?query=workflow%3ACI)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/ExternalContent/ci.yml?branch=master)](https://github.com/ProfessionalWiki/ExternalContent/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/ProfessionalWiki/ExternalContent/branch/master/graph/badge.svg?token=GnOG3FF16Z)](https://codecov.io/gh/ProfessionalWiki/ExternalContent)
 [![Type Coverage](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/coverage.svg)](https://shepherd.dev/github/ProfessionalWiki/ExternalContent)
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/level.svg)](psalm.xml)
