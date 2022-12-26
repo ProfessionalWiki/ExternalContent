@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"external-content-desc": "Omogoča vdelavo zunanje vsebine, kot so datoteke Markdown, v vaše vikistrani",
+	"external-content-fetch-failed": "Datoteke ni bilo mogoče pridobiti",
+	"external-content-domain-not-allowed": "Vdelava datotek iz te domene ni dovoljena",
+	"external-content-extension-not-allowed": "Vdelava datotek s to pripono ni dovoljena",
+	"external-content-url-missing-host": "URL-ju manjka ime gostitelja",
+	"external-content-url-missing-path": "URL-ju manjka pot do datoteke",
+	"external-content-url-not-bitbucket": "Ni veljaven Bitbucket URL",
+	"external-content-url-missing-repository": "URL-ju manjka ime shrambe",
+	"external-content-tracking-category": "Strani z zunanjo vsebino",
+	"external-content-tracking-category-desc": "Na tej strani je vdelana zunanja vsebina",
+	"external-content-broken-tracking-category": "Strani z nedelujočo zunanjo vsebino",
+	"external-content-broken-tracking-category-desc": "V to stran ni bilo mogoče vdelati zunanje vsebine"
+}
