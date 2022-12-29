@@ -4,6 +4,7 @@
 			"McDutchie"
 		]
 	},
+	"external-content-desc": "Permitte incastrar contento externe, como files Markdown, in tu paginas wiki",
 	"external-content-fetch-failed": "Non poteva recuperar file",
 	"external-content-domain-not-allowed": "Incastrar files ab iste dominio non es permittite.",
 	"external-content-extension-not-allowed": "Incastrar files con iste extension non es permittite.",
