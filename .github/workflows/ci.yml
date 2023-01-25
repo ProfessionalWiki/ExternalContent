@@ -36,7 +36,7 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             mediawiki
@@ -45,7 +45,7 @@ jobs:
           key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
@@ -55,7 +55,7 @@ jobs:
         working-directory: ~
         run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -99,7 +99,7 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             mediawiki
@@ -108,7 +108,7 @@ jobs:
           key: mw_static_analysis
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache
           key: composer_static_analysis
@@ -118,7 +118,7 @@ jobs:
         working-directory: ~
         run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -151,7 +151,7 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             mediawiki
@@ -160,7 +160,7 @@ jobs:
           key: mw_static_analysis
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache
           key: composer_static_analysis
@@ -170,7 +170,7 @@ jobs:
         working-directory: ~
         run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: mediawiki/extensions/ExternalContent
 
