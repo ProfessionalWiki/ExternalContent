@@ -58,6 +58,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
+      
+      - name: Composer allow-plugins
+        run: composer config --no-plugins allow-plugins.composer/installers true
 
       - run: composer update
 
@@ -121,6 +124,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
+      
+      - name: Composer allow-plugins
+        run: composer config --no-plugins allow-plugins.composer/installers true
 
       - name: Composer install
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
@@ -173,6 +179,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
+      
+      - name: Composer allow-plugins
+        run: composer config --no-plugins allow-plugins.composer/installers true
 
       - name: Composer install
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
