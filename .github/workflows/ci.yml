@@ -9,6 +9,7 @@ jobs:
     name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - mw: 'REL1_35'
