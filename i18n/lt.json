@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"external-content-fetch-failed": "Nepavyko gauti failo",
+	"external-content-domain-not-allowed": "Įterpti failus iš šio domeno neleidžiama",
+	"external-content-extension-not-allowed": "Įterpti failų su šiuo plėtiniu neleidžiama",
+	"external-content-url-not-bitbucket": "Netinkamas „Bitbucket“ URL",
+	"external-content-url-missing-repository": "URL trūksta saugyklos pavadinimo",
+	"external-content-tracking-category": "Puslapiai su išoriniu turiniu",
+	"external-content-tracking-category-desc": "Šiame puslapyje yra išorinio turinio",
+	"external-content-broken-tracking-category": "Puslapiai su neveikiančiu išoriniu turiniu",
+	"external-content-broken-tracking-category-desc": "Šiame puslapyje nepavyko įterpti išorinio turinio"
+}
