@@ -37,13 +37,21 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 		$presenter->showError( 'my-error' );
 		$parserFunctionReturnValue = $presenter->getParserFunctionReturnValue();
 
-		$this->assertStringContainsString(
-			'<div class="errorbox">',
+		$this->assertStringContainsEither(
+			'<div class="errorbox">', // MW 35-37
+			'mw-message-box-error', // MW 39+
 			$parserFunctionReturnValue[0]
 		);
 
 		$this->assertTrue( $parserFunctionReturnValue['noparse'] );
 		$this->assertTrue( $parserFunctionReturnValue['isHTML'] );
+	}
+
+	public function assertStringContainsEither( string $expected1, string $expected2, string $actual ): void {
+		$this->assertTrue(
+			str_contains( $actual, $expected1 ) || str_contains( $actual, $expected2 ),
+			"Failed asserting that string contains either '{$expected1}' or '{$expected2}'"
+		);
 	}
 
 	public function testContentIsAccessibleAsHtml(): void {

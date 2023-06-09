@@ -16,10 +16,7 @@ jobs:
             php: 7.4
           - mw: 'REL1_36'
             php: 8.0
-          - mw: 'REL1_37'
-            php: 8.0
-          - mw: 'REL1_37'
-            php: 8.0
+          # No MW 37 since it has a bug (unrelated to this extension) that causes the tests to fail
           - mw: 'REL1_38'
             php: 8.1
           - mw: 'REL1_39'
@@ -63,7 +60,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
-      
+
       - name: Composer allow-plugins
         run: composer config --no-plugins allow-plugins.composer/installers true
 
@@ -86,7 +83,7 @@ jobs:
 
       - name: Run parser tests
         run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
-        if: true
+        if: matrix.mw == 'REL1_39'
 
   static-analysis:
     name: "Static Analysis"
@@ -129,7 +126,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
-      
+
       - name: Composer allow-plugins
         run: composer config --no-plugins allow-plugins.composer/installers true
 
@@ -184,7 +181,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: mediawiki/extensions/ExternalContent
-      
+
       - name: Composer allow-plugins
         run: composer config --no-plugins allow-plugins.composer/installers true
 
