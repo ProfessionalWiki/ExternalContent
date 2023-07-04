@@ -1,6 +1,6 @@
 {
 	"name": "External Content",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"license-name": "GPL-2.0-or-later",
 
 	"author": [
@@ -39,6 +39,14 @@
 		"ExternalContentBasicAuthCredentials": {
 			"description": "Per-domain Basic Auth credentials.",
 			"value": []
+		},
+		"ExternalContentDisableCache": {
+			"description": "Disable caching of external content. '''Use with caution''' as this forces a remote file fetch on every page view where this extension is used!",
+			"value": false
+		},
+		"ExternalContentDefaultExpiry": {
+			"description": "Default content expiry in seconds (86400 = 1 day). This will only have an effect if lower than MediaWiki's default sitewide [https://www.mediawiki.org/wiki/Manual:$wgParserCacheExpireTime $wgParserCacheExpireTime]",
+			"value": 86400
 		}
 	},
 
