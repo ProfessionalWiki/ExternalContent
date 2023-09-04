@@ -65,10 +65,22 @@
 	},
 
 	"ResourceFileModulePaths": {
-		"localBasePath": "modules",
-		"remoteExtPath": "ExternalContent/modules"
+		"localBasePath": "resources",
+		"remoteExtPath": "ExternalContent/resources"
 	},
+
 	"ResourceModules": {
+		"ext.external-content.highlightjs": {
+			"es6": true,
+			"scripts": [
+				"highlightjs/highlight.min.js",
+				"code-renderer.js"
+			],
+			"styles": [
+				"highlightjs/default.min.css",
+				"code-renderer.css"
+			]
+		}
 	},
 
 	"TrackingCategories": [

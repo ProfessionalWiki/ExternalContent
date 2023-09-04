@@ -11,7 +11,7 @@ use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\FileExtensionBasedRenderer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\GitHubUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
@@ -107,7 +107,7 @@ class EmbedExtensionFactory {
 	}
 
 	private function getContentRender(): ContentRenderer {
-		return new MarkdownRenderer();
+		return new FileExtensionBasedRenderer();
 	}
 
 	public function getMessageLocalizer(): MessageLocalizer {
