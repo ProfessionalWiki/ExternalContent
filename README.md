@@ -25,7 +25,8 @@ External Content has been created and is maintained by [Professional.Wiki].
 ### Embedding external content
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
-Currently only markdown is supported.
+Markdown and code syntax highlighting is supported. To render markdown no additional parameters are needed. To use code
+syntax highlighting, refer to the [parameters](#code-syntax-highlighting-parameters) below.
 
 Example:
 
@@ -53,6 +54,24 @@ Example:
 ```
 {{#bitbucket:https://git.example.com/projects/HI/repos/cats/browse}}
 {{#bitbucket:https://git.example.com/projects/HI/repos/cats/raw/README.md?at=refs%2Fheads%2Fmaster}}
+```
+
+### Code syntax highlighting parameters
+
+Parameters:
+* `lang`: One of the [supported languages]
+* `line`: (Optional) show line numbers
+
+Examples:
+
+Render Markdown file as code:
+```
+{{#embed:https://example.com/fluffy/kittens.md|lang=markdown}}
+```
+
+Render PHP file with line numbers:
+```
+{{#embed:https://example.com/fluffy/kittens.php|lang=php|line}}
 ```
 
 ### Refreshing external content
@@ -202,6 +221,10 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
+### Version 1.4.0 - Under development
+
+* Added code syntax highlighting
+
 ### Version 1.3.0 - 2022-01-08
 
 * Improved handling of relative links. They now point to the "browse" version when embedding using a "browse" URL,
@@ -238,3 +261,4 @@ Initial release for MediaWiki 1.35+ with these features:
 [parser function]: https://www.mediawiki.org/wiki/Help:Magic_words
 [LocalSettings.php]: https://www.mediawiki.org/wiki/Manual:LocalSettings.php
 [CirrusSearch extension]: https://www.mediawiki.org/wiki/Extension:CirrusSearch
+[supported languages]: https://prismjs.com/#supported-languages

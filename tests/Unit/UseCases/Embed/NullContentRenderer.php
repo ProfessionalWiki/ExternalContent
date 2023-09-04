@@ -12,4 +12,12 @@ class NullContentRenderer implements ContentRenderer {
 		return $content;
 	}
 
+	public function getOutputModules(): array {
+		return [];
+	}
+
+	public function getOutputModuleStyles(): array {
+		return [];
+	}
+
 }

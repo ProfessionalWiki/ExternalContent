@@ -65,10 +65,23 @@
 	},
 
 	"ResourceFileModulePaths": {
-		"localBasePath": "modules",
-		"remoteExtPath": "ExternalContent/modules"
+		"localBasePath": "resources",
+		"remoteExtPath": "ExternalContent/resources"
 	},
+
 	"ResourceModules": {
+		"ext.external-content.code-renderer": {
+			"es6": true,
+			"scripts": [
+				"prism/prism.js"
+			]
+		},
+		"ext.external-content.code-renderer.styles": {
+			"styles": [
+				"prism/prism.css",
+				"code-renderer.css"
+			]
+		}
 	},
 
 	"TrackingCategories": [
