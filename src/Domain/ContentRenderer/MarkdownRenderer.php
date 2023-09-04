@@ -25,4 +25,12 @@ class MarkdownRenderer implements ContentRenderer {
 		return $parser;
 	}
 
+	public function getOutputModules(): array {
+		return [];
+	}
+
+	public function getOutputModuleStyles(): array {
+		return [];
+	}
+
 }

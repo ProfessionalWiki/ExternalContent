@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\ExternalContent\Tests\Integration\EntryPoints;
+namespace ProfessionalWiki\ExternalContent\Tests\Integration\Domain;
 
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;

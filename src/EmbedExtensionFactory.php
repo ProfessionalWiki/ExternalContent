@@ -11,7 +11,6 @@ use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\GitHubUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
@@ -49,23 +48,29 @@ class EmbedExtensionFactory {
 	final protected function __construct() {
 	}
 
-	public function newEmbedUseCaseForEmbedFunction( EmbedPresenter $presenter ): EmbedUseCase {
+	public function newEmbedUseCaseForEmbedFunction(
+		EmbedPresenter $presenter,
+		ContentRenderer $renderer
+	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new GitHubUrlNormalizer(),
 			$this->getFileFetcher(),
-			$this->getContentRender()
+			$renderer
 		);
 	}
 
-	public function newEmbedUseCaseForBitbucketFunction( EmbedPresenter $presenter ): EmbedUseCase {
+	public function newEmbedUseCaseForBitbucketFunction(
+		EmbedPresenter $presenter,
+		ContentRenderer $renderer
+	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
-			$this->getContentRender()
+			$renderer
 		);
 	}
 
@@ -104,10 +109,6 @@ class EmbedExtensionFactory {
 		/** @var array<string, string[]> */
 		$credentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBasicAuthCredentials' );
 		return DomainCredentials::newFromArray( $credentials );
-	}
-
-	private function getContentRender(): ContentRenderer {
-		return new MarkdownRenderer();
 	}
 
 	public function getMessageLocalizer(): MessageLocalizer {
