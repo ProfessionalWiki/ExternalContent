@@ -18,7 +18,8 @@ final class BitbucketFunction {
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
 		// TODO: shouldn't be here - probably load it conditionally from JS
-		$parser->getOutput()->addModules( [ 'ext.external-content.highlightjs' ] );
+		$parser->getOutput()->addModules( [ 'ext.external-content.prism' ] );
+		$parser->getOutput()->addModuleStyles( [ 'ext.external-content.prism.styles' ] );
 
 		$presenter = new ParserFunctionEmbedPresenter(
 			EmbedExtensionFactory::getInstance()->getMessageLocalizer(),

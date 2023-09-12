@@ -1,0 +1,58 @@
+/* Remove MW border */
+.external-content code {
+	border: 0;
+	padding: unset;
+}
+
+/* SyntaxHighlight */
+pre[class*="language-"] {
+	margin: 1em 0;
+	overflow: hidden;
+}
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+	background: #f8f9fa;
+}
+
+.token.atrule, .token.attr-value, .token.keyword {
+	color: #008000;
+	font-weight: bold;
+}
+
+.token.class-name, .token.function {
+	color: #0000FF;;
+}
+
+.token.punctuation {
+	color: #000;
+}
+
+.token.boolean, .token.constant, .token.deleted, .token.number, .token.property, .token.symbol, .token.tag {
+	color: #008000;
+	font-weight: bold;
+}
+
+.token.attr-name, .token.builtin, .token.char, .token.inserted, .token.selector, .token.string {
+	color: #BA2121;
+}
+
+.token.important, .token.regex, .token.variable {
+	color: #9C6500;
+	font-weight: normal;
+}
+
+.external-content.line-numbers {
+	/* Initial spacing before line numbers plugin runs */
+	padding-left: 3.8em;
+}
+
+.line-numbers .line-numbers-rows {
+	background-color: #f0f0f0;
+	margin: -1em 0;
+	padding: 1em 0;
+	border-right: 1px solid #eaecf0;
+}
+
+.line-numbers-rows > span::before {
+	color: #72777d;
+}

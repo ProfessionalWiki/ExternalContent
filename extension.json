@@ -74,11 +74,24 @@
 			"es6": true,
 			"scripts": [
 				"highlightjs/highlight.min.js",
-				"code-renderer.js"
+				"highlightjs.js"
 			],
 			"styles": [
 				"highlightjs/default.min.css",
-				"code-renderer.css"
+				"highlightjs.css"
+			]
+		},
+		"ext.external-content.prism": {
+			"es6": true,
+			"scripts": [
+				"prism/prism.js",
+				"prism.js"
+			]
+		},
+		"ext.external-content.prism.styles": {
+			"styles": [
+				"prism/prism.css",
+				"prism.css"
 			]
 		}
 	},
