@@ -95,6 +95,10 @@ class EmbedUseCaseTest extends TestCase {
 			public function render( string $content, string $contentUrl ): string {
 				return $content . ' from ' . $contentUrl;
 			}
+
+			public function getOutputModules(): array {
+				return [];
+			}
 		};
 
 		$this->newUseCase()->embed( self::KNOWN_FILE_URL );

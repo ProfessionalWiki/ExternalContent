@@ -75,9 +75,7 @@
 			"scripts": [
 				"prism/prism.js",
 				"prism.js"
-			]
-		},
-		"ext.external-content.prism.styles": {
+			],
 			"styles": [
 				"prism/prism.css",
 				"prism.css"

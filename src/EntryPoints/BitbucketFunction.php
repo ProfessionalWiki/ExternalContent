@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 use Parser;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\CategoryUsageTracker;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
+use ProfessionalWiki\ExternalContent\Domain\ContentRendererFactory;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 final class BitbucketFunction {
@@ -17,16 +18,15 @@ final class BitbucketFunction {
 	 * @return array|string
 	 */
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
-		// TODO: shouldn't be here - probably load it conditionally from JS
-		$parser->getOutput()->addModules( [ 'ext.external-content.prism' ] );
-		$parser->getOutput()->addModuleStyles( [ 'ext.external-content.prism.styles' ] );
-
 		$presenter = new ParserFunctionEmbedPresenter(
 			EmbedExtensionFactory::getInstance()->getMessageLocalizer(),
 			new CategoryUsageTracker( $parser )
 		);
 
-		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter );
+		$renderer = ( new ContentRendererFactory() )->createContentRenderer( array_slice( $arguments, 1 ) );
+		$parser->getOutput()->addModules( $renderer->getOutputModules() );
+
+		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter, $renderer );
 
 		$useCase->embed( $arguments[0] );
 

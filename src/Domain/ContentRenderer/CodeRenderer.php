@@ -4,37 +4,55 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
+use Html;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 class CodeRenderer implements ContentRenderer {
 
-	/**
-	 * @var array<string, string>
-	 */
-	// TODO: incomplete
-	private const EXTENSION_MAP = [
-		'html' => 'html',
-		'js' => 'javascript',
-		'json' => 'json',
-		'ts' => 'typescript',
-		'md' => 'markdown',
-		'php' => 'php',
-		'py' => 'python'
-	];
+	public function __construct(
+		private string $language,
+		private bool $showLineNumbers
+	) {
+	}
 
 	public function render( string $content, string $contentUrl ): string {
-		return '<pre class="external-content line-numbers"><code class="language-' . $this->getLanguage( $contentUrl ) . '">' .
-			htmlspecialchars( $content ) .
-			'</code></pre>';
+		return Html::rawElement(
+			'pre',
+			[ 'class' => $this->getWrapperClasses() ],
+			Html::element(
+				'code',
+				[ 'class' => $this->getLanguageClasses() ],
+				$content
+			)
+		);
 	}
 
-	private function getLanguage( string $contentUrl ): string {
-		// TODO: should the extension be injected via the parser function?
-		return self::EXTENSION_MAP[$this->extractFileExtension( $contentUrl )] ?? 'UNKNOWN';
+	/**
+	 * @return string[]
+	 */
+	private function getWrapperClasses(): array {
+		$classes = [ 'external-content' ];
+
+		if ( $this->showLineNumbers ) {
+			$classes[] = 'line-numbers';
+		}
+
+		return $classes;
 	}
 
-	private function extractFileExtension( string $contentUrl ): string {
-		return pathinfo( $contentUrl, PATHINFO_EXTENSION );
+	/**
+	 * @return string[]
+	 */
+	private function getLanguageClasses(): array {
+		if ( $this->language === '' ) {
+			return [];
+		}
+
+		return [ 'language-' . htmlspecialchars( $this->language ) ];
+	}
+
+	public function getOutputModules(): array {
+		return [ 'ext.external-content.prism' ];
 	}
 
 }
