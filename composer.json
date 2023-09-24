@@ -28,7 +28,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4",
+		"php": ">=8.0",
 		"composer/installers": "^2|^1.0.1",
 		"jeroen/file-fetcher": "~6.0",
 		"jeroen/batching-iterator": "~3.0",

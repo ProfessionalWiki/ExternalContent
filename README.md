@@ -86,8 +86,8 @@ Parameters: none
 
 Platform requirements:
 
-* [PHP] 7.4 or later (tested up to 8.1)
-* [MediaWiki] 1.35 or later (tested up to 1.37 and master)
+* [PHP] 8.0 or later (tested up to 8.1)
+* [MediaWiki] 1.35 or later (tested up to 1.39 and master)
 
 The recommended way to install External Content is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
@@ -221,8 +221,9 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
-### Version 1.4.0 - Under development
+### Version 2.0.0 - Under development
 
+* Raised minimum PHP version from 7.4 to 8.0
 * Added code syntax highlighting
 
 ### Version 1.3.0 - 2022-01-08
