@@ -26,7 +26,7 @@ External Content has been created and is maintained by [Professional.Wiki].
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
 Markdown and code syntax highlighting is supported. To render markdown no additional parameters are needed. To use code
-syntax highlighting, see
+syntax highlighting, refer to the [parameters](#code-syntax-highlighting-parameters) below.
 
 Example:
 
