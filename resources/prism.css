@@ -14,32 +14,32 @@ pre[class*="language-"] {
 	background: #f8f9fa;
 }
 
-.token.atrule, .token.attr-value, .token.keyword {
-	color: #008000;
-	font-weight: bold;
-}
+/*.token.atrule, .token.attr-value, .token.keyword {*/
+/*	color: #008000;*/
+/*	font-weight: bold;*/
+/*}*/
 
-.token.class-name, .token.function {
-	color: #0000FF;;
-}
+/*.token.class-name, .token.function {*/
+/*	color: #0000FF;;*/
+/*}*/
 
-.token.punctuation {
-	color: #000;
-}
+/*.token.punctuation {*/
+/*	color: #000;*/
+/*}*/
 
-.token.boolean, .token.constant, .token.deleted, .token.number, .token.property, .token.symbol, .token.tag {
-	color: #008000;
-	font-weight: bold;
-}
+/*.token.boolean, .token.constant, .token.deleted, .token.number, .token.property, .token.symbol, .token.tag {*/
+/*	color: #008000;*/
+/*	font-weight: bold;*/
+/*}*/
 
-.token.attr-name, .token.builtin, .token.char, .token.inserted, .token.selector, .token.string {
-	color: #BA2121;
-}
+/*.token.attr-name, .token.builtin, .token.char, .token.inserted, .token.selector, .token.string {*/
+/*	color: #BA2121;*/
+/*}*/
 
-.token.important, .token.regex, .token.variable {
-	color: #9C6500;
-	font-weight: normal;
-}
+/*.token.important, .token.regex, .token.variable {*/
+/*	color: #9C6500;*/
+/*	font-weight: normal;*/
+/*}*/
 
 .external-content.line-numbers {
 	/* Initial spacing before line numbers plugin runs */
