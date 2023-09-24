@@ -70,17 +70,6 @@
 	},
 
 	"ResourceModules": {
-		"ext.external-content.highlightjs": {
-			"es6": true,
-			"scripts": [
-				"highlightjs/highlight.min.js",
-				"highlightjs.js"
-			],
-			"styles": [
-				"highlightjs/default.min.css",
-				"highlightjs.css"
-			]
-		},
 		"ext.external-content.prism": {
 			"es6": true,
 			"scripts": [
