@@ -9,6 +9,9 @@ use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\MarkdownRenderer;
 
 class ContentRendererFactory {
 
+	/**
+	 * @param string[] $rendererConfig
+	 */
 	public function createContentRenderer( array $rendererConfig ): ContentRenderer {
 		$options = $this->extractOptions( $rendererConfig );
 
