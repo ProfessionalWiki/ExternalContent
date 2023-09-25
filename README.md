@@ -129,7 +129,7 @@ List of allowed file extensions. Leave empty to have no restriction.
 
 Variable: `$wgExternalContentFileExtensionWhitelist`
 
-Default: `[ 'md' ]`
+Default: `[]`
 
 Example: `[ 'md', 'txt' ]`
 
