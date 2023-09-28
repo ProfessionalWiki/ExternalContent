@@ -7,7 +7,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 use Parser;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\CategoryUsageTracker;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
-use ProfessionalWiki\ExternalContent\Domain\ContentRendererFactory;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\DelegatingContentRenderer;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 
 final class BitbucketFunction {
@@ -23,13 +23,14 @@ final class BitbucketFunction {
 			new CategoryUsageTracker( $parser )
 		);
 
-		$renderer = ( new ContentRendererFactory() )->createContentRenderer( array_slice( $arguments, 1 ) );
-		$parser->getOutput()->addModules( $renderer->getOutputModules() );
-		$parser->getOutput()->addModuleStyles( $renderer->getOutputModuleStyles() );
+		$renderer = new DelegatingContentRenderer( array_slice( $arguments, 1 ) );
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter, $renderer );
 
 		$useCase->embed( $arguments[0] );
+
+		$parser->getOutput()->addModules( $renderer->getOutputModules() );
+		$parser->getOutput()->addModuleStyles( $renderer->getOutputModuleStyles() );
 
 		return $presenter->getParserFunctionReturnValue();
 	}

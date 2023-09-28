@@ -44,10 +44,6 @@ class CodeRenderer implements ContentRenderer {
 	 * @return string[]
 	 */
 	private function getLanguageClasses(): array {
-		if ( $this->language === '' ) {
-			return [];
-		}
-
 		return [ 'language-' . htmlspecialchars( $this->language ) ];
 	}
 
