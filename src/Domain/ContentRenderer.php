@@ -8,14 +8,4 @@ interface ContentRenderer {
 
 	public function render( string $content, string $contentUrl ): string;
 
-	/**
-	 * @return string[]
-	 */
-	public function getOutputModules(): array;
-
-	/**
-	 * @return string[]
-	 */
-	public function getOutputModuleStyles(): array;
-
 }

@@ -17,19 +17,22 @@ class EmbedUseCase {
 	private UrlNormalizer $urlNormalizer;
 	private FileFetcher $fileFetcher;
 	private ContentRendererFactory $contentRendererFactory;
+	private EmbedResourceLoader $resourceLoader;
 
 	public function __construct(
 		EmbedPresenter $presenter,
 		UrlValidator $urlValidator,
 		UrlNormalizer $urlNormalizer,
 		FileFetcher $fileFetcher,
-		ContentRendererFactory $contentRendererFactory
+		ContentRendererFactory $contentRendererFactory,
+		EmbedResourceLoader $resourceLoader
 	) {
 		$this->presenter = $presenter;
 		$this->urlValidator = $urlValidator;
 		$this->urlNormalizer = $urlNormalizer;
 		$this->fileFetcher = $fileFetcher;
 		$this->contentRendererFactory = $contentRendererFactory;
+		$this->resourceLoader = $resourceLoader;
 	}
 
 	public function embed( EmbedRequest $request ): void {
@@ -65,7 +68,7 @@ class EmbedUseCase {
 			)
 		);
 
-		$this->presenter->loadRendererRequirements( $renderer );
+		$this->resourceLoader->loadRendererResources( $renderer );
 	}
 
 	private function createRendererConfig( EmbedRequest $request ): RendererConfig {

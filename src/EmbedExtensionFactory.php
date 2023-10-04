@@ -18,6 +18,7 @@ use ProfessionalWiki\ExternalContent\Domain\UrlValidator\CompoundUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\FileExtensionUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\WhitelistedDomainUrlValidator;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
+use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedResourceLoader;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
 class EmbedExtensionFactory {
@@ -49,26 +50,30 @@ class EmbedExtensionFactory {
 	}
 
 	public function newEmbedUseCaseForEmbedFunction(
-		EmbedPresenter $presenter
+		EmbedPresenter $presenter,
+		EmbedResourceLoader $resourceLoader
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new GitHubUrlNormalizer(),
 			$this->getFileFetcher(),
-			new WikiContentRendererFactory()
+			new WikiContentRendererFactory(),
+			$resourceLoader
 		);
 	}
 
 	public function newEmbedUseCaseForBitbucketFunction(
-		EmbedPresenter $presenter
+		EmbedPresenter $presenter,
+		EmbedResourceLoader $resourceLoader
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
-			new WikiContentRendererFactory()
+			new WikiContentRendererFactory(),
+			$resourceLoader
 		);
 	}
 

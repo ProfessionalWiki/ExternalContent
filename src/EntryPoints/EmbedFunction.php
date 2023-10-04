@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 use Parser;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\CategoryUsageTracker;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
+use ProfessionalWiki\ExternalContent\Adapters\EmbedResourceLoader\ParserFunctionEmbedResourceLoader;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedRequestBuilder;
 
@@ -20,11 +21,12 @@ final class EmbedFunction {
 	public function handleParserFunctionCall( Parser $parser, string ...$arguments ) {
 		$presenter = new ParserFunctionEmbedPresenter(
 			EmbedExtensionFactory::getInstance()->getMessageLocalizer(),
-			new CategoryUsageTracker( $parser ),
-			$parser->getOutput()
+			new CategoryUsageTracker( $parser )
 		);
 
-		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter );
+		$resourceLoader = new ParserFunctionEmbedResourceLoader( $parser->getOutput() );
+
+		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter, $resourceLoader );
 
 		$useCase->embed( EmbedRequestBuilder::argumentsToRequest( $arguments ) );
 

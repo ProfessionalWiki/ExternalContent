@@ -47,12 +47,4 @@ class CodeRenderer implements ContentRenderer {
 		return [ 'language-' . htmlspecialchars( $this->language ) ];
 	}
 
-	public function getOutputModules(): array {
-		return [ 'ext.external-content.code-renderer' ];
-	}
-
-	public function getOutputModuleStyles(): array {
-		return [ 'ext.external-content.code-renderer.styles' ];
-	}
-
 }

@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Tests\Unit\Adapters;
 
-use ParserOutput;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter;
 use ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\UsageTracker;
@@ -18,8 +17,7 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 	public function testShowErrorBuildsErrorMessageKey(): void {
 		$presenter = new ParserFunctionEmbedPresenter(
 			TestFactory::newTestInstance()->newTestMessageLocalizer(),
-			$this->createMock( UsageTracker::class ),
-			$this->createMock( ParserOutput::class )
+			$this->createMock( UsageTracker::class )
 		);
 
 		$presenter->showError( 'my-error' );
@@ -33,8 +31,7 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 	public function testShowErrorBuildsErrorHtml(): void {
 		$presenter = new ParserFunctionEmbedPresenter(
 			TestFactory::newTestInstance()->newTestMessageLocalizer(),
-			$this->createMock( UsageTracker::class ),
-			$this->createMock( ParserOutput::class )
+			$this->createMock( UsageTracker::class )
 		);
 
 		$presenter->showError( 'my-error' );
@@ -60,8 +57,7 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 	public function testContentIsAccessibleAsHtml(): void {
 		$presenter = new ParserFunctionEmbedPresenter(
 			TestFactory::newTestInstance()->newTestMessageLocalizer(),
-			$this->createMock( UsageTracker::class ),
-			$this->createMock( ParserOutput::class )
+			$this->createMock( UsageTracker::class )
 		);
 
 		$presenter->showContent( '<strong>Well hello there!</strong>' );

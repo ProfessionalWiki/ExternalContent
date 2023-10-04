@@ -6,8 +6,6 @@ namespace ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter;
 
 use Html;
 use MessageLocalizer;
-use ParserOutput;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 
 class ParserFunctionEmbedPresenter implements EmbedPresenter {
@@ -16,12 +14,10 @@ class ParserFunctionEmbedPresenter implements EmbedPresenter {
 
 	private string $html = '';
 	private UsageTracker $usageTracker;
-	private ParserOutput $output;
 
-	public function __construct( MessageLocalizer $localizer, UsageTracker $usageTracker, ParserOutput $output ) {
+	public function __construct( MessageLocalizer $localizer, UsageTracker $usageTracker ) {
 		$this->localizer = $localizer;
 		$this->usageTracker = $usageTracker;
-		$this->output = $output;
 	}
 
 	public function showError( string $messageKey ): void {
@@ -52,11 +48,6 @@ class ParserFunctionEmbedPresenter implements EmbedPresenter {
 			'noparse' => true,
 			'isHTML' => true,
 		];
-	}
-
-	public function loadRendererRequirements( ContentRenderer $renderer ): void {
-		$this->output->addModules( $renderer->getOutputModules() );
-		$this->output->addModuleStyles( $renderer->getOutputModuleStyles() );
 	}
 
 }
