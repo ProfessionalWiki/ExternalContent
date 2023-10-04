@@ -10,7 +10,7 @@ use Message;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\WikiContentRendererFactory;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\GitHubUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
@@ -49,28 +49,26 @@ class EmbedExtensionFactory {
 	}
 
 	public function newEmbedUseCaseForEmbedFunction(
-		EmbedPresenter $presenter,
-		ContentRenderer $renderer
+		EmbedPresenter $presenter
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new GitHubUrlNormalizer(),
 			$this->getFileFetcher(),
-			$renderer
+			new WikiContentRendererFactory()
 		);
 	}
 
 	public function newEmbedUseCaseForBitbucketFunction(
-		EmbedPresenter $presenter,
-		ContentRenderer $renderer
+		EmbedPresenter $presenter
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
-			$renderer
+			new WikiContentRendererFactory()
 		);
 	}
 
