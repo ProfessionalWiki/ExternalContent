@@ -8,9 +8,11 @@ use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\SpyingFileFetcher;
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\ContentRendererFactory;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\NullUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
+use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedRequest;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
 /**
@@ -24,6 +26,8 @@ class EmbedUseCaseTest extends TestCase {
 	private UrlNormalizer $urlNormalizer;
 	private SpyingFileFetcher $fileFetcher;
 	private ContentRenderer $contentRenderer;
+	private ContentRendererFactory $contentRendererFactory;
+	private SpyEmbedResourceLoader $resourceLoader;
 
 	private const KNOWN_FILE_URL = 'https://example.com/Fluff.md';
 	private const KNOWN_FILE_CONTENT = '~=[,,_,,]:3';
@@ -36,6 +40,8 @@ class EmbedUseCaseTest extends TestCase {
 			self::KNOWN_FILE_URL => self::KNOWN_FILE_CONTENT
 		] ) );
 		$this->contentRenderer = new NullContentRenderer();
+		$this->contentRendererFactory = new StubContentRendererFactory( $this->contentRenderer );
+		$this->resourceLoader = new SpyEmbedResourceLoader();
 	}
 
 	private function newUseCase(): EmbedUseCase {
@@ -44,31 +50,43 @@ class EmbedUseCaseTest extends TestCase {
 			$this->urlValidator,
 			$this->urlNormalizer,
 			$this->fileFetcher,
-			$this->contentRenderer
+			$this->contentRendererFactory,
+			$this->resourceLoader
 		);
 	}
 
 	public function testInvalidUrlResultsInPresentedError(): void {
 		$this->urlValidator = new StubUrlValidator( 'not-fluff-enough' );
 
-		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+		$this->newUseCase()->embed( $this->createRequest( self::KNOWN_FILE_URL ) );
 
 		$this->assertSame( [ 'not-fluff-enough' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
+		$this->assertFalse( $this->resourceLoader->resourcesAreLoaded );
+	}
+
+	private function createRequest( string $fileUrl ): EmbedRequest {
+		return new EmbedRequest(
+			fileUrl: $fileUrl,
+			language: '',
+			showLineNumbers: false
+		);
 	}
 
 	public function testValidUrlResultsInPresenterContent(): void {
-		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+		$this->newUseCase()->embed( $this->createRequest( self::KNOWN_FILE_URL ) );
 
 		$this->assertSame( self::KNOWN_FILE_CONTENT, $this->presenter->content );
 		$this->assertSame( [], $this->presenter->errors );
+		$this->assertTrue( $this->resourceLoader->resourcesAreLoaded );
 	}
 
 	public function testFileFetchingErrorResultsInPresentedError(): void {
-		$this->newUseCase()->embed( 'https://example.com/NotFluff.md' );
+		$this->newUseCase()->embed( $this->createRequest( 'https://example.com/NotFluff.md' ) );
 
 		$this->assertSame( [ 'fetch-error' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
+		$this->assertFalse( $this->resourceLoader->resourcesAreLoaded );
 	}
 
 	public function testFetchesNormalizedUrl(): void {
@@ -82,7 +100,7 @@ class EmbedUseCaseTest extends TestCase {
 			}
 		};
 
-		$this->newUseCase()->embed( 'https://example.com/path/' );
+		$this->newUseCase()->embed( $this->createRequest( 'https://example.com/path/' ) );
 
 		$this->assertSame(
 			[ 'https://example.com/path/README.md' ],
@@ -95,23 +113,17 @@ class EmbedUseCaseTest extends TestCase {
 			public function render( string $content, string $contentUrl ): string {
 				return $content . ' from ' . $contentUrl;
 			}
-
-			public function getOutputModules(): array {
-				return [];
-			}
-
-			public function getOutputModuleStyles(): array {
-				return [];
-			}
 		};
+		$this->contentRendererFactory = new StubContentRendererFactory( $this->contentRenderer );
 
-		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+		$this->newUseCase()->embed( $this->createRequest( self::KNOWN_FILE_URL ) );
 
 		$this->assertSame(
 			self::KNOWN_FILE_CONTENT . ' from ' . self::KNOWN_FILE_URL,
 			$this->presenter->content
 		);
 		$this->assertSame( [], $this->presenter->errors );
+		$this->assertTrue( $this->resourceLoader->resourcesAreLoaded );
 	}
 
 	public function testPresentsErrorOnUrlNormalizerException(): void {
@@ -125,10 +137,11 @@ class EmbedUseCaseTest extends TestCase {
 			}
 		};
 
-		$this->newUseCase()->embed( self::KNOWN_FILE_URL );
+		$this->newUseCase()->embed( $this->createRequest( self::KNOWN_FILE_URL ) );
 
 		$this->assertSame( [ 'url-not-fluff-enough' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
+		$this->assertFalse( $this->resourceLoader->resourcesAreLoaded );
 	}
 
 }

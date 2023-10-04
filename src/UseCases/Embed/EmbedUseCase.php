@@ -5,7 +5,8 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\UseCases\Embed;
 
 use FileFetcher\FileFetcher;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\RendererConfig;
+use ProfessionalWiki\ExternalContent\Domain\ContentRendererFactory;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 
@@ -15,25 +16,28 @@ class EmbedUseCase {
 	private UrlValidator $urlValidator;
 	private UrlNormalizer $urlNormalizer;
 	private FileFetcher $fileFetcher;
-	private ContentRenderer $contentRenderer;
+	private ContentRendererFactory $contentRendererFactory;
+	private EmbedResourceLoader $resourceLoader;
 
 	public function __construct(
 		EmbedPresenter $presenter,
 		UrlValidator $urlValidator,
 		UrlNormalizer $urlNormalizer,
 		FileFetcher $fileFetcher,
-		ContentRenderer $contentRenderer
+		ContentRendererFactory $contentRendererFactory,
+		EmbedResourceLoader $resourceLoader
 	) {
 		$this->presenter = $presenter;
 		$this->urlValidator = $urlValidator;
 		$this->urlNormalizer = $urlNormalizer;
 		$this->fileFetcher = $fileFetcher;
-		$this->contentRenderer = $contentRenderer;
+		$this->contentRendererFactory = $contentRendererFactory;
+		$this->resourceLoader = $resourceLoader;
 	}
 
-	public function embed( string $fileUrl ): void {
+	public function embed( EmbedRequest $request ): void {
 		try {
-			$normalizedUrl = $this->urlNormalizer->fullNormalize( $fileUrl );
+			$normalizedUrl = $this->urlNormalizer->fullNormalize( $request->fileUrl );
 		}
 		catch ( \RuntimeException $exception ) {
 			$this->presenter->showError( $exception->getMessage() );
@@ -55,12 +59,28 @@ class EmbedUseCase {
 			return;
 		}
 
+		$renderer = $this->contentRendererFactory->createContentRenderer( $this->createRendererConfig( $request ) );
+
 		$this->presenter->showContent(
-			$this->contentRenderer->render(
+			$renderer->render(
 				$content,
-				$this->urlNormalizer->viewLevelNormalize( $fileUrl )
+				$this->urlNormalizer->viewLevelNormalize( $request->fileUrl )
 			)
 		);
+
+		$this->resourceLoader->loadRendererResources( $renderer );
+	}
+
+	private function createRendererConfig( EmbedRequest $request ): RendererConfig {
+		return new RendererConfig(
+			fileExtension: $this->extractFileExtension( $this->urlNormalizer->fullNormalize( $request->fileUrl ) ),
+			language: $request->language ?? '',
+			showLineNumbers: $request->showLineNumbers ?? false
+		);
+	}
+
+	private function extractFileExtension( string $contentUrl ): string {
+		return pathinfo( $contentUrl, PATHINFO_EXTENSION );
 	}
 
 }

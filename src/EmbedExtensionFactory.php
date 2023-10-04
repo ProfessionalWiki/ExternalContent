@@ -10,7 +10,7 @@ use Message;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;
-use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
+use ProfessionalWiki\ExternalContent\Domain\WikiContentRendererFactory;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\BitbucketUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer\GitHubUrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
@@ -18,6 +18,7 @@ use ProfessionalWiki\ExternalContent\Domain\UrlValidator\CompoundUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\FileExtensionUrlValidator;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator\WhitelistedDomainUrlValidator;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
+use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedResourceLoader;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedUseCase;
 
 class EmbedExtensionFactory {
@@ -50,27 +51,29 @@ class EmbedExtensionFactory {
 
 	public function newEmbedUseCaseForEmbedFunction(
 		EmbedPresenter $presenter,
-		ContentRenderer $renderer
+		EmbedResourceLoader $resourceLoader
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new GitHubUrlNormalizer(),
 			$this->getFileFetcher(),
-			$renderer
+			new WikiContentRendererFactory(),
+			$resourceLoader
 		);
 	}
 
 	public function newEmbedUseCaseForBitbucketFunction(
 		EmbedPresenter $presenter,
-		ContentRenderer $renderer
+		EmbedResourceLoader $resourceLoader
 	): EmbedUseCase {
 		return new EmbedUseCase(
 			$presenter,
 			$this->getUrlValidator(),
 			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
-			$renderer
+			new WikiContentRendererFactory(),
+			$resourceLoader
 		);
 	}
 
