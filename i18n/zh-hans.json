@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lakejason0"
+			"Lakejason0",
+			"LittlePaw365"
 		]
 	},
-	"external-content-desc": "允许在wiki页面中嵌入外部内容，例如Markdown文件",
+	"external-content-desc": "允许在wiki页面内嵌入markdown文件等外部内容",
 	"external-content-fetch-failed": "无法获取文件",
 	"external-content-domain-not-allowed": "不允许从此域名嵌入文件",
 	"external-content-extension-not-allowed": "不允许嵌入以这种扩展名结尾的文件",
