@@ -20,6 +20,10 @@
 	},
 
 	"config": {
+		"ExternalContentRenderMarkdownByDefault": {
+			"description": "Render markdown files rather than showing the markdown in a codeblock, unless the file is explicitly marked as code.",
+			"value": true
+		},
 		"ExternalContentDomainWhitelist": {
 			"description": "List of allowed domains to embed content from. Leave empty to have no restriction.",
 			"value": []
