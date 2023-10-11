@@ -26,7 +26,7 @@
 		},
 		"ExternalContentFileExtensionWhitelist": {
 			"description": "List of allowed file extensions. Empty array for no restriction.",
-			"value": [ "md" ]
+			"value": [ "md", "yml" ]
 		},
 		"ExternalContentEnableEmbedFunction": {
 			"description": "If the #embed parser function should be enabled.",

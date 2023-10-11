@@ -16,6 +16,7 @@ class EmbedUseCase {
 	private UrlNormalizer $urlNormalizer;
 	private FileFetcher $fileFetcher;
 	private ContentRenderer $contentRenderer;
+	private bool $isMarkdown;
 
 	public function __construct(
 		EmbedPresenter $presenter,
@@ -55,11 +56,15 @@ class EmbedUseCase {
 			return;
 		}
 
+		$this->isMarkdown = str_ends_with( $normalizedUrl, '.md' );
+
+		$renderedContent = $this->isMarkdown ? $this->contentRenderer->render(
+			$content,
+			$this->urlNormalizer->viewLevelNormalize( $fileUrl )
+		) : '<pre>' . $content . '</pre>';
+
 		$this->presenter->showContent(
-			$this->contentRenderer->render(
-				$content,
-				$this->urlNormalizer->viewLevelNormalize( $fileUrl )
-			)
+			$renderedContent
 		);
 	}
 

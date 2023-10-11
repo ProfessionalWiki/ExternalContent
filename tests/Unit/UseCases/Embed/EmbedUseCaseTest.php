@@ -33,7 +33,8 @@ class EmbedUseCaseTest extends TestCase {
 		$this->urlValidator = new StubUrlValidator( null );
 		$this->urlNormalizer = new NullUrlNormalizer();
 		$this->fileFetcher = new SpyingFileFetcher( new InMemoryFileFetcher( [
-			self::KNOWN_FILE_URL => self::KNOWN_FILE_CONTENT
+			self::KNOWN_FILE_URL => self::KNOWN_FILE_CONTENT,
+			'https://example.com/Fluff.yml' => 'whatever'
 		] ) );
 		$this->contentRenderer = new NullContentRenderer();
 	}
@@ -121,6 +122,12 @@ class EmbedUseCaseTest extends TestCase {
 
 		$this->assertSame( [ 'url-not-fluff-enough' ], $this->presenter->errors );
 		$this->assertNull( $this->presenter->content );
+	}
+
+	public function testTODO(): void {
+		$this->newUseCase()->embed( 'https://example.com/Fluff.yml' );
+
+		$this->assertSame( '<pre>whatever</pre>', $this->presenter->content );
 	}
 
 }
