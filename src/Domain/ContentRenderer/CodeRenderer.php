@@ -18,7 +18,7 @@ class CodeRenderer implements ContentRenderer {
 	public function render( string $content, string $contentUrl ): string {
 		return Html::rawElement(
 			'pre',
-			[ 'class' => $this->getWrapperClasses() ],
+			$this->getWrapperAttributes($contentUrl),
 			Html::element(
 				'code',
 				[ 'class' => $this->getLanguageClasses() ],
@@ -45,6 +45,24 @@ class CodeRenderer implements ContentRenderer {
 	 */
 	private function getLanguageClasses(): array {
 		return [ 'language-' . htmlspecialchars( $this->language ) ];
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private function getWrapperAttributes(string $contentUrl): array {
+		$attributes = array();
+
+		$attributes['class'] = $this->getWrapperClasses();
+
+		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
+
+		if (parse_url( $contentUrl, PHP_URL_HOST ) == 'bitbucket') {
+			$attributes['data-toolbar-order'] = 'bitbucket-edit,' . $attributes['data-toolbar-order'];
+			$attributes['data-src'] = $contentUrl;
+		}
+
+		return $attributes;
 	}
 
 }
