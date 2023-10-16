@@ -9,7 +9,7 @@ class EmbedRequestBuilder {
 	/**
 	 * @param string[] $arguments
 	 */
-	public static function argumentsToRequest( array $arguments, string $entryPoint = null ): EmbedRequest {
+	public static function argumentsToRequest( array $arguments, string $entryPoint ): EmbedRequest {
 		$normalizedArguments = self::normalizeArguments( array_slice( $arguments, 1 ) );
 
 		$language = $normalizedArguments['lang'] ?? null;
