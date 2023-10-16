@@ -9,7 +9,7 @@ class EmbedRequestBuilder {
 	/**
 	 * @param string[] $arguments
 	 */
-	public static function argumentsToRequest( array $arguments ): EmbedRequest {
+	public static function argumentsToRequest( array $arguments, string $entryPoint = null ): EmbedRequest {
 		$normalizedArguments = self::normalizeArguments( array_slice( $arguments, 1 ) );
 
 		$language = $normalizedArguments['lang'] ?? null;
@@ -18,7 +18,8 @@ class EmbedRequestBuilder {
 		return new EmbedRequest(
 			fileUrl: $arguments[0],
 			language: is_string( $language ) ? $language : null,
-			showLineNumbers: is_bool( $line ) ? $line : null
+			showLineNumbers: is_bool( $line ) ? $line : null,
+			entryPoint: $entryPoint
 		);
 	}
 

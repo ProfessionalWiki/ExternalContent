@@ -11,7 +11,8 @@ class CodeRenderer implements ContentRenderer {
 
 	public function __construct(
 		private string $language,
-		private bool $showLineNumbers
+		private bool $showLineNumbers,
+		private string $entryPoint
 	) {
 	}
 
@@ -57,7 +58,7 @@ class CodeRenderer implements ContentRenderer {
 
 		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
 
-		if ( parse_url( $contentUrl, PHP_URL_HOST ) == 'bitbucket' ) {
+		if ( $this->entryPoint == 'bitbucket' ) {
 			$attributes['data-toolbar-order'] = 'bitbucket-edit,' . $attributes['data-toolbar-order'];
 			$attributes['data-src'] = $contentUrl;
 		}
