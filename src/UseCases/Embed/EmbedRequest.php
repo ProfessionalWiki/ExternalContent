@@ -10,7 +10,7 @@ class EmbedRequest {
 		public string $fileUrl,
 		public ?string $language,
 		public ?bool $showLineNumbers,
-		public bool $showEditButton = FALSE
+		public bool $showEditButton = false
 	) {
 	}
 

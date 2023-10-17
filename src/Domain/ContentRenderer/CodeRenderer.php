@@ -12,7 +12,7 @@ class CodeRenderer implements ContentRenderer {
 	public function __construct(
 		private string $language,
 		private bool $showLineNumbers,
-		private bool $showEditButton = FALSE
+		private bool $showEditButton = false
 	) {
 	}
 
