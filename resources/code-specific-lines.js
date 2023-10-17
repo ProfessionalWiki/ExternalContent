@@ -21,10 +21,13 @@ Prism.hooks.add( 'complete', function ( env ) {
             }
         });
 
-        console.log(showLines);
-
         var tokenList = env.element.querySelector( '.token' ).innerHTML.split( /\n(?!$)/g );
-        var lineNumberRows = env.element.querySelectorAll( '.line-numbers-rows span' );
+
+        var lineNumbersActive = Prism.util.isActive(env.element, 'line-numbers');
+        
+        if ( lineNumbersActive ) {
+            var lineNumberRows = env.element.querySelectorAll( '.line-numbers-rows span' );
+        }
 
         tokenList.forEach ( function( value, index ) {
             if ( showLines.includes ( index + 1 ) ) {
@@ -32,7 +35,10 @@ Prism.hooks.add( 'complete', function ( env ) {
             }
             else {
                 tokenList[index] = '<span class="hide-line">' + value + '</span>';
-                lineNumberRows[index].classList.add( 'hide-line' );
+
+                if ( lineNumbersActive ) {
+                    lineNumberRows[index].classList.add( 'hide-line' );
+                }
             }
         });
 
