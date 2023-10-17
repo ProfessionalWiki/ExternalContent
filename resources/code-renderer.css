@@ -29,3 +29,20 @@ pre[class*="language-"] {
 .line-numbers-rows > span::before {
 	color: #72777d;
 }
+
+.line-highlight {
+	margin-top: 0;
+}
+
+.token .hide-line {
+    display: none;
+}
+
+.line-numbers-rows .hide-line,
+.line-numbers-rows .hide-line:before {
+    height: 1px;
+    font-size: 1px;
+    background: #f0f0f0 !important;
+    color: #f0f0f0 !important;
+    text-shadow: none;
+}
