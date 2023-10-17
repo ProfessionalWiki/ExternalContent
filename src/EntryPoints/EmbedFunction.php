@@ -28,7 +28,7 @@ final class EmbedFunction {
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForEmbedFunction( $presenter, $resourceLoader );
 
-		$useCase->embed( EmbedRequestBuilder::argumentsToRequest( $arguments, 'embed' ) );
+		$useCase->embed( EmbedRequestBuilder::argumentsToRequest( $arguments ) );
 
 		return $presenter->getParserFunctionReturnValue();
 	}

@@ -28,7 +28,7 @@ final class BitbucketFunction {
 
 		$useCase = EmbedExtensionFactory::getInstance()->newEmbedUseCaseForBitbucketFunction( $presenter, $resourceLoader );
 
-		$useCase->embed( EmbedRequestBuilder::argumentsToRequest( $arguments, 'bitbucket' ) );
+		$useCase->embed( EmbedRequestBuilder::argumentsToRequest( $arguments, true ) );
 
 		return $presenter->getParserFunctionReturnValue();
 	}

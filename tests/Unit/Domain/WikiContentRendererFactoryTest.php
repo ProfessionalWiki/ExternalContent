@@ -20,8 +20,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'md',
 					language: '',
-					showLineNumbers: false,
-					entryPoint: 'embed'
+					showLineNumbers: false
 				)
 			)
 		);
@@ -29,13 +28,12 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithoutLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false, entryPoint: 'embed' ),
+			new CodeRenderer( language: 'php', showLineNumbers: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: '',
-					showLineNumbers: false,
-					entryPoint: 'embed'
+					showLineNumbers: false
 				)
 			)
 		);
@@ -43,13 +41,12 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false, entryPoint: 'embed' ),
+			new CodeRenderer( language: 'php', showLineNumbers: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: false,
-					entryPoint: 'embed'
+					showLineNumbers: false
 				)
 			)
 		);
@@ -57,13 +54,12 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageAndLineNumbersCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: true, entryPoint: 'embed' ),
+			new CodeRenderer( language: 'php', showLineNumbers: true ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: true,
-					entryPoint: 'embed'
+					showLineNumbers: true
 				)
 			)
 		);
@@ -71,13 +67,12 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithMarkdownLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'md', showLineNumbers: false, entryPoint: 'embed' ),
+			new CodeRenderer( language: 'md', showLineNumbers: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'md',
 					language: 'md',
-					showLineNumbers: false,
-					entryPoint: 'embed'
+					showLineNumbers: false
 				)
 			)
 		);

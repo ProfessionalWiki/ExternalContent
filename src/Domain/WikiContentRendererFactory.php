@@ -14,8 +14,7 @@ class WikiContentRendererFactory implements ContentRendererFactory {
 		if ( $config->language !== '' ) {
 			return new CodeRenderer(
 				language: $config->language,
-				showLineNumbers: $config->showLineNumbers,
-				entryPoint: $config->entryPoint
+				showLineNumbers: $config->showLineNumbers
 			);
 		}
 
@@ -26,8 +25,7 @@ class WikiContentRendererFactory implements ContentRendererFactory {
 
 		return new CodeRenderer(
 			language: $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
-			showLineNumbers: $config->showLineNumbers,
-			entryPoint: $config->entryPoint
+			showLineNumbers: $config->showLineNumbers
 		);
 	}
 
