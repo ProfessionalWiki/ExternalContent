@@ -9,7 +9,8 @@ class EmbedRequest {
 	public function __construct(
 		public string $fileUrl,
 		public ?string $language,
-		public ?bool $showLineNumbers
+		public ?bool $showLineNumbers,
+		public bool $showEditButton = false
 	) {
 	}
 

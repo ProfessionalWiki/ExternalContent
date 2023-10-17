@@ -78,7 +78,8 @@ class EmbedUseCase {
 				$this->urlNormalizer->fullNormalize( $request->fileUrl )
 			),
 			language: $request->language ?? '',
-			showLineNumbers: $request->showLineNumbers ?? false
+			showLineNumbers: $request->showLineNumbers ?? false,
+			showEditButton: $request->showEditButton
 		);
 	}
 
