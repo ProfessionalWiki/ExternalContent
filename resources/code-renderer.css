@@ -21,7 +21,7 @@ pre[class*="language-"] {
 
 .line-numbers .line-numbers-rows {
 	background-color: #f0f0f0;
-	margin: -1em 0;
+	margin: -1.15em 0;
 	padding: 1em 0;
 	border-right: 1px solid #eaecf0;
 }
@@ -30,17 +30,14 @@ pre[class*="language-"] {
 	color: #72777d;
 }
 
-.line-highlight {
-	margin-top: 0;
-}
-
-.token .hide-line {
+.hide-line {
     display: none;
 }
 
 .line-numbers-rows .hide-line,
 .line-numbers-rows .hide-line:before {
-    height: 1px;
+	display: block;
+    height: 0px;
     font-size: 1px;
     background: #f0f0f0 !important;
     color: #f0f0f0 !important;

@@ -8,29 +8,31 @@ Prism.hooks.add( 'complete', function ( env ) {
             if (currentRange.includes( '-' )) {
                 var range = currentRange.split( '-' );
 
-                if ( range[ 0 ] > range[ 1 ] ) {
-                    [ range[ 0 ], range[ 1 ] ] = [ range[ 1 ], range[ 0 ] ];
+                if ( range[0] > range[1] ) {
+                    [range[0], range[1]] = [range[1], range[0]];
                 }
 
                 for ( var counter = range[0]; counter <= range[1]; counter++ ) {
-                    showLines.push( counter );
+                    showLines.push( Number( counter ) );
                 }
             }
             else {
-                showLines.push( Number(currentRange) );
+                showLines.push( Number( currentRange ) );
             }
         });
+
+        console.log(showLines);
 
         var tokenList = env.element.querySelector( '.token' ).innerHTML.split( /\n(?!$)/g );
         var lineNumberRows = env.element.querySelectorAll( '.line-numbers-rows span' );
 
         tokenList.forEach ( function( value, index ) {
             if ( showLines.includes ( index + 1 ) ) {
-                tokenList[ index ] += '\n';
+                tokenList[index] += '\n';
             }
             else {
-                tokenList[ index ] = '<span class="hide-line">' + value + '</span>';
-                lineNumberRows[ index ].classList.add( 'hide-line' );
+                tokenList[index] = '<span class="hide-line">' + value + '</span>';
+                lineNumberRows[index].classList.add( 'hide-line' );
             }
         });
 

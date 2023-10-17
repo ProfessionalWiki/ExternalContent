@@ -12,6 +12,7 @@ class CodeRenderer implements ContentRenderer {
 	public function __construct(
 		private string $language,
 		private bool $showLineNumbers,
+		private string $showSpecificLines,
 		private bool $showEditButton = false
 	) {
 	}
@@ -55,6 +56,10 @@ class CodeRenderer implements ContentRenderer {
 		$attributes = [];
 
 		$attributes['class'] = $this->getWrapperClasses();
+
+		if ( !empty( $this->showSpecificLines ) ) {
+			$attributes['data-show-lines'] = $this->showSpecificLines;
+		}
 
 		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
 
