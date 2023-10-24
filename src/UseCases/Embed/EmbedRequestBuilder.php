@@ -25,7 +25,7 @@ class EmbedRequestBuilder {
 			fileUrl: $arguments[0],
 			language: is_string( $language ) ? $language : null,
 			showLineNumbers: is_bool( $line ) ? $line : null,
-			render: $markdownByDefault ? ( is_bool( $render ) ? $render : null ) : null,
+			render: $markdownByDefault ? $markdownByDefault : ( is_bool( $render ) ? $render : null ),
 			showEditButton: $showEditButton
 		);
 	}
