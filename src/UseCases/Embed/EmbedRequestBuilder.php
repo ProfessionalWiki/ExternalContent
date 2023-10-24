@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\UseCases\Embed;
 
 use MediaWiki\MediaWikiServices;
+
 class EmbedRequestBuilder {
 
 	/**
@@ -17,6 +18,7 @@ class EmbedRequestBuilder {
 		$line = $normalizedArguments['line'] ?? null;
 		$render = $normalizedArguments['render'] ?? null;
 
+		/** @var bool */
 		$markdownByDefault = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentRenderMarkdownByDefault' );
 
 		return new EmbedRequest(
