@@ -69,7 +69,8 @@ class EmbedUseCaseTest extends TestCase {
 		return new EmbedRequest(
 			fileUrl: $fileUrl,
 			language: '',
-			showLineNumbers: false
+			showLineNumbers: false,
+			render: false
 		);
 	}
 

@@ -9,7 +9,8 @@ class RendererConfig {
 	public function __construct(
 		public string $fileExtension,
 		public string $language,
-		public bool $showLineNumbers
+		public bool $showLineNumbers,
+		public bool $render
 	) {
 	}
 

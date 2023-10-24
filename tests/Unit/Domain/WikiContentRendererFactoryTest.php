@@ -20,7 +20,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'md',
 					language: '',
-					showLineNumbers: false
+					showLineNumbers: false,
+					render: true
 				)
 			)
 		);
@@ -33,7 +34,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'php',
 					language: '',
-					showLineNumbers: false
+					showLineNumbers: false,
+					render: false
 				)
 			)
 		);
@@ -46,7 +48,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: false
+					showLineNumbers: false,
+					render: false
 				)
 			)
 		);
@@ -59,7 +62,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: true
+					showLineNumbers: true,
+					render: false
 				)
 			)
 		);
@@ -72,7 +76,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'md',
 					language: 'md',
-					showLineNumbers: false
+					showLineNumbers: false,
+					render: false
 				)
 			)
 		);

@@ -25,6 +25,7 @@ class EmbedExtensionFactory {
 
 	public const DEFAULT_CONFIG = [
 		'wgLanguageCode' => 'en',
+		'wgExternalContentRenderMarkdownByDefault' => true,
 		'wgExternalContentDomainWhitelist' => [],
 		'wgExternalContentFileExtensionWhitelist' => [ 'md' ],
 		'wgExternalContentEnableEmbedFunction' => true,

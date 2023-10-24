@@ -75,7 +75,8 @@ class EmbedUseCase {
 		return new RendererConfig(
 			fileExtension: $this->extractFileExtension( $this->urlNormalizer->fullNormalize( $request->fileUrl ) ),
 			language: $request->language ?? '',
-			showLineNumbers: $request->showLineNumbers ?? false
+			showLineNumbers: $request->showLineNumbers ?? false,
+			render: $request->render ?? false
 		);
 	}
 

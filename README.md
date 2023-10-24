@@ -61,6 +61,7 @@ Example:
 Parameters:
 * `lang`: One of the [supported languages]
 * `line`: (Optional) show line numbers
+* `render`: (Optional) render as Markdown
 
 Examples:
 
@@ -72,6 +73,11 @@ Render Markdown file as code:
 Render PHP file with line numbers:
 ```
 {{#embed:https://example.com/fluffy/kittens.php|lang=php|line}}
+```
+
+Render file as Markdown:
+```
+{{#embed:https://example.com/fluffy/kittens.php|render}}
 ```
 
 ### Refreshing external content
@@ -112,6 +118,16 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 ## Configuration
 
 Configuration can be changed via [LocalSettings.php].
+
+### Render markdown by default
+
+Render markdown files rather than showing the markdown in a codeblock, unless the file is explicitly marked as code.
+
+Variable: `$wgExternalContentRenderMarkdownByDefault`
+
+Default: `true`
+
+Example: `false` - disables the default markdown render
 
 ### Domain whitelist
 
