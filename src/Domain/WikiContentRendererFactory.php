@@ -17,7 +17,8 @@ class WikiContentRendererFactory implements ContentRendererFactory {
 		else {
 			return new CodeRenderer(
 				language: ( $config->language !== '' ) ? $config->language : $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
-				showLineNumbers: $config->showLineNumbers
+				showLineNumbers: $config->showLineNumbers,
+				showEditButton: $config->showEditButton
 			);
 		}
 	}

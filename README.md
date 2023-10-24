@@ -59,8 +59,8 @@ Example:
 ### Code syntax highlighting parameters
 
 Parameters:
-* `lang`: One of the [supported languages]
-* `line`: (Optional) show line numbers
+* `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
+* `line`: (Optional) Show line numbers.
 * `render`: (Optional) render as Markdown
 
 Examples:

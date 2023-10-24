@@ -11,14 +11,15 @@ class CodeRenderer implements ContentRenderer {
 
 	public function __construct(
 		private string $language,
-		private bool $showLineNumbers
+		private bool $showLineNumbers,
+		private bool $showEditButton = false
 	) {
 	}
 
 	public function render( string $content, string $contentUrl ): string {
 		return Html::rawElement(
 			'pre',
-			[ 'class' => $this->getWrapperClasses() ],
+			$this->getWrapperAttributes( $contentUrl ),
 			Html::element(
 				'code',
 				[ 'class' => $this->getLanguageClasses() ],
@@ -45,6 +46,24 @@ class CodeRenderer implements ContentRenderer {
 	 */
 	private function getLanguageClasses(): array {
 		return [ 'language-' . htmlspecialchars( $this->language ) ];
+	}
+
+	/**
+	 * @return (string|string[])[]
+	 */
+	private function getWrapperAttributes( string $contentUrl ): array {
+		$attributes = [];
+
+		$attributes['class'] = $this->getWrapperClasses();
+
+		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
+
+		if ( $this->showEditButton == true ) {
+			$attributes['data-toolbar-order'] = 'bitbucket-edit,' . $attributes['data-toolbar-order'];
+			$attributes['data-src'] = $contentUrl;
+		}
+
+		return $attributes;
 	}
 
 }

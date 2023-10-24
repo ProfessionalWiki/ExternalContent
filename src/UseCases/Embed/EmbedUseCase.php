@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\UseCases\Embed;
 use FileFetcher\FileFetcher;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\RendererConfig;
 use ProfessionalWiki\ExternalContent\Domain\ContentRendererFactory;
+use ProfessionalWiki\ExternalContent\Domain\UrlExtensionExtractor;
 use ProfessionalWiki\ExternalContent\Domain\UrlNormalizer;
 use ProfessionalWiki\ExternalContent\Domain\UrlValidator;
 
@@ -73,15 +74,14 @@ class EmbedUseCase {
 
 	private function createRendererConfig( EmbedRequest $request ): RendererConfig {
 		return new RendererConfig(
-			fileExtension: $this->extractFileExtension( $this->urlNormalizer->fullNormalize( $request->fileUrl ) ),
+			fileExtension: ( new UrlExtensionExtractor() )->extractExtension(
+				$this->urlNormalizer->fullNormalize( $request->fileUrl )
+			),
 			language: $request->language ?? '',
 			showLineNumbers: $request->showLineNumbers ?? false,
+			showEditButton: $request->showEditButton,
 			render: $request->render ?? false
 		);
-	}
-
-	private function extractFileExtension( string $contentUrl ): string {
-		return pathinfo( $contentUrl, PATHINFO_EXTENSION );
 	}
 
 }
