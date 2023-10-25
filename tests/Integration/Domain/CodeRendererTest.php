@@ -49,19 +49,19 @@ class CodeRendererTest extends TestCase {
 
 	public function testRendersSpecificLineNumbers(): void {
 		$this->assertSame(
-			'<pre class="external-content line-numbers" data-show-lines="2-3,5" data-toolbar-order="copy-to-clipboard"><code class="language-php"><?php
+			'<pre class="external-content line-numbers" data-show-lines="2-3,5" data-toolbar-order="copy-to-clipboard"><code class="language-php">&lt;?php
 			$a = "Hello";
 			$b = "World";
 
 			print( $a . " " . $b );
 			?></code></pre>',
 			( new CodeRenderer( language: 'php', showLineNumbers: true, showSpecificLines: '2-3,5' ) )->render( 
-				'<?php
-					$a = "Hello";
-					$b = "World";
+			'<?php
+			$a = "Hello";
+			$b = "World";
 
-					print( $a . " " . $b );
-				?>', '' )
+			print( $a . " " . $b );
+			?>', '' )
 		);
 	}
 
