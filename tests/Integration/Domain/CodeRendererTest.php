@@ -49,7 +49,7 @@ class CodeRendererTest extends TestCase {
 
 	public function testRendersShowEditButton(): void {
 		$this->assertSame(
-			'<pre class="external-content" data-toolbar-order="bitbucket-edit,copy-to-clipboard" data-src="http://bitbucket:7990/projects/TEST/repos/test/browse/test.php"><code class="language-html">&lt;/code>&lt;/pre>FOO</code></pre>',
+			'<pre class="external-content" data-toolbar-order="bitbucket-edit,copy-to-clipboard" data-src="http://bitbucket:7990/projects/TEST/repos/test/browse/test.php"><code class="language-php">&lt;/code>&lt;/pre>FOO</code></pre>',
 			( new CodeRenderer( language: 'php', showLineNumbers: false, showEditButton: true ) )->render( '</code></pre>FOO', 'http://bitbucket:7990/projects/TEST/repos/test/browse/test.php' )
 		);
 	}
