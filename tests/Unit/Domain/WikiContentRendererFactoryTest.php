@@ -20,7 +20,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 				new RendererConfig(
 					fileExtension: 'md',
 					language: '',
-					showLineNumbers: false
+					showLineNumbers: false,
+					showEditButton: false
 				)
 			)
 		);
@@ -28,12 +29,13 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithoutLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false ),
+			new CodeRenderer( language: 'php', showLineNumbers: false, showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: '',
-					showLineNumbers: false
+					showLineNumbers: false,
+					showEditButton: false
 				)
 			)
 		);
@@ -41,12 +43,13 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false ),
+			new CodeRenderer( language: 'php', showLineNumbers: false, showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: false
+					showLineNumbers: false,
+					showEditButton: false
 				)
 			)
 		);
@@ -54,12 +57,13 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageAndLineNumbersCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: true ),
+			new CodeRenderer( language: 'php', showLineNumbers: true, showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
-					showLineNumbers: true
+					showLineNumbers: true,
+					showEditButton: false
 				)
 			)
 		);
@@ -67,12 +71,13 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithMarkdownLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'md', showLineNumbers: false ),
+			new CodeRenderer( language: 'md', showLineNumbers: false, showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'md',
 					language: 'md',
-					showLineNumbers: false
+					showLineNumbers: false,
+					showEditButton: false
 				)
 			)
 		);
