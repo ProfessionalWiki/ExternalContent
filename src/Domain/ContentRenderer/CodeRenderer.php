@@ -77,14 +77,14 @@ class CodeRenderer implements ContentRenderer {
 	private function lineNormalizer( string $lines ) {
 		$exploded = explode( ',', preg_replace( '/\s+/', '', $lines ) );
 
-		$ranges = array_filter( $exploded, function( $value ) {
+		$ranges = array_filter( $exploded, function( $value ): bool {
 			if ( preg_match( '/^\d+$/', $value ) || preg_match( '/^(\d+)-(\d+)$/', $value ) ) {
 				return true;
 			}
 			else {
 				return false;
 			}
-		});
+		} );
 		
 		return implode( ',', $ranges );
 	}
