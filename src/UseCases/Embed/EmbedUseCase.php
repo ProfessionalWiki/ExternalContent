@@ -79,7 +79,7 @@ class EmbedUseCase {
 			),
 			language: $request->language ?? '',
 			showLineNumbers: $request->showLineNumbers ?? false,
-			showEditButton: $request->showEditButton
+			showEditButton: $request->showEditButton ?? false
 		);
 	}
 
