@@ -21,7 +21,7 @@ pre[class*="language-"] {
 
 .line-numbers .line-numbers-rows {
 	background-color: #f0f0f0;
-	margin: -1.15em 0;
+	margin: -1em 0;
 	padding: 1em 0;
 	border-right: 1px solid #eaecf0;
 }
