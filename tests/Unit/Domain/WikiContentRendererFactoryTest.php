@@ -21,7 +21,8 @@ class WikiContentRendererFactoryTest extends TestCase {
 					fileExtension: 'md',
 					language: '',
 					showLineNumbers: false,
-					showSpecificLines: ''
+					showSpecificLines: '',
+					showEditButton: false
 				)
 			)
 		);
@@ -29,13 +30,14 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithoutLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false, showSpecificLines: '' ),
+			new CodeRenderer( language: 'php', showLineNumbers: false, showSpecificLines: '', showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: '',
 					showLineNumbers: false,
-					showSpecificLines: ''
+					showSpecificLines: '',
+					showEditButton: false
 				)
 			)
 		);
@@ -43,13 +45,14 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: false, showSpecificLines: '' ),
+			new CodeRenderer( language: 'php', showLineNumbers: false, showSpecificLines: '', showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
 					showLineNumbers: false,
-					showSpecificLines: ''
+					showSpecificLines: '',
+					showEditButton: false
 				)
 			)
 		);
@@ -57,13 +60,14 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithLanguageAndLineNumbersCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'php', showLineNumbers: true, showSpecificLines: '' ),
+			new CodeRenderer( language: 'php', showLineNumbers: true, showSpecificLines: '', showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'php',
 					language: 'php',
 					showLineNumbers: true,
-					showSpecificLines: ''
+					showSpecificLines: '',
+					showEditButton: false
 				)
 			)
 		);
@@ -71,13 +75,14 @@ class WikiContentRendererFactoryTest extends TestCase {
 
 	public function testConfigWithMarkdownLanguageCreatesCodeRenderer(): void {
 		$this->assertEquals(
-			new CodeRenderer( language: 'md', showLineNumbers: false, showSpecificLines: '' ),
+			new CodeRenderer( language: 'md', showLineNumbers: false, showSpecificLines: '', showEditButton: false ),
 			( new WikiContentRendererFactory() )->createContentRenderer(
 				new RendererConfig(
 					fileExtension: 'md',
 					language: 'md',
 					showLineNumbers: false,
-					showSpecificLines: ''
+					showSpecificLines: '',
+					showEditButton: false
 				)
 			)
 		);

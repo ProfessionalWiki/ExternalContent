@@ -11,7 +11,7 @@ class EmbedRequest {
 		public ?string $language,
 		public ?bool $showLineNumbers,
 		public ?string $showSpecificLines,
-		public bool $showEditButton = false
+		public bool $showEditButton
 	) {
 	}
 

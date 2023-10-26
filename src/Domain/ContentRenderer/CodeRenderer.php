@@ -13,7 +13,7 @@ class CodeRenderer implements ContentRenderer {
 		private string $language,
 		private bool $showLineNumbers,
 		private string $showSpecificLines,
-		private bool $showEditButton = false
+		private bool $showEditButton
 	) {
 	}
 
@@ -63,7 +63,7 @@ class CodeRenderer implements ContentRenderer {
 
 		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
 
-		if ( $this->showEditButton == true ) {
+		if ( $this->showEditButton ) {
 			$attributes['data-toolbar-order'] = 'bitbucket-edit,' . $attributes['data-toolbar-order'];
 			$attributes['data-src'] = $contentUrl;
 		}
