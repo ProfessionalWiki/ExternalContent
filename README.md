@@ -61,6 +61,7 @@ Example:
 Parameters:
 * `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
 * `line`: (Optional) Show line numbers.
+* `specificLines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
 
 Examples:
 
@@ -72,6 +73,11 @@ Render Markdown file as code:
 Render PHP file with line numbers:
 ```
 {{#embed:https://example.com/fluffy/kittens.php|lang=php|line}}
+```
+
+Render PHP file with specific lines:
+```
+{{#embed:https://example.com/fluffy/kittens.php|lang=php|specificLines=1-3,8}}
 ```
 
 ### Refreshing external content

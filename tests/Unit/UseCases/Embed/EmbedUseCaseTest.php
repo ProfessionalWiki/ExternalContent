@@ -70,6 +70,7 @@ class EmbedUseCaseTest extends TestCase {
 			fileUrl: $fileUrl,
 			language: '',
 			showLineNumbers: false,
+			showSpecificLines: '',
 			showEditButton: false
 		);
 	}

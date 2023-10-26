@@ -74,7 +74,8 @@
 			"es6": true,
 			"scripts": [
 				"prism/prism.js",
-				"bitbucket-edit.js"
+				"bitbucket-edit.js",
+				"code-specific-lines.js"
 			]
 		},
 		"ext.external-content.code-renderer.styles": {

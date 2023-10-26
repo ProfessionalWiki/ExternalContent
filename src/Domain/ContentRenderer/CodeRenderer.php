@@ -12,6 +12,7 @@ class CodeRenderer implements ContentRenderer {
 	public function __construct(
 		private string $language,
 		private bool $showLineNumbers,
+		private string $showSpecificLines,
 		private bool $showEditButton
 	) {
 	}
@@ -56,6 +57,10 @@ class CodeRenderer implements ContentRenderer {
 
 		$attributes['class'] = $this->getWrapperClasses();
 
+		if ( !empty( $this->showSpecificLines ) ) {
+			$attributes['data-show-lines'] = $this->lineNormalizer( $this->showSpecificLines );
+		}
+
 		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
 
 		if ( $this->showEditButton ) {
@@ -66,4 +71,21 @@ class CodeRenderer implements ContentRenderer {
 		return $attributes;
 	}
 
+	/**
+	 * @return string
+	 */
+	private function lineNormalizer( string $lines ) {
+		$exploded = explode( ',', preg_replace( '/\s+/', '', $lines ) );
+
+		$ranges = array_filter( $exploded, static function( $value ): bool {
+			if ( preg_match( '/^\d+$/', $value ) || preg_match( '/^(\d+)-(\d+)$/', $value ) ) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		} );
+		
+		return implode( ',', $ranges );
+	}
 }
