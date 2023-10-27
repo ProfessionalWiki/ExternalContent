@@ -71,9 +71,6 @@ class CodeRenderer implements ContentRenderer {
 		return $attributes;
 	}
 
-	/**
-	 * @return string
-	 */
 	private function lineNormalizer( string $lines ): string {
 		$exploded = explode( ',', preg_replace( '/\s+/', '', $lines ) );
 
