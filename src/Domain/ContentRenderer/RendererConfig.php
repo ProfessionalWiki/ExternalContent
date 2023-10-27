@@ -10,8 +10,9 @@ class RendererConfig {
 		public string $fileExtension,
 		public string $language,
 		public bool $showLineNumbers,
+		public string $showSpecificLines,
 		public bool $render,
-		public bool $showEditButton = false
+		public bool $showEditButton
 	) {
 	}
 
