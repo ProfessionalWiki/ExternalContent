@@ -71,19 +71,11 @@ class CodeRenderer implements ContentRenderer {
 		return $attributes;
 	}
 
-	/**
-	 * @return string
-	 */
-	private function lineNormalizer( string $lines ) {
+	private function lineNormalizer( string $lines ): string {
 		$exploded = explode( ',', preg_replace( '/\s+/', '', $lines ) );
 
 		$ranges = array_filter( $exploded, static function( $value ): bool {
-			if ( preg_match( '/^\d+$/', $value ) || preg_match( '/^(\d+)-(\d+)$/', $value ) ) {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return ( preg_match( '/^\d+$/', $value ) || preg_match( '/^(\d+)-(\d+)$/', $value ) );
 		} );
 		
 		return implode( ',', $ranges );
