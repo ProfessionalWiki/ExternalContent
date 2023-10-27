@@ -58,7 +58,7 @@ class CodeRenderer implements ContentRenderer {
 		$attributes['class'] = $this->getWrapperClasses();
 
 		if ( !empty( $this->showSpecificLines ) ) {
-			$attributes['data-show-lines'] = $this->lineNormalizer( $this->showSpecificLines );
+			$attributes['data-show-lines'] = $this->NormalizeLines( $this->showSpecificLines );
 		}
 
 		$attributes['data-toolbar-order'] = 'copy-to-clipboard';
@@ -71,7 +71,7 @@ class CodeRenderer implements ContentRenderer {
 		return $attributes;
 	}
 
-	private function lineNormalizer( string $lines ): string {
+	private function NormalizeLines( string $lines ): string {
 		$exploded = explode( ',', preg_replace( '/\s+/', '', $lines ) );
 
 		$ranges = array_filter( $exploded, static function( $value ): bool {
