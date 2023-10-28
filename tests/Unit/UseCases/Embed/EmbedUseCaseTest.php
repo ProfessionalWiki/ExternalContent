@@ -71,6 +71,7 @@ class EmbedUseCaseTest extends TestCase {
 			language: '',
 			showLineNumbers: false,
 			showSpecificLines: '',
+			render: false,
 			showEditButton: false
 		);
 	}

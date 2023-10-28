@@ -11,27 +11,17 @@ use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\RendererConfig;
 class WikiContentRendererFactory implements ContentRendererFactory {
 
 	public function createContentRenderer( RendererConfig $config ): ContentRenderer {
-		if ( $config->language !== '' ) {
+		if ( $config->render ) {
+			return new MarkdownRenderer();
+		}
+		else {
 			return new CodeRenderer(
-				language: $config->language,
+				language: ( $config->language !== '' ) ? $config->language : $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
 				showLineNumbers: $config->showLineNumbers,
 				showSpecificLines: $config->showSpecificLines,
 				showEditButton: $config->showEditButton
 			);
 		}
-
-		// TODO: check config if this should be default behavior
-		if ( $config->fileExtension === 'md' ) {
-			return new MarkdownRenderer();
-		}
-
-		return new CodeRenderer(
-			language: $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
-			showLineNumbers: $config->showLineNumbers,
-			showSpecificLines: $config->showSpecificLines,
-			showEditButton: $config->showEditButton
-
-		);
 	}
 
 }

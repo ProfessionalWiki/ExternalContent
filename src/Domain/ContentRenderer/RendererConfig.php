@@ -11,6 +11,7 @@ class RendererConfig {
 		public string $language,
 		public bool $showLineNumbers,
 		public string $showSpecificLines,
+		public bool $render,
 		public bool $showEditButton
 	) {
 	}

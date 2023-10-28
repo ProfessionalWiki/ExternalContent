@@ -22,6 +22,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 					language: '',
 					showLineNumbers: false,
 					showSpecificLines: '',
+					render: true,
 					showEditButton: false
 				)
 			)
@@ -37,6 +38,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 					language: '',
 					showLineNumbers: false,
 					showSpecificLines: '',
+					render: false,
 					showEditButton: false
 				)
 			)
@@ -52,6 +54,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 					language: 'php',
 					showLineNumbers: false,
 					showSpecificLines: '',
+					render: false,
 					showEditButton: false
 				)
 			)
@@ -67,6 +70,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 					language: 'php',
 					showLineNumbers: true,
 					showSpecificLines: '',
+					render: false,
 					showEditButton: false
 				)
 			)
@@ -82,6 +86,7 @@ class WikiContentRendererFactoryTest extends TestCase {
 					language: 'md',
 					showLineNumbers: false,
 					showSpecificLines: '',
+					render: false,
 					showEditButton: false
 				)
 			)
