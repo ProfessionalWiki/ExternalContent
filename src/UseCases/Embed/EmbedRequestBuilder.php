@@ -15,8 +15,8 @@ class EmbedRequestBuilder {
 		$normalizedArguments = self::normalizeArguments( array_slice( $arguments, 1 ) );
 
 		$language = $normalizedArguments['lang'] ?? null;
-		$line = $normalizedArguments['line'] ?? null;
-		$specificLines = $normalizedArguments['specificLines'] ?? null;
+		$lineNumbers = $normalizedArguments['lineNumbers'] ?? null;
+		$specificLines = $normalizedArguments['showLines'] ?? null;
 		$render = $normalizedArguments['render'] ?? null;
 
 		/** @var bool */
@@ -25,7 +25,7 @@ class EmbedRequestBuilder {
 		return new EmbedRequest(
 			fileUrl: $arguments[0],
 			language: is_string( $language ) ? $language : null,
-			showLineNumbers: is_bool( $line ) ? $line : null,
+			showLineNumbers: is_bool( $lineNumbers ) ? $lineNumbers : null,
 			showSpecificLines: is_string( $specificLines ) ? $specificLines : null,
 			render: $markdownByDefault ? $markdownByDefault : ( is_bool( $render ) ? $render : null ),
 			showEditButton: $showEditButton

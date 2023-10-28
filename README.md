@@ -61,8 +61,8 @@ Example:
 Both `#embed` and `#bitbucket` can be customized with these parameters:
 
 * `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
-* `line`: (Optional) Show line numbers.
-* `specificLines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
+* `lineNumbers`: (Optional) Show line numbers.
+* `lines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
 * `render`: (Optional) render Markdown (this is the default behavior, unless `$wgExternalContentRenderMarkdownByDefault` is changed)
 
 Examples:
@@ -77,9 +77,9 @@ Show code block with line numbers:
 {{#embed:https://example.com/fluffy/kittens.php|lang=php|line}}
 ```
 
-Show code block with only specific lines:
+Show only specific lines in a code block:
 ```
-{{#embed:https://example.com/fluffy/kittens.php|lang=php|specificLines=1-3,8}}
+{{#embed:https://example.com/fluffy/kittens.php|lang=php|showLines=1-3,8}}
 ```
 
 Render file as Markdown:
@@ -249,8 +249,8 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Raised minimum PHP version from 7.4 to 8.0
 * Added code syntax highlighting
     * Added `lang` parameter
-    * Added `line` parameter
-    * Added `specificLines` parameter
+    * Added `lineNumbers` parameter
+    * Added `showLines` parameter
     * Added `render` parameter
     * Added copy button to code blocks
     * Added edit link to Bitbucket code blocks
