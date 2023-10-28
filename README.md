@@ -56,30 +56,32 @@ Example:
 {{#bitbucket:https://git.example.com/projects/HI/repos/cats/raw/README.md?at=refs%2Fheads%2Fmaster}}
 ```
 
-### Code syntax highlighting parameters
+### Display parameters
 
-Parameters:
+Both `#embed` and `#bitbucket` can be customized with these parameters:
+
 * `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
 * `line`: (Optional) Show line numbers.
 * `specificLines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
-* `render`: (Optional) render as Markdown
+* `render`: (Optional) render Markdown (this is the default behavior, unless `$wgExternalContentRenderMarkdownByDefault` is changed)
 
 Examples:
 
-Render Markdown file as code:
+Show Markdown file contents in a code block:
 ```
 {{#embed:https://example.com/fluffy/kittens.md|lang=markdown}}
 ```
 
-Render PHP file with line numbers:
+Show code block with line numbers:
 ```
 {{#embed:https://example.com/fluffy/kittens.php|lang=php|line}}
 ```
 
-Render PHP file with specific lines:
+Show code block with only specific lines:
 ```
 {{#embed:https://example.com/fluffy/kittens.php|lang=php|specificLines=1-3,8}}
 ```
+
 Render file as Markdown:
 ```
 {{#embed:https://example.com/fluffy/kittens.php|render}}
@@ -106,7 +108,7 @@ The recommended way to install External Content is using [Composer] with
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~1.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~2.0
 ```
 ```shell script
 composer update professional-wiki/external-content --no-dev -o
@@ -124,15 +126,15 @@ You can verify the extension was enabled successfully by opening your wikis Spec
 
 Configuration can be changed via [LocalSettings.php].
 
-### Render markdown by default
+### Rendering markdown
 
-Render markdown files rather than showing the markdown in a codeblock, unless the file is explicitly marked as code.
+By default, markdown is rendered, rather than being shown in a code block.
 
 Variable: `$wgExternalContentRenderMarkdownByDefault`
 
-Default: `true`
+Default: `true` - markdown is rendered (unless otherwise specified by the user)
 
-Example: `false` - disables the default markdown render
+Example: `false` - markdown is shown as a code block (unless otherwise specified by the user)
 
 ### Domain whitelist
 
@@ -242,10 +244,16 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
-### Version 2.0.0 - Under development
+### Version 2.0.0 - 2023-10-30
 
 * Raised minimum PHP version from 7.4 to 8.0
 * Added code syntax highlighting
+    * Added `lang` parameter
+    * Added `line` parameter
+    * Added `specificLines` parameter
+    * Added `render` parameter
+    * Added copy button to code blocks
+    * Added edit link to Bitbucket code blocks
 
 ### Version 1.3.0 - 2022-01-08
 
