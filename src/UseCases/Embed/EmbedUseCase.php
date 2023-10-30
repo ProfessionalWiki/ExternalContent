@@ -18,6 +18,7 @@ class EmbedUseCase {
 	private UrlNormalizer $urlNormalizer;
 	private FileFetcher $fileFetcher;
 	private ContentRendererFactory $contentRendererFactory;
+	private bool $renderMarkdownByDefault;
 	private EmbedResourceLoader $resourceLoader;
 
 	public function __construct(
@@ -26,6 +27,7 @@ class EmbedUseCase {
 		UrlNormalizer $urlNormalizer,
 		FileFetcher $fileFetcher,
 		ContentRendererFactory $contentRendererFactory,
+		bool $renderMarkdownByDefault,
 		EmbedResourceLoader $resourceLoader
 	) {
 		$this->presenter = $presenter;
@@ -33,6 +35,7 @@ class EmbedUseCase {
 		$this->urlNormalizer = $urlNormalizer;
 		$this->fileFetcher = $fileFetcher;
 		$this->contentRendererFactory = $contentRendererFactory;
+		$this->renderMarkdownByDefault = $renderMarkdownByDefault;
 		$this->resourceLoader = $resourceLoader;
 	}
 
@@ -80,7 +83,7 @@ class EmbedUseCase {
 			language: $request->language ?? '',
 			showLineNumbers: $request->showLineNumbers ?? false,
 			showSpecificLines: $request->showSpecificLines ?? '',
-			render: $request->render ?? false,
+			render: $this->renderMarkdownByDefault ? $this->renderMarkdownByDefault : ( $request->render ?? false ),
 			showEditButton: $request->showEditButton
 		);
 	}

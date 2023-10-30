@@ -60,6 +60,7 @@ class EmbedExtensionFactory {
 			new GitHubUrlNormalizer(),
 			$this->getFileFetcher(),
 			new WikiContentRendererFactory(),
+			$this->getRenderMarkdownByDefault(),
 			$resourceLoader
 		);
 	}
@@ -74,6 +75,7 @@ class EmbedExtensionFactory {
 			new BitbucketUrlNormalizer(),
 			$this->getFileFetcher(),
 			new WikiContentRendererFactory(),
+			$this->getRenderMarkdownByDefault(),
 			$resourceLoader
 		);
 	}
@@ -133,5 +135,11 @@ class EmbedExtensionFactory {
 			}
 		};
 	}
+
+
+	private function getRenderMarkdownByDefault(): bool {
+		return (MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentRenderMarkdownByDefault' ) === true);
+	}
+
 
 }
