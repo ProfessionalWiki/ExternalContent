@@ -62,7 +62,7 @@ Both `#embed` and `#bitbucket` can be customized with these parameters:
 
 * `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
 * `lineNumbers`: (Optional) Show line numbers.
-* `lines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
+* `showLines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
 * `render`: (Optional) render Markdown (this is the default behavior, unless `$wgExternalContentRenderMarkdownByDefault` is changed)
 
 Examples:
