@@ -27,6 +27,7 @@ class EmbedUseCaseTest extends TestCase {
 	private SpyingFileFetcher $fileFetcher;
 	private ContentRenderer $contentRenderer;
 	private ContentRendererFactory $contentRendererFactory;
+	private bool $renderMarkdownByDefault;
 	private SpyEmbedResourceLoader $resourceLoader;
 
 	private const KNOWN_FILE_URL = 'https://example.com/Fluff.md';
@@ -41,6 +42,7 @@ class EmbedUseCaseTest extends TestCase {
 		] ) );
 		$this->contentRenderer = new NullContentRenderer();
 		$this->contentRendererFactory = new StubContentRendererFactory( $this->contentRenderer );
+		$this->renderMarkdownByDefault = false;
 		$this->resourceLoader = new SpyEmbedResourceLoader();
 	}
 
@@ -51,6 +53,7 @@ class EmbedUseCaseTest extends TestCase {
 			$this->urlNormalizer,
 			$this->fileFetcher,
 			$this->contentRendererFactory,
+			$this->renderMarkdownByDefault,
 			$this->resourceLoader
 		);
 	}

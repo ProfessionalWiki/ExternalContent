@@ -14,14 +14,13 @@ class WikiContentRendererFactory implements ContentRendererFactory {
 		if ( $config->render ) {
 			return new MarkdownRenderer();
 		}
-		else {
-			return new CodeRenderer(
-				language: ( $config->language !== '' ) ? $config->language : $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
-				showLineNumbers: $config->showLineNumbers,
-				showSpecificLines: $config->showSpecificLines,
-				showEditButton: $config->showEditButton
-			);
-		}
+
+		return new CodeRenderer(
+			language: ( $config->language !== '' ) ? $config->language : $config->fileExtension, // TODO: Use an extension-to-language map, although common extensions already work.
+			showLineNumbers: $config->showLineNumbers,
+			showSpecificLines: $config->showSpecificLines,
+			showEditButton: $config->showEditButton
+		);
 	}
 
 }

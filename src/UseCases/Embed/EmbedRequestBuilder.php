@@ -4,8 +4,6 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\UseCases\Embed;
 
-use MediaWiki\MediaWikiServices;
-
 class EmbedRequestBuilder {
 
 	/**
@@ -19,15 +17,12 @@ class EmbedRequestBuilder {
 		$specificLines = $normalizedArguments['specificLines'] ?? null;
 		$render = $normalizedArguments['render'] ?? null;
 
-		/** @var bool */
-		$markdownByDefault = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentRenderMarkdownByDefault' );
-
 		return new EmbedRequest(
 			fileUrl: $arguments[0],
 			language: is_string( $language ) ? $language : null,
 			showLineNumbers: is_bool( $line ) ? $line : null,
 			showSpecificLines: is_string( $specificLines ) ? $specificLines : null,
-			render: $markdownByDefault ? $markdownByDefault : ( is_bool( $render ) ? $render : null ),
+			render: ( is_bool( $render ) ? $render : null ),
 			showEditButton: $showEditButton
 		);
 	}
