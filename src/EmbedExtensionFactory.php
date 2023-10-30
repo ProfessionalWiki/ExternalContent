@@ -136,10 +136,8 @@ class EmbedExtensionFactory {
 		};
 	}
 
-
 	private function getRenderMarkdownByDefault(): bool {
-		return (MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentRenderMarkdownByDefault' ) === true);
+		return ( MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentRenderMarkdownByDefault' ) === true );
 	}
-
 
 }
