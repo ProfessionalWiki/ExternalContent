@@ -10,7 +10,7 @@
 
 [MediaWiki] extension that allows embedding external content, specified by URL, into your wiki pages.
 
-External Content has been created and is maintained by [Professional.Wiki].
+External Content has been created and is maintained by [Professional Wiki].
 
 - [Usage](#usage)
 - [Installation](#installation)
@@ -25,7 +25,7 @@ External Content has been created and is maintained by [Professional.Wiki].
 ### Embedding external content
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
-Markdown and code syntax highlighting is supported. To render markdown no additional parameters are needed. To use code
+Markdown and code syntax highlighting are supported. To render markdown, no additional parameters are needed. To use code
 syntax highlighting, refer to the [parameters](#code-syntax-highlighting-parameters) below.
 
 Example:
@@ -44,8 +44,8 @@ There is special handling for GitHub URLs, removing the need to provide the raw 
 
 Content from Bitbucket can be embedded via the `#bitbucket` [parser function].
 
-This function takes a URL and includes the following Bitbucket specific behavior:
-* Validation that the URL matches has the Bitbucket repository structure
+This function takes a URL and includes the following Bitbucket-specific behavior:
+* Validation that the URL matches the Bitbucket repository structure
 * `/browse` URLs are automatically turned into `/raw` URLs
 * Pointing to the repository root will automatically retrieve `README.md`
 
@@ -62,8 +62,8 @@ Both `#embed` and `#bitbucket` can be customized with these parameters:
 
 * `lang`: (Optional) One of the [supported languages]. Only necessary if the language is not detected from the file extension.
 * `lineNumbers`: (Optional) Show line numbers.
-* `showLines`: (Optional) Show only specific lines. Can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
-* `render`: (Optional) render Markdown (this is the default behavior, unless `$wgExternalContentRenderMarkdownByDefault` is changed)
+* `showLines`: (Optional) Show only specific lines. It can be a single line number or a range separated with a hyphen (-). Multiple line numbers or ranges can be separated by commas.
+* `render`: (Optional) render Markdown (this is the default behavior unless `$wgExternalContentRenderMarkdownByDefault` is changed)
 
 Examples:
 
@@ -100,7 +100,7 @@ Parameters: none
 Platform requirements:
 
 * [PHP] 8.0 or later (tested up to 8.1)
-* [MediaWiki] 1.35 or later (tested up to 1.39 and master)
+* [MediaWiki] 1.39 or later (tested up to 1.41 and master)
 
 The recommended way to install External Content is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
@@ -120,7 +120,7 @@ Then enable the extension by adding the following to the bottom of your wikis [L
 wfLoadExtension( 'ExternalContent' );
 ```
 
-You can verify the extension was enabled successfully by opening your wikis Special:Version page in your browser.
+You can verify the extension was enabled successfully by opening your wiki's Special:Version page in your browser.
 
 ## Configuration
 
@@ -128,7 +128,7 @@ Configuration can be changed via [LocalSettings.php].
 
 ### Rendering markdown
 
-By default, markdown is rendered, rather than being shown in a code block.
+By default, markdown is rendered rather than shown in a code block.
 
 Variable: `$wgExternalContentRenderMarkdownByDefault`
 
@@ -199,12 +199,12 @@ storing them as plaintext in [LocalSettings.php].
 
 ### Connection details
 
-Content of files is fetched via MediaWiki's native HTTP client. This process is affected by
+The content of files is fetched via MediaWiki's native HTTP client. This process is affected by
 various [HTTP client variables](https://www.mediawiki.org/wiki/Category:HTTP_client_variables).
 
 ### Search
 
-In stock MediaWiki with no extensions, embedded content is not be searchable. To make embedded content
+In stock MediaWiki with no extensions, embedded content is not searchable. To make embedded content
 show up in search results, install Elasticseach and the [CirrusSearch extension].
 
 ## Development
@@ -247,6 +247,7 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 ### Version 2.0.0 - 2023-10-30
 
 * Raised minimum PHP version from 7.4 to 8.0
+* Raised minimum MediaWiki version from 1.35 to 1.39
 * Added code syntax highlighting
     * Added `lang` parameter
     * Added `lineNumbers` parameter
@@ -283,7 +284,7 @@ Initial release for MediaWiki 1.35+ with these features:
 * Ability to view pages with embedded content via the `Pages with external content` category
 * Ability to view pages with broken embedded content via the `Pages with broken external content` category
 
-[Professional.Wiki]: https://professional.wiki
+[Professional Wiki]: https://professional.wiki
 [MediaWiki]: https://www.mediawiki.org
 [PHP]: https://www.php.net
 [Composer]: https://getcomposer.org
