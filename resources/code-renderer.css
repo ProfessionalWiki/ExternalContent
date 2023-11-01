@@ -14,6 +14,10 @@ pre[class*="language-"] {
 	background: #f8f9fa;
 }
 
+code[class*="language-"], pre[class*="language-"] {
+	white-space: pre-wrap;
+}
+
 .external-content.line-numbers {
 	/* Initial spacing before line numbers plugin runs */
 	padding-left: 3.8em;
@@ -37,7 +41,7 @@ pre[class*="language-"] {
 .line-numbers-rows .hide-line,
 .line-numbers-rows .hide-line:before {
 	display: block;
-    height: 0px;
+    height: 0px !important;
     font-size: 1px;
     background: #f0f0f0 !important;
     color: #f0f0f0 !important;
