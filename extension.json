@@ -79,7 +79,8 @@
 			"scripts": [
 				"prism/prism.js",
 				"bitbucket-edit.js",
-				"code-specific-lines.js"
+				"code-specific-lines.js",
+				"copy-to-clipboard.js"
 			]
 		},
 		"ext.external-content.code-renderer.styles": {
