@@ -244,6 +244,11 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
+### Version 2.0.1 - 2023-11-02
+
+* Fixed behavior of copy button for code blocks with line numbers and/or only specific lines shown
+* Improved display of long lines in code blocks by adding line wrapping
+
 ### Version 2.0.0 - 2023-10-30
 
 * Raised minimum PHP version from 7.4 to 8.0
