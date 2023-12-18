@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"external-content-desc": "Maakt het invoegen van externe inhoud, zoals Markdown-bestanden, in uw wikipagina’s mogelijk",
+	"external-content-fetch-failed": "Kan bestand niet ophalen",
+	"external-content-domain-not-allowed": "Het invoegen van bestanden uit dit domein is niet toegestaan",
+	"external-content-extension-not-allowed": "Het invoegen van bestanden met deze extensie is niet toegestaan",
+	"external-content-url-missing-host": "In de URL ontbreekt de host",
+	"external-content-url-missing-path": "In de URL ontbreekt het bestandspad",
+	"external-content-url-not-bitbucket": "Geen geldige Bitbucket-URL",
+	"external-content-url-missing-repository": "In de URL ontbreekt de naam van de repository",
+	"external-content-tracking-category": "Pagina's met externe inhoud",
+	"external-content-tracking-category-desc": "Op deze pagina’s wordt externe inhoud ingevoegd",
+	"external-content-broken-tracking-category": "Pagina's met kapotte externe inhoud",
+	"external-content-broken-tracking-category-desc": "Op deze pagina’s is het invoegen van externe inhoud mislukt"
+}
