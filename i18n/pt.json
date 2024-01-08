@@ -5,7 +5,7 @@
 		]
 	},
 	"external-content-desc": "Permite incorporar conteúdo externo, como ficheiros Markdown, nas suas páginas wiki",
-	"external-content-fetch-failed": "Não foi possível obter o arquivo",
+	"external-content-fetch-failed": "Não foi possível obter o ficheiro",
 	"external-content-domain-not-allowed": "Não é permitido incorporar ficheiros deste domínio",
 	"external-content-extension-not-allowed": "Não é permitido incorporar ficheiros com esta extensão",
 	"external-content-url-missing-host": "O URL tem em falta o servidor de alojamento",
