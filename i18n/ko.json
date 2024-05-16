@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Suleiman the Magnificent Television",
 			"Ykhwong"
 		]
 	},
 	"external-content-desc": "마크다운 파일 등 외부 콘텐츠를 내 위키 문서에 임베드하는 것을 허용합니다",
 	"external-content-fetch-failed": "파일을 찾지 못했습니다",
 	"external-content-domain-not-allowed": "이 도메인에서 파일을 임베드하는 것은 허용하지 않습니다",
+	"external-content-extension-not-allowed": "이 확장 프로그램으로 파일을 삽입하는 것은 허용되지 않습니다",
 	"external-content-url-missing-host": "URL에 호스트가 없습니다",
 	"external-content-url-missing-path": "URL에 파일 경로가 없습니다",
 	"external-content-url-not-bitbucket": "유효한 빗벗킷 URL이 아닙니다",
