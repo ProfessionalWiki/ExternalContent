@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kaper365",
 			"Mruczek",
 			"Rail",
 			"Woytecr"
@@ -11,6 +12,10 @@
 	"external-content-extension-not-allowed": "Osadzanie plików z tym rozszerzeniem nie jest dozwolone",
 	"external-content-url-missing-host": "W adresie URL brakuje hosta",
 	"external-content-url-missing-path": "W adresie URL brakuje ścieżki pliku",
+	"external-content-url-not-bitbucket": "Nieprawidłowy adres URL Bitbucket",
+	"external-content-url-missing-repository": "W adresie URL brakuje nazwy repozytorium",
 	"external-content-tracking-category": "Strony z zawartością zewnętrzną",
-	"external-content-broken-tracking-category": "Strony z uszkodzoną zawartością zewnętrzną"
+	"external-content-tracking-category-desc": "Ta strona zawiera treści zewnętrzne",
+	"external-content-broken-tracking-category": "Strony z uszkodzoną zawartością zewnętrzną",
+	"external-content-broken-tracking-category-desc": "Na tej stronie nie udało się osadzić treści zewnętrznych"
 }
