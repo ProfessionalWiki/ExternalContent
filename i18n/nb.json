@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"external-content-desc": "Gjør det mulig å bygge inn eksternt innhold, som f.eks. Markdown-filer, på wikisidene dine",
+	"external-content-fetch-failed": "Kunne ikke hente fil",
+	"external-content-domain-not-allowed": "Innbygging av filer fra dette domenet er ikke tillatt",
+	"external-content-extension-not-allowed": "Innbygging av filer med denne filendelsen er ikke tillatt",
+	"external-content-url-missing-host": "URL-en mangler et domenenavn",
+	"external-content-url-missing-path": "URL-en mangler en filsti",
+	"external-content-url-not-bitbucket": "Ikke en gyldig Bitbucket-URL",
+	"external-content-url-missing-repository": "URL-en mangler et lagernavn",
+	"external-content-tracking-category": "Sider med eksternt innhold",
+	"external-content-tracking-category-desc": "Disse sidene bygger inn eksternt innhold",
+	"external-content-broken-tracking-category": "Sider med ødelagt eksternt innhold",
+	"external-content-broken-tracking-category-desc": "Eksternt innhold på disse sidene kunne ikke bygges inn"
+}
