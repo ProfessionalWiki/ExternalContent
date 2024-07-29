@@ -1,12 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Justman10000",
 			"Kghbln",
 			"Umlaut"
 		]
 	},
 	"external-content-desc": "Ermöglicht das Einbetten von Inhalten auf Wikiseiten durch Angabe einer URL",
 	"external-content-fetch-failed": "Datei wurde nicht gefunden",
+	"external-content-domain-not-allowed": "Das Einbetten von Dateien aus dieser Domain ist nicht erlaubt",
+	"external-content-extension-not-allowed": "Das Einbetten von Dateien mit dieser Erweiterung ist nicht erlaubt",
+	"external-content-url-missing-host": "URL fehlt Host",
+	"external-content-url-missing-path": "In der URL fehlt der Dateipfad",
+	"external-content-url-not-bitbucket": "Keine gültige Bitbucket-URL",
+	"external-content-url-missing-repository": "In der URL fehlt der Name des Repositorys",
 	"external-content-tracking-category": "Seiten mit externem Inhalt",
-	"external-content-tracking-category-desc": "Diese Seite enthält externen Inhalt"
+	"external-content-tracking-category-desc": "Diese Seite enthält externen Inhalt",
+	"external-content-broken-tracking-category": "Seiten mit fehlerhaften externen Inhalten",
+	"external-content-broken-tracking-category-desc": "Diese Seite konnte keine externen Inhalte einbetten"
 }
