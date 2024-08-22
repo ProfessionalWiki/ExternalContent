@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Okras"
+		]
+	},
+	"external-content-fetch-failed": "Не удалось получить файл",
+	"external-content-url-missing-host": "URL-адрес не содержит хоста",
+	"external-content-url-missing-path": "URL-адрес не содержит путь к файлу",
+	"external-content-tracking-category": "Страницы с внешним содержимым",
+	"external-content-tracking-category-desc": "На этой странице встроено внешнее содержимое"
+}
