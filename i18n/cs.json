@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fraxinus.cs",
+			"MasterStudioCZ"
+		]
+	},
+	"external-content-domain-not-allowed": "Vkládání souborů z této domény není povoleno",
+	"external-content-extension-not-allowed": "Vkládání souborů s touto příponou není povoleno",
+	"external-content-url-missing-host": "V URL chybí hostitel",
+	"external-content-url-missing-path": "V URL adrese chybí cesta k souboru",
+	"external-content-tracking-category": "Stránky s externím obsahem",
+	"external-content-tracking-category-desc": "Tato stránka obsahuje externí obsah",
+	"external-content-broken-tracking-category": "Stránky s nefunkčním externím obsahem",
+	"external-content-broken-tracking-category-desc": "Do této stránky se nepodařilo vložit externí obsah"
+}
