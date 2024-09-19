@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yukkuri Shambis"
+		]
+	},
+	"external-content-desc": "ウィキページにマークダウンファイルなどの外部コンテンツを埋め込めるようにします。",
+	"external-content-fetch-failed": "ファイルを取得できませんでした",
+	"external-content-domain-not-allowed": "このドメインからファイルを埋め込むことは許可されていません",
+	"external-content-extension-not-allowed": "この拡張子のファイルを埋め込むことは許可されていません",
+	"external-content-url-missing-host": "URLがホストされていません",
+	"external-content-url-missing-path": "URLにファイルパスがありません",
+	"external-content-url-not-bitbucket": "有効なBitbucketのURLではありません",
+	"external-content-url-missing-repository": "URLにリポジトリ名がありません"
+}
