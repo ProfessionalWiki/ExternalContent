@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aphaia",
+			"FlatLanguage",
 			"Yukkuri Shambis"
 		]
 	},
@@ -12,5 +13,9 @@
 	"external-content-url-missing-host": "URLのホストがみつかりません",
 	"external-content-url-missing-path": "URLにファイルパスがありません",
 	"external-content-url-not-bitbucket": "有効なBitbucketのURLではありません",
-	"external-content-url-missing-repository": "URLにリポジトリ名がありません"
+	"external-content-url-missing-repository": "URLにリポジトリ名がありません",
+	"external-content-tracking-category": "外部コンテンツを含むページ",
+	"external-content-tracking-category-desc": "このページには外部コンテンツが埋め込まれています",
+	"external-content-broken-tracking-category": "壊れた外部コンテンツを含むページ",
+	"external-content-broken-tracking-category-desc": "このページは外部コンテンツの埋め込みに失敗しました"
 }
