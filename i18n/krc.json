@@ -13,5 +13,7 @@
 	"external-content-url-not-bitbucket": "Bitbucket URL-адрес джараусузду",
 	"external-content-url-missing-repository": "URL-адресде гёзен ат джокъду",
 	"external-content-tracking-category": "Тыш контектли бетле",
-	"external-content-tracking-category-desc": "Бу бетде тыш контент кёмюлюбдю"
+	"external-content-tracking-category-desc": "Бу бетде тыш контент кёмюлюбдю",
+	"external-content-broken-tracking-category": "Бузукъ тыш контентлери болгъан бетле",
+	"external-content-broken-tracking-category-desc": "Бу бетге тыш контентни салыу джетишимсиз болду"
 }
