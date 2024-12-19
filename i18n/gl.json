@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"external-content-desc": "Permite inserir contido externo, como ficheiros con linguaxe de marcado, nas páxinas do teu wiki",
+	"external-content-fetch-failed": "Non se puido recuperar o ficheiro",
+	"external-content-domain-not-allowed": "Non está permitido inserir ficheiros deste dominio",
+	"external-content-extension-not-allowed": "Non está permitido inserir ficheiros con esta extensión",
+	"external-content-url-missing-host": "O enderezo URL non ten dominio",
+	"external-content-url-missing-path": "O enderezo URL non ten ruta",
+	"external-content-url-not-bitbucket": "Non é un enderezo URL válido de Bitbucket",
+	"external-content-url-missing-repository": "O enderezo URL non ten o nome do repositorio",
+	"external-content-tracking-category": "Páxinas con contido externo",
+	"external-content-tracking-category-desc": "Esta páxina incorpora contido externo",
+	"external-content-broken-tracking-category": "Páxinas con contido externo roto",
+	"external-content-broken-tracking-category-desc": "Esta páxina non puido incorporar contido externo"
+}
