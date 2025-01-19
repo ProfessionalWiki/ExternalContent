@@ -4,8 +4,8 @@
 [![codecov](https://codecov.io/gh/ProfessionalWiki/ExternalContent/branch/master/graph/badge.svg?token=GnOG3FF16Z)](https://codecov.io/gh/ProfessionalWiki/ExternalContent)
 [![Type Coverage](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/coverage.svg)](https://shepherd.dev/github/ProfessionalWiki/ExternalContent)
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/level.svg)](psalm.xml)
-[![Latest Stable Version](https://poser.pugx.org/professional-wiki/external-content/version.png)](https://packagist.org/packages/professional-wiki/external-content)
-[![Download count](https://poser.pugx.org/professional-wiki/external-content/d/total.png)](https://packagist.org/packages/professional-wiki/external-content)
+[![Latest Stable Version](https://poser.pugx.org/professional-wiki/external-content/v/stable)](https://packagist.org/packages/professional-wiki/external-content)
+[![Download count](https://poser.pugx.org/professional-wiki/external-content/downloads)](https://packagist.org/packages/professional-wiki/external-content)
 [![License](https://poser.pugx.org/professional-wiki/external-content/license)](LICENSE)
 
 [MediaWiki] extension that allows embedding external content, specified by URL, into your wiki pages.
