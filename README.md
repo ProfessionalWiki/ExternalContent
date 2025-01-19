@@ -6,7 +6,7 @@
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/ExternalContent/level.svg)](psalm.xml)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/external-content/version.png)](https://packagist.org/packages/professional-wiki/external-content)
 [![Download count](https://poser.pugx.org/professional-wiki/external-content/d/total.png)](https://packagist.org/packages/professional-wiki/external-content)
-[![License](https://img.shields.io/packagist/l/professional-wiki/external-content)](LICENSE)
+[![License](https://poser.pugx.org/professional-wiki/external-content/license)](LICENSE)
 
 [MediaWiki] extension that allows embedding external content, specified by URL, into your wiki pages.
 
@@ -25,7 +25,7 @@ External Content has been created and is maintained by [Professional Wiki].
 ### Embedding external content
 
 External content can be embedded via the `#embed` [parser function]. This function takes a URL.
-Markdown and code syntax highlighting are supported. To render markdown, no additional parameters are needed. To use code
+Markdown and code syntax highlighting are supported. No additional parameters are needed to render the markdown. To use code
 syntax highlighting, refer to the [parameters](#code-syntax-highlighting-parameters) below.
 
 Example:
