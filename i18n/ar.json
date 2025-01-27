@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25",
+			"محمد أحمد عبد الفتاح"
+		]
+	},
+	"external-content-desc": "يسمح بتضمين محتوى خارجي، مثل ملفات Markdown، في صفحات الويكي الخاصة بك",
+	"external-content-fetch-failed": "لم يتمكن من استرداد الملف",
+	"external-content-domain-not-allowed": "لا يُسمح بتضمين الملفات من هذا المجال",
+	"external-content-extension-not-allowed": "لا يُسمح بتضمين الملفات بهذا الامتداد",
+	"external-content-url-missing-host": "عنوان URL مفقود المضيف",
+	"external-content-url-missing-path": "عنوان URL مفقود مسار الملف",
+	"external-content-url-not-bitbucket": "ليس عنوان URL صالحًا لـ Bitbucket",
+	"external-content-url-missing-repository": "عنوان URL يفتقد اسم المستودع",
+	"external-content-tracking-category": "صفحات بمحتوى خارجي",
+	"external-content-tracking-category-desc": "تتضمن هذه الصفحة محتوى خارجيًا",
+	"external-content-broken-tracking-category": "الصفحات التي تحتوي على محتوى خارجي معطل",
+	"external-content-broken-tracking-category-desc": "فشلت هذه الصفحة في تضمين محتوى خارجي"
+}
