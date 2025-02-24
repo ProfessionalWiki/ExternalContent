@@ -21,7 +21,7 @@ class TestEnvironment {
 		return null;
 	}
 
-	public function parse( string $textToParse, Title $contextPage = null ): string {
+	public function parse( string $textToParse, ?Title $contextPage = null ): string {
 		return MediaWikiServices::getInstance()->getParser()
 			->parse(
 				$textToParse,
