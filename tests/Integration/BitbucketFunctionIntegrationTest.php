@@ -9,6 +9,7 @@ use FileFetcher\StubFileFetcher;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
+ * @group Database
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\BitbucketFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
  * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter

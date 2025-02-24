@@ -7,15 +7,30 @@ on:
 jobs:
   test:
     name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+    continue-on-error: ${{ matrix.experimental }}
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - mw: 'REL1_35'
-            php: 8.0
           - mw: 'REL1_39'
             php: 8.1
+            experimental: false
+          - mw: 'REL1_40'
+            php: 8.1
+            experimental: false
+          - mw: 'REL1_41'
+            php: 8.2
+            experimental: false
+          - mw: 'REL1_42'
+            php: 8.2
+            experimental: false
+          - mw: 'REL1_43'
+            php: 8.3
+            experimental: false
+          - mw: 'master'
+            php: 8.4
+            experimental: true
 
     runs-on: ubuntu-latest
 
@@ -33,7 +48,7 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             mediawiki
@@ -42,17 +57,21 @@ jobs:
           key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
 
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s ${{ matrix.mw }} ExternalContent
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -66,22 +85,27 @@ jobs:
 
       - name: Run PHPUnit
         run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/
-        if: matrix.php != 7.4
 
       - name: Run PHPUnit with code coverage
         run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --coverage-clover coverage.xml
-        if: matrix.php == 7.4
+        if: matrix.mw == 'master'
 
       - name: Upload code coverage
         run: bash <(curl -s https://codecov.io/bash)
-        if: matrix.php == 7.4
+        if: matrix.mw == 'master'
 
       - name: Run parser tests
         run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
-        if: matrix.mw == 'REL1_39'
+        if: matrix.mw >= 'REL1_43'
 
   static-analysis:
-    name: "Static Analysis"
+    name: "Static Analysis: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_43'
+            php: '8.3'
 
     runs-on: ubuntu-latest
 
@@ -93,13 +117,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: ${{ matrix.php }}
           extensions: mbstring
           tools: composer, cs2pr
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             mediawiki
@@ -108,17 +132,21 @@ jobs:
           key: mw_static_analysis
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
           key: composer_static_analysis
 
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -136,7 +164,13 @@ jobs:
 
 
   code-style:
-    name: "Code style"
+    name: "Code style: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    strategy:
+      matrix:
+        include:
+          - mw: 'REL1_43'
+            php: '8.3'
 
     runs-on: ubuntu-latest
 
@@ -148,13 +182,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: ${{ matrix.php }}
           extensions: mbstring, intl, php-ast
           tools: composer
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             mediawiki
@@ -163,17 +197,21 @@ jobs:
           key: mw_static_analysis
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
           key: composer_static_analysis
 
+      - uses: actions/checkout@v4
+        with:
+          path: EarlyCopy
+
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: curl https://gist.githubusercontent.com/JeroenDeDauw/49a3858653ff4b5be7ec849019ede06c/raw/installMediaWiki.sh | bash -s REL1_36 ExternalContent
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 

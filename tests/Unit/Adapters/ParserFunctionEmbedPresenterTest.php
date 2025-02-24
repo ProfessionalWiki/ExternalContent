@@ -37,10 +37,13 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 		$presenter->showError( 'my-error' );
 		$parserFunctionReturnValue = $presenter->getParserFunctionReturnValue();
 
-		$this->assertStringContainsEither(
-			'<div class="errorbox">', // MW 35-37
-			'mw-message-box-error', // MW 39+
-			$parserFunctionReturnValue[0]
+		$this->assertThat(
+			$parserFunctionReturnValue[0],
+			$this->logicalOr(
+				$this->stringContains( '<div class="errorbox">' ),
+				$this->stringContains( 'mw-message-box-error' ),
+				$this->stringContains( 'cdx-message--error' )
+			)
 		);
 
 		$this->assertTrue( $parserFunctionReturnValue['noparse'] );

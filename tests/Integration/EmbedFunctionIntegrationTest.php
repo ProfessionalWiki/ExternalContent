@@ -10,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
+ * @group Database
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\EmbedFunction
  * @covers \ProfessionalWiki\ExternalContent\EntryPoints\MediaWikiHooks
  * @covers \ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter\ParserFunctionEmbedPresenter
@@ -60,12 +61,12 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
 			$this->assertSame(
-				[ 'Pages_with_external_content' => '', 'Pages_with_broken_external_content' => '' ],
-				$parser->getOutput()->getCategories()
+				[ 'Pages_with_external_content', 'Pages_with_broken_external_content' ],
+				$parser->getOutput()->getCategoryNames()
 			);
 		}
 
-		$this->assertCount( 2, $parser->getOutput()->getCategories() );
+		$this->assertCount( 2, $parser->getOutput()->getCategoryNames() );
 	}
 
 	public function testGitHubNormalization(): void {
