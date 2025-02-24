@@ -40,9 +40,9 @@ class ParserFunctionEmbedPresenterTest extends TestCase {
 		$this->assertThat(
 			$parserFunctionReturnValue[0],
 			$this->logicalOr(
-				$this->stringContains('<div class="errorbox">'),
-				$this->stringContains('mw-message-box-error'),
-				$this->stringContains('cdx-message--error')
+				$this->stringContains( '<div class="errorbox">' ),
+				$this->stringContains( 'mw-message-box-error' ),
+				$this->stringContains( 'cdx-message--error' )
 			)
 		);
 
