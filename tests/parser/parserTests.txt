@@ -5,9 +5,9 @@ Embed function should not render when it is disabled
 !! config
 wgExternalContentEnableEmbedFunction=false
 !! wikitext
-{{#embed:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+{{#embed:https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
 !! html
-<p>{{#embed:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+<p>{{#embed:https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
 </p>
 !! end
 
@@ -16,9 +16,9 @@ Bitbucket function should not render when it is disabled
 !! config
 wgExternalContentEnableBitbucketFunction=false
 !! wikitext
-{{#bitbucket:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+{{#bitbucket:https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
 !! html
-<p>{{#bitbucket:raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
+<p>{{#bitbucket:https://raw.githubusercontent.com/ProfessionalWiki/ExternalContent/master/README.md}}
 </p>
 !! end
 
