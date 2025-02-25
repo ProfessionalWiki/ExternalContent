@@ -38,7 +38,10 @@ class HostAndPathModifier {
 		$port = isset( $parsedUrl['port'] ) ? ':' . $parsedUrl['port'] : '';
 		$user = $parsedUrl['user'] ?? '';
 		$pass = isset( $parsedUrl['pass'] ) ? ':' . $parsedUrl['pass'] : '';
-		$pass = ( $user || $pass ) ? "$pass@" : '';
+		
+		// Use strict comparison to check if user or pass exists
+		$pass = ( $user !== '' || $pass !== '' ) ? "$pass@" : '';
+		
 		$path = $parsedUrl['path'] ?? '';
 		$query = isset( $parsedUrl['query'] ) ? '?' . $parsedUrl['query'] : '';
 		$fragment = isset( $parsedUrl['fragment'] ) ? '#' . $parsedUrl['fragment'] : '';
