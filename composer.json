@@ -37,8 +37,8 @@
 	},
 	"require-dev": {
 		"vimeo/psalm": "^4.10",
-		"phpstan/phpstan": "^0.12.99",
-		"mediawiki/mediawiki-codesniffer": "37.0.0"
+		"phpstan/phpstan": "^2.0.1",
+		"mediawiki/mediawiki-codesniffer": "45.0.0"
 	},
 	"config": {
 		"allow-plugins": {

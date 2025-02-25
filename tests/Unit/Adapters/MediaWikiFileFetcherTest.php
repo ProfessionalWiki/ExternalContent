@@ -21,7 +21,7 @@ class MediaWikiFileFetcherTest extends TestCase {
 	public function testWhenRequestFactoryReturnsNull_exceptionIsThrown(): void {
 		$requestFactory = $this->createMock( HttpRequestFactory::class );
 		$requestFactory->method( 'get' )
-			->with( $this->equalTo( 'https://example.com' ) )
+			->with( 'https://example.com' )
 			->willReturn( null );
 
 		$this->expectException( FileFetchingException::class );
@@ -31,7 +31,7 @@ class MediaWikiFileFetcherTest extends TestCase {
 	public function testWhenRequestFactoryReturnsString_itIsReturned(): void {
 		$requestFactory = $this->createMock( HttpRequestFactory::class );
 		$requestFactory->method( 'get' )
-			->with( $this->equalTo( 'https://example.com' ) )
+			->with( 'https://example.com' )
 			->willReturn( '~=[,,_,,]:3' );
 
 		$this->assertSame(
@@ -45,7 +45,7 @@ class MediaWikiFileFetcherTest extends TestCase {
 		$requestFactory->expects( $this->once() )
 			->method( 'get' )
 			->with(
-				$this->equalTo( 'https://example.com' ),
+				'https://example.com',
 				$this->equalTo( [
 					'username' => 'FooUser',
 					'password' => 'BarPassword'
@@ -65,8 +65,8 @@ class MediaWikiFileFetcherTest extends TestCase {
 		$requestFactory->expects( $this->once() )
 			->method( 'get' )
 			->with(
-				$this->equalTo( 'https://example.com' ),
-				$this->equalTo( [] )
+				'https://example.com',
+				[]
 			)->willReturn( '~=[,,_,,]:3' );
 
 		$domainCredentials = new DomainCredentials();
