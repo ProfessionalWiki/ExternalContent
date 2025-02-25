@@ -36,8 +36,8 @@
 		"ezyang/htmlpurifier": "~4.13"
 	},
 	"require-dev": {
-		"vimeo/psalm": "^4.10",
-		"phpstan/phpstan": "^2.0.1",
+		"vimeo/psalm": "*",
+		"phpstan/phpstan": "^2.0.2",
 		"mediawiki/mediawiki-codesniffer": "45.0.0"
 	},
 	"config": {
