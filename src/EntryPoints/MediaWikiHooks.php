@@ -6,6 +6,7 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use ContentHandler;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Parser;
 use ParserOutput;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
@@ -63,7 +64,7 @@ final class MediaWikiHooks {
 	/**
 	 * @codeCoverageIgnore
 	 */
-	public static function onSearchDataForIndex( array &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output, SearchEngine $engine ): void {
+	public static function onSearchDataForIndex2( array &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output, SearchEngine $engine, RevisionRecord $revision ): void {
 	}
 
 	/**
