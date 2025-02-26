@@ -246,11 +246,11 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ### Version 3.0.0 - TBD
 
-* Bumped minimum MediaWiki requirements to 1.39
+* Raised minimum MediaWiki version from 1.35 to 1.39
 
 ### Version 2.0.1 - 2023-11-02
 
-* Fixed behavior of copy button for code blocks with line numbers and/or only specific lines shown
+* Fixed behavior of the copy button for code blocks with line numbers and/or only specific lines shown
 * Improved display of long lines in code blocks by adding line wrapping
 
 ### Version 2.0.0 - 2023-10-30
