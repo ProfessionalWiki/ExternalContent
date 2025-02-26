@@ -244,9 +244,9 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
-### Version 3.0.0 - 2025-02-25
+### Version 3.0.0 - TBD
 
-* Bump minimum MediaWiki requirements to 1.39 
+* Bumped minimum MediaWiki requirements to 1.39
 
 ### Version 2.0.1 - 2023-11-02
 

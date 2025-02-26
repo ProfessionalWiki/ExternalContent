@@ -29,9 +29,7 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 			$urlParts[5] = 'raw';
 		}
 
-		if ( !isset( $urlParts[6] ) || $urlParts[6] === '' ) {
-			$urlParts[6] = 'README.md';
-		}
+		$urlParts[6] = ( $urlParts[6] ?? '' ) === '' ? 'README.md' : $urlParts[6];
 
 		return implode( '/', $urlParts );
 	}
