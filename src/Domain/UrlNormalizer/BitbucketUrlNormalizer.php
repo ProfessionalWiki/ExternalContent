@@ -11,7 +11,7 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 	public function fullNormalize( string $url ): string {
 		return ( new HostAndPathModifier() )->modifyPath(
 			$url,
-			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path, true ) ]
+			fn ( string $host, string $path ) => [ $host, $this->normalizePath( $path, true ) ]
 		);
 	}
 
@@ -51,7 +51,7 @@ class BitbucketUrlNormalizer implements UrlNormalizer {
 	public function viewLevelNormalize( string $url ): string {
 		return ( new HostAndPathModifier() )->modifyPath(
 			$url,
-			fn( string $host, string $path ) => [ $host, $this->normalizePath( $path, false ) ]
+			fn ( string $host, string $path ) => [ $host, $this->normalizePath( $path, false ) ]
 		);
 	}
 

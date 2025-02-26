@@ -7,3 +7,5 @@ parameters:
 		- ../../includes
 		- ../../tests/phpunit
 		- ../../vendor
+	bootstrapFiles:
+		- ../../includes/AutoLoader.php

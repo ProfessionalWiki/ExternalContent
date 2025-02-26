@@ -13,7 +13,7 @@ class MediaWikiFileFetcher implements FileFetcher {
 	private HttpRequestFactory $requestFactory;
 	private DomainCredentials $credentials;
 
-	public function __construct( HttpRequestFactory $requestFactory, DomainCredentials $credentials = null ) {
+	public function __construct( HttpRequestFactory $requestFactory, ?DomainCredentials $credentials = null ) {
 		$this->requestFactory = $requestFactory;
 		$this->credentials = $credentials ?? new DomainCredentials();
 	}

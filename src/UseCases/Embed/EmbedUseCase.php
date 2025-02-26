@@ -42,8 +42,7 @@ class EmbedUseCase {
 	public function embed( EmbedRequest $request ): void {
 		try {
 			$normalizedUrl = $this->urlNormalizer->fullNormalize( $request->fileUrl );
-		}
-		catch ( \RuntimeException $exception ) {
+		} catch ( \RuntimeException $exception ) {
 			$this->presenter->showError( $exception->getMessage() );
 			return;
 		}
@@ -57,8 +56,7 @@ class EmbedUseCase {
 
 		try {
 			$content = $this->fileFetcher->fetchFile( $normalizedUrl );
-		}
-		catch ( \Exception $exception ) {
+		} catch ( \Exception $exception ) {
 			$this->presenter->showFetchingError();
 			return;
 		}

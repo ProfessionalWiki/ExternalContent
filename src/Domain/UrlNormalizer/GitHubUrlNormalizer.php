@@ -49,8 +49,7 @@ class GitHubUrlNormalizer implements UrlNormalizer {
 
 		if ( $removeBlobSegment ) {
 			unset( $urlParts[3] );
-		}
-		elseif ( $urlParts[3] === '' ) {
+		} elseif ( $urlParts[3] === '' ) {
 			$urlParts[3] = 'blob';
 		}
 

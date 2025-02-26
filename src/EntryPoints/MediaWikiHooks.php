@@ -18,7 +18,7 @@ final class MediaWikiHooks {
 		if ( self::embedFunctionIsEnabled() ) {
 			$parser->setFunctionHook(
 				'embed',
-				fn( Parser $parser, string ...$arguments )
+				fn ( Parser $parser, string ...$arguments )
 					=> ( new EmbedFunction() )->handleParserFunctionCall( $parser, ...$arguments )
 			);
 		}
@@ -26,7 +26,7 @@ final class MediaWikiHooks {
 		if ( self::bitbucketFunctionIsEnabled() ) {
 			$parser->setFunctionHook(
 				'bitbucket',
-				fn( Parser $parser, string ...$arguments )
+				fn ( Parser $parser, string ...$arguments )
 					=> ( new BitbucketFunction() )->handleParserFunctionCall( $parser, ...$arguments )
 			);
 		}
