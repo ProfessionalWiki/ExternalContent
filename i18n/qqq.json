@@ -6,7 +6,7 @@
 			"McDutchie"
 		]
 	},
-	"external-content-desc": "{{Desc|name=ExternalContent|url=https://github.com/ProfessionalWiki/ExternalContent}}",
+	"external-content-desc": "{{Desc|name=ExternalContent|url=https://professional.wiki/en/extension/external-content}}",
 	"external-content-tracking-category": "Name of the tracking category\n{{Tracking category name}}",
 	"external-content-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|external-content-tracking-category}} tracking category.",
 	"external-content-broken-tracking-category": "Name of the tracking category\n{{Tracking category name}}",
