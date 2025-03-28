@@ -11,7 +11,7 @@
 		"embed",
 		"parser function"
 	],
-	"homepage": "https://github.com/ProfessionalWiki/ExternalContent",
+	"homepage": "https://professional.wiki/en/extension/external-content",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
@@ -27,6 +27,10 @@
 			"role": "Creator and lead developer"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/ProfessionalWiki/ExternalContent/issues",
+		"source": "https://github.com/ProfessionalWiki/ExternalContent"
+	},
 	"require": {
 		"php": ">=8.0",
 		"composer/installers": "^2|^1.0.1",
