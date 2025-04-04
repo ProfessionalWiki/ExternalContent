@@ -108,7 +108,7 @@ The recommended way to install External Content is using [Composer] with
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~2.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~3.0
 ```
 ```shell script
 composer update professional-wiki/external-content --no-dev -o
