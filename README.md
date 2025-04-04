@@ -247,7 +247,7 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 ### Version 3.0.0 - 2025-04-04
 
 * Raised minimum MediaWiki version from 1.35 to 1.39
-* Added support for MediaWiki 1.40, 1.41, and 1.43
+* Added support for MediaWiki 1.40, 1.41, 1.42, and 1.43
 * Translation updates
 
 ### Version 2.0.1 - 2023-11-02
