@@ -244,6 +244,10 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 
 ## Release notes
 
+### Version 3.0.1 - 2025-04-06
+
+* Fixed compatibility with MediaWiki 1.43 and above (IDatabase TypeError)
+
 ### Version 3.0.0 - 2025-04-04
 
 * Raised minimum MediaWiki version from 1.35 to 1.39
