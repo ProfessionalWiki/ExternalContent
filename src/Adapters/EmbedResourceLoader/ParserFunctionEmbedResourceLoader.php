@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Adapters\EmbedResourceLoader;
 
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer\CodeRenderer;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedResourceLoader;
