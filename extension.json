@@ -53,7 +53,7 @@
 	},
 
 	"ExtensionMessagesFiles": {
-		"NetworkParserFunction": "i18n/_MagicWords.php"
+		"ExternalContentMagic": "i18n/_MagicWords.php"
 	},
 
 	"AutoloadNamespaces": {
