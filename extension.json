@@ -1,6 +1,6 @@
 {
 	"name": "External Content",
-	"version": "3.0.1",
+	"version": "4.0.0",
 	"license-name": "GPL-2.0-or-later",
 
 	"author": [
@@ -13,7 +13,7 @@
 	"descriptionmsg": "external-content-desc",
 
 	"requires": {
-		"MediaWiki": ">= 1.39.0",
+		"MediaWiki": ">= 1.43.0",
 		"platform": {
 			"php": ">= 8.0"
 		}

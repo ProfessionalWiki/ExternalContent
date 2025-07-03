@@ -97,10 +97,12 @@ Parameters: none
 
 ## Installation
 
-Platform requirements:
+Platform requirements of 4.x:
 
-* [PHP] 8.0 or later (tested up to 8.3)
-* [MediaWiki] 1.39 or later (tested up to 1.43 and master)
+* [PHP] 8.0 or later (tested up to 8.4)
+* [MediaWiki] 1.43 or later (tested up to 1.44 and master)
+
+For older PHP or MediaWiki, use older versions of External Content.
 
 The recommended way to install External Content is using [Composer] with
 [MediaWiki's built-in support for Composer][Composer install].
@@ -108,7 +110,7 @@ The recommended way to install External Content is using [Composer] with
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~3.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~4.0
 ```
 ```shell script
 composer update professional-wiki/external-content --no-dev -o
@@ -243,6 +245,13 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
 
 ## Release notes
+
+### Version 4.0.0 - 2025-07-04
+
+* Raised minimum MediaWiki version from 1.39 to 1.43
+* Added support for MediaWiki 1.44
+* Fixed compatibility issue with the Network extension
+* Translation updates
 
 ### Version 3.0.1 - 2025-04-06
 

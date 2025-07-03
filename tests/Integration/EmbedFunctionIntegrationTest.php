@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\StubFileFetcher;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
@@ -54,7 +55,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 
 		$parser->parse(
 			'{{#embed:https://example.com/KITTENS.md}}',
-			\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
+			Title::newFromText( 'EmbedFunctionIntegrationTest' ),
 			new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
 		)->getText();
 
