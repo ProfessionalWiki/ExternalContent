@@ -5,5 +5,15 @@
 		]
 	},
 	"external-content-desc": "Permite a incorporação de conteúdo externo, como arquivos markdown, em suas páginas wiki",
-	"external-content-extension-not-allowed": "Incorporar arquivos com esta extensão não é permitido"
+	"external-content-fetch-failed": "Não foi possível recuperar o arquivo",
+	"external-content-domain-not-allowed": "Não é permitido incorporar arquivos deste domínio.",
+	"external-content-extension-not-allowed": "Incorporar arquivos com esta extensão não é permitido",
+	"external-content-url-missing-host": "URL está sem host",
+	"external-content-url-missing-path": "URL está sem o caminho do arquivo",
+	"external-content-url-not-bitbucket": "Não é um URL de Bitbucket válido",
+	"external-content-url-missing-repository": "O URL tem em falta o nome do repositório",
+	"external-content-tracking-category": "Páginas com conteúdo externo",
+	"external-content-tracking-category-desc": "Esta página incorpora conteúdo externo",
+	"external-content-broken-tracking-category": "Páginas com conteúdo externo corrompido",
+	"external-content-broken-tracking-category-desc": "Esta página não conseguiu incorporar conteúdo externo"
 }
