@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"external-content-fetch-failed": "Файл схьаэца аьтто ца баьлла",
+	"external-content-url-missing-host": "URL чохь хост йац",
+	"external-content-url-missing-path": "URL-адрес чохь бац файлан некъ",
+	"external-content-tracking-category": "Арахьара чулацам болу агӀонаш",
+	"external-content-tracking-category-desc": "ХӀокху агӀонан тӀехь чубиллина арахьара чулацам бу"
+}
