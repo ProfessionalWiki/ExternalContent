@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter;
 
-use Parser;
+use MediaWiki\Parser\Parser;
 
 class CategoryUsageTracker implements UsageTracker {
 
