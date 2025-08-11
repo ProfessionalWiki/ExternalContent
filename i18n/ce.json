@@ -7,6 +7,9 @@
 	"external-content-fetch-failed": "Файл схьаэца аьтто ца баьлла",
 	"external-content-url-missing-host": "URL чохь хост йац",
 	"external-content-url-missing-path": "URL-адрес чохь бац файлан некъ",
+	"external-content-url-not-bitbucket": "Bitbucket-ан нийса йоцу URL",
+	"external-content-url-missing-repository": "URL-адресехь йац репозиторин цӀе",
 	"external-content-tracking-category": "Арахьара чулацам болу агӀонаш",
-	"external-content-tracking-category-desc": "ХӀокху агӀонан тӀехь чубиллина арахьара чулацам бу"
+	"external-content-tracking-category-desc": "ХӀокху агӀонан тӀехь чубиллина арахьара чулацам бу",
+	"external-content-broken-tracking-category": "Боьхна арахьара чулацам болу агӀонаш"
 }
