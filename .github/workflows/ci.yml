@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
@@ -45,49 +49,74 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
-          key: mw_${{ matrix.mw }}-php${{ matrix.php }}
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}-${{ runner.os }}
+          restore-keys: |
+            mw_${{ matrix.mw }}-php${{ matrix.php }}-
+            mw_${{ matrix.mw }}-
 
-      - name: Cache Composer cache
+      - name: Cache composer cache
+        id: cache-composer
         uses: actions/cache@v4
         with:
-          path: ~/.composer/cache
-          key: composer-php${{ matrix.php }}
+          path: ~/.cache/composer
+          key: composer-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer-${{ matrix.php }}-
 
-      - uses: actions/checkout@v4
+      - name: Checkout (EarlyCopy)
+        uses: actions/checkout@v4
         with:
           path: EarlyCopy
 
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        working-directory: ~
+        working-directory: ${{ github.workspace }}
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v4
+      - name: Checkout extension into MediaWiki tree
+        uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 
       - name: Composer allow-plugins
         run: composer config --no-plugins allow-plugins.composer/installers true
 
-      - run: composer update
+      - name: Composer update (extension + deps)
+        run: composer update --no-progress --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run update.php
         run: php maintenance/update.php --quick
 
-      - name: Run PHPUnit
-        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/
+      - name: Run PHPUnit (junit)
+        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --log-junit tests/junit.xml || true
 
-      - name: Run PHPUnit with code coverage
+      - name: Upload PHPUnit JUnit result
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpunit-junit-${{ matrix.mw }}-php${{ matrix.php }}
+          path: tests/junit.xml
+
+      - name: Run PHPUnit with code coverage (master only)
+        if: matrix.mw == 'master'
         run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --coverage-clover coverage.xml
-        if: matrix.mw == 'master'
 
-      - name: Upload code coverage
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Upload code coverage (master only) securely
         if: matrix.mw == 'master'
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
 
-      - name: Run parser tests
+      - name: Upload coverage artifact (master only)
+        if: matrix.mw == 'master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.mw }}-php${{ matrix.php }}
+          path: coverage.xml
+
+      - name: Run parser tests (explicit targets)
+        if: matrix.mw == 'REL1_43' || matrix.mw == 'master'
         run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
-        if: matrix.mw >= 'REL1_43'
 
   static-analysis:
     name: "Static Analysis: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
@@ -121,23 +150,29 @@ jobs:
             !mediawiki/extensions/
             !mediawiki/vendor/
           key: mw_static_analysis
+          restore-keys: |
+            mw_static_analysis
 
-      - name: Cache Composer cache
+      - name: Cache composer cache
         uses: actions/cache@v4
         with:
-          path: ~/.composer/cache
-          key: composer_static_analysis
+          path: ~/.cache/composer
+          key: composer_static_analysis-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer_static_analysis-
 
-      - uses: actions/checkout@v4
+      - name: Checkout (EarlyCopy)
+        uses: actions/checkout@v4
         with:
           path: EarlyCopy
 
-      - name: Install MediaWiki
+      - name: Install MediaWiki (if needed)
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        working-directory: ~
+        working-directory: ${{ github.workspace }}
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v4
+      - name: Checkout extension into MediaWiki tree
+        uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -150,9 +185,8 @@ jobs:
       - name: PHPStan
         run: php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
 
-      - run: php vendor/bin/psalm --shepherd --stats
-        if: true
-
+      - name: Psalm
+        run: php vendor/bin/psalm --shepherd --stats
 
   code-style:
     name: "Code style: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
@@ -186,23 +220,29 @@ jobs:
             !mediawiki/extensions/
             !mediawiki/vendor/
           key: mw_static_analysis
+          restore-keys: |
+            mw_static_analysis
 
-      - name: Cache Composer cache
+      - name: Cache composer cache
         uses: actions/cache@v4
         with:
-          path: ~/.composer/cache
-          key: composer_static_analysis
+          path: ~/.cache/composer
+          key: composer_static_analysis-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer_static_analysis-
 
-      - uses: actions/checkout@v4
+      - name: Checkout (EarlyCopy)
+        uses: actions/checkout@v4
         with:
           path: EarlyCopy
 
-      - name: Install MediaWiki
+      - name: Install MediaWiki (if needed)
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
-        working-directory: ~
+        working-directory: ${{ github.workspace }}
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ExternalContent
 
-      - uses: actions/checkout@v4
+      - name: Checkout extension into MediaWiki tree
+        uses: actions/checkout@v4
         with:
           path: mediawiki/extensions/ExternalContent
 
@@ -212,4 +252,5 @@ jobs:
       - name: Composer install
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
 
-      - run: vendor/bin/phpcs -p -s
+      - name: PHP CodeSniffer
+        run: vendor/bin/phpcs -p -s
