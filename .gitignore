@@ -1,3 +1,9 @@
 .phpunit.result.cache
 composer.lock
 vendor/
+
+# act local testing
+.actrc
+*.log
+mediawiki/
+EarlyCopy/
