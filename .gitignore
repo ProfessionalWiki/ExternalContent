@@ -2,7 +2,7 @@
 composer.lock
 vendor/
 
-# act local testing
+# Local CI/testing artifacts (act, generated directories, logs)
 .actrc
 *.log
 mediawiki/
