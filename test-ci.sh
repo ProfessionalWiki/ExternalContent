@@ -31,10 +31,10 @@ case "$JOB" in
         act -j code-style --verbose
         ;;
     all)
-        echo "Running all jobs with REL1_43..."
+        echo "Running all jobs with $MW_VERSION..."
         act -j static-analysis --verbose
         act -j code-style --verbose
-        act -j test --matrix mw:REL1_43 --matrix php:8.3 --matrix experimental:false --verbose
+        act -j test --matrix mw:"$MW_VERSION" --matrix php:"$PHP_VERSION" --matrix experimental:false --verbose
         ;;
     list)
         echo "Available jobs:"
