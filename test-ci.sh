@@ -4,6 +4,12 @@
 
 set -e
 
+# Verify act is installed
+if ! command -v act &> /dev/null; then
+  echo "Error: 'act' is not installed. See: https://github.com/nektos/act"
+  exit 1
+fi
+
 JOB="${1:-test}"
 MW_VERSION="${2:-REL1_43}"
 PHP_VERSION="${3:-8.3}"
