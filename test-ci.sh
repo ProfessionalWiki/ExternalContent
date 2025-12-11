@@ -1,6 +1,7 @@
 #!/bin/bash
 # Helper script to test CI workflow locally with act
 # Usage: ./test-ci.sh [job-name] [mw-version] [php-version]
+# e.g. act -j test --matrix mw:REL1_44 --matrix php:8.4 --matrix experimental:false -v
 
 set -e
 

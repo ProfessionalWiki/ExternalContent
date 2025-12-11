@@ -196,6 +196,9 @@ jobs:
         run: php vendor/bin/phpstan analyse --error-format=checkstyle --no-progress | cs2pr
 
       - name: Psalm
+        # Skip Psalm on PHP 8.4 until we can upgrade psalm to 5.x 
+        # MediaWiki core locks psalm to ^4.3
+        if: matrix.php != '8.4'
         run: php vendor/bin/psalm --shepherd --stats
 
   code-style:
