@@ -88,7 +88,8 @@ jobs:
         run: php maintenance/update.php --quick
 
       - name: Run PHPUnit (junit)
-        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --log-junit tests/junit.xml || true
+        continue-on-error: true
+        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --log-junit tests/junit.xml
 
       - name: Upload PHPUnit JUnit result
         uses: actions/upload-artifact@v4
@@ -102,10 +103,10 @@ jobs:
 
       - name: Upload code coverage (master only) securely
         if: matrix.mw == 'master'
+        continue-on-error: true
         uses: codecov/codecov-action@v4
         with:
           files: coverage.xml
-          fail_ci_if_error: false
 
       - name: Upload coverage artifact (master only)
         if: matrix.mw == 'master'
@@ -115,8 +116,13 @@ jobs:
           path: coverage.xml
 
       - name: Run parser tests (explicit targets)
-        if: matrix.mw == 'REL1_43' || matrix.mw == 'master'
-        run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
+        if: matrix.mw >= 'REL1_43' || matrix.mw == 'master'
+        run: |
+          if [[ "${{ matrix.mw }}" == "REL1_43" ]]; then
+            php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests-mw143.txt
+          else
+            php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
+          fi
 
   static-analysis:
     name: "Static Analysis: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
@@ -126,6 +132,8 @@ jobs:
         include:
           - mw: 'REL1_43'
             php: '8.3'
+          - mw: 'REL1_44'
+            php: '8.4'
 
     runs-on: ubuntu-latest
 
@@ -149,6 +157,8 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
+          # Shared cache key across static-analysis and code-style jobs
+          # Safe to share because both jobs use the same MW core code
           key: mw_static_analysis
           restore-keys: |
             mw_static_analysis
@@ -196,6 +206,8 @@ jobs:
         include:
           - mw: 'REL1_43'
             php: '8.3'
+          - mw: 'REL1_44'
+            php: '8.4'
 
     runs-on: ubuntu-latest
 
@@ -219,6 +231,8 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
+          # Shared cache key across static-analysis and code-style jobs
+          # Safe to share because both jobs use the same MW core code
           key: mw_static_analysis
           restore-keys: |
             mw_static_analysis

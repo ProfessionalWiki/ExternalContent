@@ -18,3 +18,6 @@ psalm:
 
 parser:
 	php ../../tests/parser/parserTests.php --file=tests/parser/parserTests.txt
+
+parser-mw143:
+	php ../../tests/parser/parserTests.php --file=tests/parser/parserTests-mw143.txt
