@@ -34,9 +34,7 @@ class TestEnvironment extends TestCase {
 				$parserOptions
 			);
 
-		// getContentHolderText() is available in MediaWiki 1.43+
-		if ( method_exists( $parserOutput, 'getContentHolderText' ) ) {
-			return $parserOutput->runOutputPipeline( $parserOptions )
+		return $parserOutput->runOutputPipeline( $parserOptions )
 			->getContentHolderText();
 		}
 		// MediaWiki 1.44+ removed getText() in favor of getContentHolderText()

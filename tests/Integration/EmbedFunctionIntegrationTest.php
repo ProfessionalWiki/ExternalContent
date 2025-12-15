@@ -61,12 +61,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 			$parserOptions
 		);
 
-		// getContentHolderText() is available in MediaWiki 1.43+
-		if ( method_exists( $parserOutput, 'getContentHolderText' ) ) {
-			$parserOutput->runOutputPipeline( $parserOptions )->getContentHolderText();
-		} else {
-			$parserOutput->getText();
-		}
+		$parserOutput->runOutputPipeline( $parserOptions )->getContentHolderText();
 
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
