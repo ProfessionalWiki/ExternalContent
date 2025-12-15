@@ -116,7 +116,7 @@ jobs:
           path: coverage.xml
 
       - name: Run parser tests (explicit targets)
-        if: matrix.mw >= 'REL1_43' || matrix.mw == 'master'
+        if: matrix.mw == 'REL1_43' || matrix.mw == 'REL1_44' || matrix.mw == 'master'
         run: |
           if [[ "${{ matrix.mw }}" == "REL1_43" ]]; then
             php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests-mw143.txt
