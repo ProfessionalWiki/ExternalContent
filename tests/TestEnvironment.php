@@ -8,9 +8,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use PHPUnit\Framework\TestCase;
 
-class TestEnvironment extends TestCase {
+class TestEnvironment {
 
 	public static function instance(): self {
 		return new self();
@@ -36,9 +35,6 @@ class TestEnvironment extends TestCase {
 
 		return $parserOutput->runOutputPipeline( $parserOptions )
 			->getContentHolderText();
-		}
-		// MediaWiki 1.44+ removed getText() in favor of getContentHolderText()
-		return $parserOutput->getText();
 	}
 
 }
