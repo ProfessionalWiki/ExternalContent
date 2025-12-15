@@ -167,9 +167,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/composer
-          key: composer_static_analysis-${{ hashFiles('**/composer.lock') }}
+          key: composer_shared-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            composer_static_analysis-
+            composer_shared-
 
       - name: Checkout (EarlyCopy)
         uses: actions/checkout@v4
@@ -244,9 +244,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/composer
-          key: composer_static_analysis-${{ hashFiles('**/composer.lock') }}
+          key: composer_shared-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            composer_static_analysis-
+            composer_shared-
 
       - name: Checkout (EarlyCopy)
         uses: actions/checkout@v4
