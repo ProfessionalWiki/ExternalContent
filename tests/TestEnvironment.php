@@ -5,9 +5,12 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use PHPUnit\Framework\TestCase;
 
-class TestEnvironment {
+class TestEnvironment extends TestCase {
 
 	public static function instance(): self {
 		return new self();
@@ -22,12 +25,22 @@ class TestEnvironment {
 	}
 
 	public function parse( string $textToParse, ?Title $contextPage = null ): string {
-		return MediaWikiServices::getInstance()->getParser()
+		$parserOptions = new ParserOptions( User::newSystemUser( 'TestUser' ) );
+		$contextPage = $contextPage ?? Title::newFromText( 'ContextPage' );
+		$parserOutput = MediaWikiServices::getInstance()->getParser()
 			->parse(
 				$textToParse,
-				$contextPage ?? Title::newFromText( 'ContextPage' ),
-				new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
-			)->getText();
+				$contextPage,
+				$parserOptions
+			);
+		
+		// getContentHolderText() is available in MediaWiki 1.43+
+		if ( method_exists( $parserOutput, 'getContentHolderText' ) ) {
+			return $parserOutput->runOutputPipeline( $parserOptions )
+			->getContentHolderText();
+		}
+		// MediaWiki 1.44+ removed getText() in favor of getContentHolderText()
+		return $parserOutput->getText();
 	}
 
 }
