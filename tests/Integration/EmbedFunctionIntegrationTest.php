@@ -61,7 +61,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 			$parserOptions
 		);
 
-		$parserOutput->runOutputPipeline( $parserOptions )->getContentHolderText();
+		$parserOutput = $parserOutput->runOutputPipeline( $parserOptions );
 
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
