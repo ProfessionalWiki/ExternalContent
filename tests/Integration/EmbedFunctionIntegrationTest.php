@@ -67,11 +67,11 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
 			$this->assertSame(
 				[ 'Pages_with_external_content', 'Pages_with_broken_external_content' ],
-				$parser->getOutput()->getCategoryNames()
+				$parserOutput->getCategoryNames()
 			);
 		}
 
-		$this->assertCount( 2, $parser->getOutput()->getCategoryNames() );
+		$this->assertCount( 2, $parserOutput->getCategoryNames() );
 	}
 
 	public function testGitHubNormalization(): void {
