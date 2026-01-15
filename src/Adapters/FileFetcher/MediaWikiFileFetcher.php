@@ -32,16 +32,27 @@ class MediaWikiFileFetcher implements FileFetcher {
 	}
 
 	private function newRequestOptions( string $fileUrl ): array {
-		$credentials = $this->credentials->getForDomain( parse_url( $fileUrl, PHP_URL_HOST ) ?? '' );
-
-		if ( $credentials === null ) {
-			return [];
+		
+		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';		
+		$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
+		
+		if ( $bearerToken !== null ) {
+			return [
+				'username' => $bearerToken->getUserName(),
+				'password' => $bearerToken->getToken()
+			];
 		}
 
-		return [
-			'username' => $credentials->getUserName(),
-			'password' => $credentials->getPassword(),
-		];
+		
+		$basicAuth = $this->credentials->getBasicAuthForDomain( $domain );
+		if ( $basicAuth !== null ) {
+			return [
+				'username' => $basicAuth->getUserName(),
+				'password' => $basicAuth->getPassword(),
+			];
+		}
+
+		return [];
 	}
 
 }
