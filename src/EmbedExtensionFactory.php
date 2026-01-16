@@ -117,7 +117,7 @@ class EmbedExtensionFactory {
 
 		/** @var array<string, string> */
 		$bearerTokenCredentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBearerTokenCredentials' );
-		$bearerTokenCredentials = $bearerTokenCredentials['domains'] ?? $bearerTokenCredentials;
+		$bearerTokenCredentials = $bearerTokenCredentials['domains'] ?? [];
 		return DomainCredentials::newFromArray( $basicAuthCredentials, $bearerTokenCredentials );
 	}
 

@@ -79,7 +79,7 @@ final class MediaWikiHooks {
 
 		$updater->addExtensionTable(
 			'git_org_installation_ids',
-			"$sqlDir/mysql/create_table_git_org_insallation_ids.sql"
+			"$sqlDir/mysql/create_table_git_org_installation_ids.sql"
 		);
 
 		$updater->addExtensionTable(
@@ -89,4 +89,3 @@ final class MediaWikiHooks {
 	}
 
 }
-

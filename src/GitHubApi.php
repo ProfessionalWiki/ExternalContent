@@ -25,32 +25,48 @@ class GitHubApi {
 		return JWT::encode( $payload, $this->privateKey, 'RS256' );
 	}
 
-	public function getInstallationIds( string $jwtToken ): array {
-        
-		$request = $this->httpFactory->create( "https://api.github.com/app/installations" );
-        $request->setHeader('Authorization', "Bearer $jwtToken");
-        $request->setHeader('Accept', "application/vnd.github+json");
-        $request->setHeader('User-Agent', "MediaWiki-ExternalContent");
-		$status = $request->execute();
-        return $status->isOK() ? json_decode( $request->getContent(), true ) : [];        
+	public function getInstallationIds( string $jwtToken ): array {    
+		try{
+			$request = $this->httpFactory->create( "https://api.github.com/app/installations" );
+			$request->setHeader('Authorization', "Bearer $jwtToken");
+			$request->setHeader('Accept', "application/vnd.github+json");
+			$request->setHeader('User-Agent', "MediaWiki-ExternalContent");
+			$status = $request->execute();
+
+			if( $status->isOK() ){
+				if ( $request->getContent() ){
+					return json_decode( $request->getContent(), true );
+				}
+			}
+			return [];
+		}catch(\Exception $e){
+			throw $e;
+			return [];
+		}		
 	}
 
 	public function fetchAccessToken( string $installationId, string $jwtToken ): string {
         
-        $options = [
-			'method' => 'POST'
-		];
-		$url = "https://api.github.com/app/installations/$installationId/access_tokens";
-		$request = $this->httpFactory->create( $url, $options );
-        
-        $request->setHeader('Authorization' , "Bearer $jwtToken");
-        $request->setHeader('Accept', 'application/vnd.github+json');
-        $request->setHeader('User-Agent', 'MediaWiki-ExternalContent');
-		$status = $request->execute();
-		if ( $status->isOK() ) {
-			$data = json_decode( $request->getContent(), true );
-			return $data['token'] ?? '';
+		try{
+			$options = [
+				'method' => 'POST'
+			];
+			$url = "https://api.github.com/app/installations/$installationId/access_tokens";
+			$request = $this->httpFactory->create( $url, $options );
+			
+			$request->setHeader('Authorization' , "Bearer $jwtToken");
+			$request->setHeader('Accept', 'application/vnd.github+json');
+			$request->setHeader('User-Agent', 'MediaWiki-ExternalContent');
+			$status = $request->execute();
+			if ( $status->isOK() ) {
+				$data = json_decode( $request->getContent(), true );
+				return $data['token'] ?? '';
+			}
+			return '';
+		}catch(\Exception $e){
+			throw $e;
+			return '';
 		}
-		return '';
+        
 	}
 }
