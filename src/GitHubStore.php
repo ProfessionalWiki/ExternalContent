@@ -2,17 +2,20 @@
 
 namespace ProfessionalWiki\ExternalContent;
 
+use ProfessionalWiki\ExternalContent\Security\TokenEncryption;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class GitHubStore {
 	private $loadBalancer;
+	private $tokenEncryption;
 
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct( ILoadBalancer $loadBalancer, TokenEncryption $tokenEncryption ) {
 		$this->loadBalancer = $loadBalancer;
+		$this->tokenEncryption = $tokenEncryption;
 	}
 
 	public function getOrgInstallationData( string $orgName ): array {
-        
+
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
         $row = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -26,7 +29,22 @@ class GitHubStore {
 			->where( [ 'organisation_name' => $orgName ] )
 			->caller( __METHOD__ )
 			->fetchRow();
-		return $row ? (array)$row : [];
+
+		if ( !$row ) {
+			return [];
+		}
+
+		$data = (array)$row;
+
+		// Decrypt the access token
+		try {
+			$data['gat_github_access_token'] = $this->tokenEncryption->decrypt( $data['gat_github_access_token'] );
+		} catch ( \RuntimeException $e ) {
+			wfLogWarning( 'Failed to decrypt GitHub access token: ' . $e->getMessage() );
+			return [];
+		}
+
+		return $data;
 	}
 
 	public function storeInstallationData( string $orgName, string $installationId, string $accessToken ) {
@@ -51,9 +69,12 @@ class GitHubStore {
 				$goiId = $dbw->insertId();
 			}
 
+			// Encrypt the access token before storing
+			$encryptedToken = $this->tokenEncryption->encrypt( $accessToken );
+
 			$dbw->insert( 'git_access_tokens', [
 				'goi_id' => $goiId,
-				'gat_github_access_token' => $accessToken
+				'gat_github_access_token' => $encryptedToken
 			], __METHOD__ );
 
 			$dbw->endAtomic( __METHOD__ );
