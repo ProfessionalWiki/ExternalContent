@@ -2,17 +2,13 @@
 
 namespace ProfessionalWiki\ExternalContent;
 
-use Psr\Log\LoggerInterface;
-
 class TokenManager {
 	private $api;
 	private $store;
-	private $logger;
 
-	public function __construct( GitHubApi $api, GitHubStore $store, LoggerInterface $logger ) {
+	public function __construct( GitHubApi $api, GitHubStore $store) {
 		$this->api = $api;
 		$this->store = $store;
-		$this->logger = $logger;
 	}
 
 	public function getValidAccessToken( string $fileUrl ): string {

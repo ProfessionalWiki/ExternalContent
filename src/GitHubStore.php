@@ -14,7 +14,6 @@ class GitHubStore {
 	public function getOrgInstallationData( string $orgName ): array {
         
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
-        try{
         $row = $dbr->newSelectQueryBuilder()
 			->select( [
 				'organisation_name',
@@ -27,9 +26,6 @@ class GitHubStore {
 			->where( [ 'organisation_name' => $orgName ] )
 			->caller( __METHOD__ )
 			->fetchRow();
-        }catch(\Exception $e){
-            var_dump($e->getMessage()); die;
-        }
 		return $row ? (array)$row : [];
 	}
 
@@ -63,7 +59,6 @@ class GitHubStore {
 			$dbw->endAtomic( __METHOD__ );
 		} catch ( \Exception $e ) {
 			$dbw->rollback( __METHOD__ );
-			throw $e;
 		}
 	}
 

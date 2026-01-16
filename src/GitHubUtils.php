@@ -18,9 +18,7 @@ class GitHubUtils
         );
 
         $store = new GitHubStore($services->getDBLoadBalancer());
-        $logger = \MediaWiki\Logger\LoggerFactory::getInstance('ExternalContent');
-
-        $tokenManager = new TokenManager($api, $store, $logger);
+        $tokenManager = new TokenManager($api, $store );
         
         return $tokenManager->getValidAccessToken($fileUrl);
     }
