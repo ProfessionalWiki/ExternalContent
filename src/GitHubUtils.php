@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ProfessionalWiki\ExternalContent;
 
 use MediaWiki\MediaWikiServices;
@@ -10,6 +12,10 @@ class GitHubUtils
     {
         $services = MediaWikiServices::getInstance();
         $config = $services->getMainConfig()->get('ExternalContentBearerTokenCredentials');
+        
+        if ( !is_array( $config ) || empty( $config['github_app_id'] ) || empty( $config['github_private_key'] ) ) {
+            return '';
+        }
 
         $api = new GitHubApi(
             $services->getHttpRequestFactory(),
@@ -18,10 +24,6 @@ class GitHubUtils
         );
 
         $store = new GitHubStore($services->getDBLoadBalancer());
-        $logger = \MediaWiki\Logger\LoggerFactory::getInstance('ExternalContent');
-
-        $tokenManager = new TokenManager($api, $store, $logger);
-        
-        return $tokenManager->getValidAccessToken($fileUrl);
+        $tokenManager = new TokenManager($api, $store);        return $tokenManager->getValidAccessToken($fileUrl);
     }
 }

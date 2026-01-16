@@ -19,6 +19,20 @@ class MediaWikiFileFetcher implements FileFetcher {
 	}
 
 	public function fetchFile( string $fileUrl ): string {
+		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';
+		$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
+		
+		if ( $bearerToken !== null ) {
+			$request = $this->requestFactory->create( $fileUrl );
+			$request->setHeader( 'Authorization', 'Bearer ' . $bearerToken->getToken() );
+			$status = $request->execute();
+			if ( $status->isOK() ) {
+				return $request->getContent();
+			}
+			throw new FileFetchingException( $fileUrl );
+		}
+		
+		//existing code for basic auth and no auth
 		$result = $this->requestFactory->get(
 			$fileUrl,
 			$this->newRequestOptions( $fileUrl )
@@ -37,10 +51,7 @@ class MediaWikiFileFetcher implements FileFetcher {
 		$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
 		
 		if ( $bearerToken !== null ) {
-			return [
-				'username' => $bearerToken->getUserName(),
-				'password' => $bearerToken->getToken()
-			];
+			return [];
 		}
 
 		

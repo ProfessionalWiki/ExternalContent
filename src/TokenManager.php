@@ -2,17 +2,13 @@
 
 namespace ProfessionalWiki\ExternalContent;
 
-use Psr\Log\LoggerInterface;
-
 class TokenManager {
 	private $api;
 	private $store;
-	private $logger;
 
-	public function __construct( GitHubApi $api, GitHubStore $store, LoggerInterface $logger ) {
+	public function __construct( GitHubApi $api, GitHubStore $store ) {
 		$this->api = $api;
 		$this->store = $store;
-		$this->logger = $logger;
 	}
 
 	public function getValidAccessToken( string $fileUrl ): string {
@@ -38,9 +34,10 @@ class TokenManager {
 		$jwt = $this->api->getJwtToken();        
 		$installations = $this->api->getInstallationIds( $jwt );
 		
+		$instId = null;
         foreach ( $installations as $inst ) {
 			if ( ( $inst['account']['login'] ?? '' ) === $orgName ) {
-				$instId = $inst['id'];
+				$instId = (string)$inst['id'];
 				break;
 			}
 		}
