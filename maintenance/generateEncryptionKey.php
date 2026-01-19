@@ -23,7 +23,6 @@ class GenerateEncryptionKey extends Maintenance {
 	}
 
 	public function execute() {
-		die('11');
 		$key = TokenEncryption::generateKey();
 
 		$this->output( "Generated encryption key:\n\n" );
