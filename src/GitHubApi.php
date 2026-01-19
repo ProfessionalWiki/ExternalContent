@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace ProfessionalWiki\ExternalContent;
 
 use MediaWiki\Http\HttpRequestFactory;
@@ -25,24 +27,26 @@ class GitHubApi {
 		return JWT::encode( $payload, $this->privateKey, 'RS256' );
 	}
 
-	public function getInstallationIds( string $jwtToken ): array {    
-		try{
+	public function getInstallationIds( string $jwtToken ): array {
+		try {
 			$request = $this->httpFactory->create( "https://api.github.com/app/installations" );
 			$request->setHeader('Authorization', "Bearer $jwtToken");
 			$request->setHeader('Accept', "application/vnd.github+json");
 			$request->setHeader('User-Agent', "MediaWiki-ExternalContent");
 			$status = $request->execute();
 
-			if( $status->isOK() ){
-				if ( $request->getContent() ){
-					return json_decode( $request->getContent(), true );
+			if ( $status->isOK() ) {
+				$data = json_decode( $request->getContent(), true );
+				if ( json_last_error() !== JSON_ERROR_NONE ) {
+					wfLogWarning( 'Failed to decode GitHub API response: ' . json_last_error_msg() );
+					return [];
 				}
+				return $data;
 			}
 			return [];
-		}catch(\Exception $e){
-			throw $e;
+		} catch ( \Exception $e ) {
 			return [];
-		}		
+		}
 	}
 
 	public function fetchAccessToken( string $installationId, string $jwtToken ): string {
@@ -60,11 +64,14 @@ class GitHubApi {
 			$status = $request->execute();
 			if ( $status->isOK() ) {
 				$data = json_decode( $request->getContent(), true );
+				if ( json_last_error() !== JSON_ERROR_NONE ) {
+					wfLogWarning( 'Failed to decode GitHub API response: ' . json_last_error_msg() );
+					return '';
+				}
 				return $data['token'] ?? '';
 			}
 			return '';
 		}catch(\Exception $e){
-			throw $e;
 			return '';
 		}
         

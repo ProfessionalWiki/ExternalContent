@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace ProfessionalWiki\ExternalContent;
 
 use ProfessionalWiki\ExternalContent\Security\TokenEncryption;
@@ -27,6 +29,8 @@ class GitHubStore {
 			->from( 'git_org_installation_ids', 'org' )
 			->join( 'git_access_tokens', 'tokens', 'org.goi_id = tokens.goi_id' )
 			->where( [ 'organisation_name' => $orgName ] )
+			->orderBy( 'gat_created_at', 'DESC' )
+  			->limit( 1 )
 			->caller( __METHOD__ )
 			->fetchRow();
 

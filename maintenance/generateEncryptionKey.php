@@ -18,10 +18,12 @@ class GenerateEncryptionKey extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
+		$this->requireExtension( 'External Content' );
 		$this->addDescription( 'Generates a new encryption key for GitHub access tokens' );
 	}
 
 	public function execute() {
+		die('11');
 		$key = TokenEncryption::generateKey();
 
 		$this->output( "Generated encryption key:\n\n" );

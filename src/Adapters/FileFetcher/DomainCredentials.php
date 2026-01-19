@@ -30,10 +30,6 @@ class DomainCredentials {
 	}
 
 	public function getBearerTokenForDomain( string $domainName, string $fileUrl ): ? BearerTokenCredentials {
-		$existing = $this->bearerTokenCredentials[$domainName] ?? null;
-		if ( $existing === null ) {
-			return null;
-		}
 		$token = GitHubUtils::getAccessTokenForFileUrl( $fileUrl );
 		return new BearerTokenCredentials( $token );
 	}
@@ -49,7 +45,7 @@ class DomainCredentials {
 			$instance->addBasicAuth( $domain, new BasicAuthCredentials( $credentials[0], $credentials[1] ) );
 		}
 		foreach ( $bearerTokenCredentials as $domain ) {			
-			$instance->addBearerToken( $domain, new BearerTokenCredentials('') );
+			$instance->addBearerToken( $domain, new BearerTokenCredentials() );
 		}
 
 		return $instance;

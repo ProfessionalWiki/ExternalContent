@@ -5,8 +5,8 @@ namespace ProfessionalWiki\ExternalContent;
 class TokenManager
 {
 	const TOKEN_VALIDITY_BUFFER = 3300; // 55 minutes
-	private $api;
-	private $store;
+	private GitHubApi $api;
+	private GitHubStore $store;
 
 	public function __construct(GitHubApi $api, GitHubStore $store)
 	{
@@ -16,6 +16,10 @@ class TokenManager
 
 	public function getValidAccessToken(string $fileUrl): string
 	{
+		if (!$fileUrl) {
+			return '';
+		}
+
 		$orgName = $this->extractOrgName($fileUrl);
 
 		if (!$orgName) {
