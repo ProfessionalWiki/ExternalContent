@@ -197,6 +197,33 @@ $wgExternalContentBasicAuthCredentials = [
 The above example shows how you can get credentials from ENV vars, which might be preferred over
 storing them as plaintext in [LocalSettings.php].
 
+### Bearer Auth Token credentials
+
+  Configuration for GitHub App authentication using bearer tokens. This allows the extension to authenticate with GitHub using a GitHub App instead of personal access tokens or Basic Auth.
+
+  Variable: `$wgExternalContentBearerTokenCredentials`
+
+  Default: `[]`
+
+  Example:
+  ```php
+  $wgExternalContentBearerTokenCredentials = [
+      'github_app_id' => getenv( 'GITHUB_APP_ID' ),
+      'github_private_key' => getenv( 'GITHUB_PRIVATE_KEY' ),
+      'encryption_key' => getenv( 'GITHUB_ENCRYPTION_KEY' ),
+      'domains' => [
+          'github.com',
+          'raw.githubusercontent.com'
+      ]
+  ];
+
+  Configuration parameters:
+
+  - github_app_id: Your GitHub App ID (available from your GitHub App settings)
+  - github_private_key: The private key generated for your GitHub App (PEM format)
+  - encryption_key: A secure key used for encrypting/decrypting the authentication token
+  - domains: Array of domains where this authentication should be applied
+
 ### Connection details
 
 The content of files is fetched via MediaWiki's native HTTP client. This process is affected by

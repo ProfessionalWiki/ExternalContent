@@ -7,6 +7,7 @@ namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher;
 use FileFetcher\FileFetcher;
 use FileFetcher\FileFetchingException;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MediaWikiServices;
 
 class MediaWikiFileFetcher implements FileFetcher {
 
@@ -19,9 +20,10 @@ class MediaWikiFileFetcher implements FileFetcher {
 	}
 
 	public function fetchFile( string $fileUrl ): string {
-			$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';
-			$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
-			
+		if ( $this->getRequestType($fileUrl) === 'bearerToken' ) {
+			$gitHubDomain = parse_url($fileUrl, PHP_URL_HOST) ?? '';
+			$bearerToken = $this->credentials->getBearerTokenForDomain($gitHubDomain, $fileUrl);
+
 			if ( $bearerToken !== null ) {
 				$request = $this->requestFactory->create( $fileUrl );
 				$request->setHeader( 'Authorization', 'Bearer ' . $bearerToken->getToken() );
@@ -31,7 +33,7 @@ class MediaWikiFileFetcher implements FileFetcher {
 				}
 				throw new FileFetchingException( $fileUrl );
 			}
-		
+		}
 		//existing code for basic auth and no auth
 		$result = $this->requestFactory->get(
 			$fileUrl,
@@ -46,24 +48,34 @@ class MediaWikiFileFetcher implements FileFetcher {
 	}
 
 	private function newRequestOptions( string $fileUrl ): array {
-		
-		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';		
-		$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
-		
-		if ( $bearerToken !== null ) {
+		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';
+		if ( $this->getRequestType( $fileUrl ) === 'bearerToken' ) {
+			$bearerToken = $this->credentials->getBearerTokenForDomain( $domain, $fileUrl );
+
+			if ( $bearerToken !== null ) {
+				return [];
+			}
+		} else {
+			$basicAuth = $this->credentials->getBasicAuthForDomain( $domain );
+			if ( $basicAuth !== null ) {
+				return [
+					'username' => $basicAuth->getUserName(),
+					'password' => $basicAuth->getPassword(),
+				];
+			}
+
 			return [];
 		}
-
-		
-		$basicAuth = $this->credentials->getBasicAuthForDomain( $domain );
-		if ( $basicAuth !== null ) {
-			return [
-				'username' => $basicAuth->getUserName(),
-				'password' => $basicAuth->getPassword(),
-			];
-		}
-
-		return [];
 	}
 
+	private function getRequestType( string $fileUrl ): string {
+		$bearerTokenCredentials = MediaWikiServices::getInstance()->getMainConfig()->get('ExternalContentBearerTokenCredentials');
+		$validDomains = $bearerTokenCredentials['domains'] ?? [];
+		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';
+		if (in_array( $domain, $validDomains ) ) {
+			return 'bearerToken';
+		} else {
+			return 'basicAuth';
+		}
+	}
 }
