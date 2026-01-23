@@ -1,4 +1,4 @@
-CREATE TABLE /*_*/git_org_installation_ids (
+CREATE TABLE externaldata_git_org_installation_ids (
      goi_id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
      organisation_name VARCHAR(255) NOT NULL,
      github_app_installation_id INT(10) UNSIGNED NOT NULL,

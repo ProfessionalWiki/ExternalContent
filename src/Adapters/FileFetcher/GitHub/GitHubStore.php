@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ProfessionalWiki\ExternalContent;
+namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub;
 
 use ProfessionalWiki\ExternalContent\Security\TokenEncryption;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -17,7 +17,7 @@ class GitHubStore {
 	}
 
 	public function getOrgInstallationData( string $orgName ): array {
-
+	
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
         $row = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -26,8 +26,8 @@ class GitHubStore {
 				'gat_github_access_token',
 				'gat_created_at'
 			] )
-			->from( 'git_org_installation_ids', 'org' )
-			->join( 'git_access_tokens', 'tokens', 'org.goi_id = tokens.goi_id' )
+			->from( 'externaldata_git_org_installation_ids', 'org' )
+			->join( 'externaldata_git_access_tokens', 'tokens', 'org.goi_id = tokens.goi_id' )
 			->where( [ 'organisation_name' => $orgName ] )
 			->orderBy( 'gat_created_at', 'DESC' )
   			->limit( 1 )
@@ -47,7 +47,6 @@ class GitHubStore {
 			wfLogWarning( 'Failed to decrypt GitHub access token: ' . $e->getMessage() );
 			return [];
 		}
-
 		return $data;
 	}
 
@@ -58,7 +57,7 @@ class GitHubStore {
 		try {
 			$goiId = $dbw->newSelectQueryBuilder()
 				->select( 'goi_id' )
-				->from( 'git_org_installation_ids' )
+				->from( 'externaldata_git_org_installation_ids' )
 				->where( [
 					'organisation_name' => $orgName,
 					'github_app_installation_id' => $installationId
@@ -66,7 +65,7 @@ class GitHubStore {
 				->fetchField();
 
 			if ( !$goiId ) {
-				$dbw->insert( 'git_org_installation_ids', [
+				$dbw->insert( 'externaldata_git_org_installation_ids', [
 					'organisation_name' => $orgName,
 					'github_app_installation_id' => $installationId
 				], __METHOD__ );
@@ -76,7 +75,7 @@ class GitHubStore {
 			// Encrypt the access token before storing
 			$encryptedToken = $this->tokenEncryption->encrypt( $accessToken );
 
-			$dbw->insert( 'git_access_tokens', [
+			$dbw->insert( 'externaldata_git_access_tokens', [
 				'goi_id' => $goiId,
 				'gat_github_access_token' => $encryptedToken
 			], __METHOD__ );
@@ -92,14 +91,14 @@ class GitHubStore {
 	public function deleteTokenByOrg( string $orgName, string $installationId ) {
 		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$goiId = $dbw->selectField(
-			'git_org_installation_ids',
+			'externaldata_git_org_installation_ids',
 			'goi_id',
 			[ 'organisation_name' => $orgName, 'github_app_installation_id' => $installationId ],
 			__METHOD__
 		);
 
 		if ( $goiId ) {
-			$dbw->delete( 'git_access_tokens', [ 'goi_id' => $goiId ], __METHOD__ );
+			$dbw->delete( 'externaldata_git_access_tokens', [ 'goi_id' => $goiId ], __METHOD__ );
 		}
 	}
 }

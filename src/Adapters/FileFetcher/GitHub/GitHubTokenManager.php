@@ -1,8 +1,10 @@
 <?php
 
-namespace ProfessionalWiki\ExternalContent;
+namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub\GitHubApi;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub\GitHubStore;
 
-class TokenManager
+class GitHubTokenManager
 {
 	const TOKEN_VALIDITY_BUFFER = 3300; // 55 minutes
 	private GitHubApi $api;
@@ -20,13 +22,13 @@ class TokenManager
 			return '';
 		}
 
-		$orgName = $this->extractOrgName($fileUrl);
+		$orgName = $this->extractOrgName($fileUrl);		
 
 		if (!$orgName) {
 			return '';
 		}
 		$data = $this->store->getOrgInstallationData($orgName);
-
+		#px($data);	
 		if ($data) {
 			$createdAt = strtotime($data['gat_created_at']);
 			if ((time() - $createdAt) < self::TOKEN_VALIDITY_BUFFER) { // 55 mins buffer

@@ -69,8 +69,8 @@ class MediaWikiFileFetcher implements FileFetcher {
 	}
 
 	private function getRequestType( string $fileUrl ): string {
-		$bearerTokenCredentials = MediaWikiServices::getInstance()->getMainConfig()->get('ExternalContentBearerTokenCredentials');
-		$validDomains = $bearerTokenCredentials['domains'] ?? [];
+		$bearerTokenCredentials = MediaWikiServices::getInstance()->getMainConfig()->get('ExternalContentBearerTokenCredentials');		
+		$validDomains = !empty( $bearerTokenCredentials) ? array_keys( $bearerTokenCredentials ) : [];
 		$domain = parse_url( $fileUrl, PHP_URL_HOST ) ?? '';
 		if (in_array( $domain, $validDomains ) ) {
 			return 'bearerToken';

@@ -3,7 +3,7 @@
 declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher;
-use ProfessionalWiki\ExternalContent\GitHubUtils;
+use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub\GitHubUtils;
 
 class DomainCredentials {
 
@@ -29,23 +29,24 @@ class DomainCredentials {
 		return $this->basicAuthCredentials[$domainName] ?? null;
 	}
 
-	public function getBearerTokenForDomain( string $domainName, string $fileUrl ): ? BearerTokenCredentials {
+	public function getBearerTokenForDomain( string $domainName, string $fileUrl ): ?BearerTokenCredentials {		
 		$token = GitHubUtils::getAccessTokenForFileUrl( $fileUrl );
-		return new BearerTokenCredentials( $token );
+		$this->bearerTokenCredentials[$domainName]->setToken($token);
+		return $this->bearerTokenCredentials[$domainName] ?? null;
 	}
 
 	/**
 	 * @param array<string, string[]> $basicAuthCredentials
 	 * @param array<string, string> $bearerTokenCredentials
 	 */
-	public static function newFromArray( array $basicAuthCredentials, array $bearerTokenCredentials = [] ): self {
+	public static function newFromArray( array $basicAuthCredentials, array $bearerTokenCredentials ): self {
 		$instance = new self();
 
 		foreach ( $basicAuthCredentials as $domain => $credentials ) {
 			$instance->addBasicAuth( $domain, new BasicAuthCredentials( $credentials[0], $credentials[1] ) );
 		}
-		foreach ( $bearerTokenCredentials as $domain ) {			
-			$instance->addBearerToken( $domain, new BearerTokenCredentials() );
+		foreach ( $bearerTokenCredentials as $domain => $credentials ) {			
+			$instance->addBearerToken( $domain, new BearerTokenCredentials($credentials['app_id'], $credentials['private_key'], $credentials['encryption_key'] ) );
 		}
 
 		return $instance;

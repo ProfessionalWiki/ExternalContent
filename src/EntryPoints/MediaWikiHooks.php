@@ -79,12 +79,12 @@ final class MediaWikiHooks {
 
 		$updater->addExtensionTable(
 			'git_org_installation_ids',
-			"$sqlDir/mysql/create_table_git_org_installation_ids.sql"
+			"$sqlDir/mysql/create_table_externaldata_git_org_installation_ids.sql"
 		);
 
 		$updater->addExtensionTable(
 			'git_access_tokens',
-			"$sqlDir/mysql/create_table_git_access_tokens.sql"
+			"$sqlDir/mysql/create_table_externaldata_git_access_tokens.sql"
 		);
 	}
 

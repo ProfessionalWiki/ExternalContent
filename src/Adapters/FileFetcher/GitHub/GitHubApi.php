@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ProfessionalWiki\ExternalContent;
+namespace ProfessionalWiki\ExternalContent\Adapters\FileFetcher\GitHub;
 
 use MediaWiki\Http\HttpRequestFactory;
 use Firebase\JWT\JWT;
