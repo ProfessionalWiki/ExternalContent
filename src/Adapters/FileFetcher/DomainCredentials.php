@@ -30,8 +30,6 @@ class DomainCredentials {
 	}
 
 	public function getBearerTokenForDomain( string $domainName, string $fileUrl ): ?BearerTokenCredentials {		
-		$token = GitHubUtils::getAccessTokenForFileUrl( $fileUrl );
-		$this->bearerTokenCredentials[$domainName]->setToken($token);
 		return $this->bearerTokenCredentials[$domainName] ?? null;
 	}
 
@@ -52,4 +50,37 @@ class DomainCredentials {
 		return $instance;
 	}
 
+	private function hasBasicAuthorization( string $domain ): bool {
+		return in_array ( $domain , array_keys($this->basicAuthCredentials) );
+	}
+	
+	private function hasTokenAuthorization( string $domain ): bool {
+		return in_array ( $domain , array_keys($this->bearerTokenCredentials) );
+	}
+
+	public function getAuthorizationHeader( string $domain, string $fileUrl ): string {
+		$authHeader = '';
+		if ( $this->hasBasicAuthorization( $domain ) ) {
+			$basicAuth = $this->getBasicAuthForDomain( $domain );
+			$authHeader = 'Basic ' . base64_encode( $basicAuth->getUsername() . ':' . $basicAuth->getPassword() );
+		}		
+		if ( $this->hasTokenAuthorization( $domain ) ) {			
+			$token = $this->getAuthToken( $domain, $fileUrl );		
+			if ( !empty( $token ) ) {
+				$authHeader = 'Bearer ' . $token;
+			}
+		}
+		return $authHeader;
+	}
+
+	private function getAuthToken( string $domain, string $fileUrl ): string {
+		$token = '';
+		try{
+			$token = GitHubUtils::getAccessTokenForFileUrl( $this->bearerTokenCredentials[$domain], $fileUrl );
+			$this->bearerTokenCredentials[$domain]->setToken($token);
+		}catch(\Exception $e){
+			wfLogWarning( 'Failed to get GitHub access token: ' . $e->getMessage() );
+		}		
+		return $token;
+	}
 }
