@@ -76,7 +76,7 @@ class DomainCredentials {
 	private function getAuthToken( string $domain, string $fileUrl ): string {
 		$token = '';
 		try{
-			$token = GitHubUtils::getAccessTokenForFileUrl( $this->bearerTokenCredentials[$domain], $fileUrl );
+			$token = GitHubUtils::getAccessTokenForFileUrl( $domain, $fileUrl );
 			$this->bearerTokenCredentials[$domain]->setToken($token);
 		}catch(\Exception $e){
 			wfLogWarning( 'Failed to get GitHub access token: ' . $e->getMessage() );
