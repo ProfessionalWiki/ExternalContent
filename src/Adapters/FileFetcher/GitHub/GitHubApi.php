@@ -36,17 +36,16 @@ class GitHubApi {
 			$status = $request->execute();
 
 			if ( $status->isOK() ) {
-				$data = json_decode( $request->getContent(), true );
-				if ( json_last_error() !== JSON_ERROR_NONE ) {
-					wfLogWarning( 'Failed to decode GitHub API response: ' . json_last_error_msg() );
-					return [];
-				}
+				$data = json_decode( $request->getContent(), true, 512, JSON_THROW_ON_ERROR );					
 				return $data;
 			}
-			return [];
-		} catch ( \Exception $e ) {
-			return [];
+		} catch ( \JsonException $e ) {
+			wfLogWarning( 'Failed to decode GitHub API response: ' . $e->getMessage() );
 		}
+		catch ( \Exception $e ) {
+			wfLogWarning( 'Something went wrong : ' . $e->getMessage() );
+		}
+		return [];
 	}
 
 	public function fetchAccessToken( string $installationId, string $jwtToken ): string {
@@ -63,17 +62,14 @@ class GitHubApi {
 			$request->setHeader('User-Agent', 'MediaWiki-ExternalContent');
 			$status = $request->execute();
 			if ( $status->isOK() ) {
-				$data = json_decode( $request->getContent(), true );
-				if ( json_last_error() !== JSON_ERROR_NONE ) {
-					wfLogWarning( 'Failed to decode GitHub API response: ' . json_last_error_msg() );
-					return '';
-				}
+				$data = json_decode( $request->getContent(), true, 512, JSON_THROW_ON_ERROR );				
 				return $data['token'] ?? '';
 			}
-			return '';
-		}catch(\Exception $e){
-			return '';
+		} catch ( \JsonException $e ) {
+			wfLogWarning( 'Failed to decode GitHub API response: ' . $e->getMessage() );
+		} catch(\Exception $e){
+			wfLogWarning( 'Something went wrong : ' . $e->getMessage() );
 		}
-        
+        return '';
 	}
 }
