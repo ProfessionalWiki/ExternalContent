@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use ContentHandler;
+use DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Parser;
@@ -71,6 +72,20 @@ final class MediaWikiHooks {
 	 * @codeCoverageIgnore
 	 */
 	public static function onSearchIndexFields( array &$fields, SearchEngine $engine ): void {
+	}
+
+	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ): void {
+		$sqlDir = dirname( __DIR__, 2 ) . '/sql';
+
+		$updater->addExtensionTable(
+			'externaldata_git_org_installation_ids',
+			"$sqlDir/mysql/create_table_externaldata_git_org_installation_ids.sql"
+		);
+
+		$updater->addExtensionTable(
+			'externaldata_git_access_tokens',
+			"$sqlDir/mysql/create_table_externaldata_git_access_tokens.sql"
+		);
 	}
 
 }

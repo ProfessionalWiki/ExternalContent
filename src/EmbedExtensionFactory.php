@@ -113,8 +113,11 @@ class EmbedExtensionFactory {
 
 	private function getDomainCredentials(): DomainCredentials {
 		/** @var array<string, string[]> */
-		$credentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBasicAuthCredentials' );
-		return DomainCredentials::newFromArray( $credentials );
+		$basicAuthCredentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBasicAuthCredentials' );
+
+		/** @var array<string, string> */
+		$bearerTokenCredentials = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExternalContentBearerTokenCredentials' );
+		return DomainCredentials::newFromArray( $basicAuthCredentials, $bearerTokenCredentials );
 	}
 
 	public function getMessageLocalizer(): MessageLocalizer {
