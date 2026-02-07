@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
-use Html;
+use MediaWiki\Html\Html;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 class CodeRenderer implements ContentRenderer {
@@ -77,7 +77,7 @@ class CodeRenderer implements ContentRenderer {
 		$ranges = array_filter( $exploded, static function( $value ): bool {
 			return ( preg_match( '/^\d+$/', $value ) || preg_match( '/^(\d+)-(\d+)$/', $value ) );
 		} );
-		
+
 		return implode( ',', $ranges );
 	}
 }

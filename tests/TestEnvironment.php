@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests;
 
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 class TestEnvironment {
 
