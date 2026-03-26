@@ -7,6 +7,9 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\StubFileFetcher;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
@@ -51,22 +54,24 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
 
 		$parser = MediaWikiServices::getInstance()->getParser();
-
-		$parser->parse(
+		$parserOptions = new ParserOptions( User::newSystemUser( 'TestUser' ) );
+		$parserOutput = $parser->parse(
 			'{{#embed:https://example.com/KITTENS.md}}',
-			\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
-			new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
-		)->getText();
+			Title::newFromText( 'EmbedFunctionIntegrationTest' ),
+			$parserOptions
+		);
+
+		$parserOutput = $parserOutput->runOutputPipeline( $parserOptions );
 
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
 			$this->assertSame(
 				[ 'Pages_with_external_content', 'Pages_with_broken_external_content' ],
-				$parser->getOutput()->getCategoryNames()
+				$parserOutput->getCategoryNames()
 			);
 		}
 
-		$this->assertCount( 2, $parser->getOutput()->getCategoryNames() );
+		$this->assertCount( 2, $parserOutput->getCategoryNames() );
 	}
 
 	public function testGitHubNormalization(): void {
