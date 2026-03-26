@@ -95,7 +95,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: phpunit-junit-${{ matrix.mw }}-php${{ matrix.php }}
-          path: tests/junit.xml
+          path: mediawiki/tests/junit.xml
 
       - name: Run PHPUnit with code coverage (master only)
         if: matrix.mw == 'master'
