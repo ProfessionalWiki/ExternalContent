@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"external-content-desc": "ستاسو ويکي‌مخونو کې د باندنۍ منځپانگې لکه مارک‌ډاون دوتنو، ځای‌پرځای‌کولو ته اجازه ورکوي",
+	"external-content-fetch-failed": "د دوتنې بياترلاسنه ناشونې ده",
+	"external-content-domain-not-allowed": "د دې واک‌سيمې دوتنو د ځای‌پرځای‌کولو اجازه نه‌شته",
+	"external-content-extension-not-allowed": "د دې شاتاړي دوتنو د ځای‌پرځای‌کولو اجازه نه‌شته",
+	"external-content-url-missing-host": "وېبتړ کوربه نه‌لري",
+	"external-content-url-missing-path": "وېبتړ دوتنې لوری نشته",
+	"external-content-url-not-bitbucket": "Bitbucket وېبتړ باوري نه دی",
+	"external-content-url-missing-repository": "وېبتړ ې د زېرمه‌ځي نوم نه‌شته",
+	"external-content-tracking-category": "باندنۍ منځپانگې لرونکي مخونه",
+	"external-content-tracking-category-desc": "دا مخ باندنۍ منځپانگه ځای‌پرځای کوي",
+	"external-content-broken-tracking-category": "ماتې باندنۍ منځپانگې لرونکي مخونه",
+	"external-content-broken-tracking-category-desc": "دا مخ د باندنۍ منځپانگې ځای‌پرځای کولو کې پاتې راغی"
+}
