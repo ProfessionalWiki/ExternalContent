@@ -77,7 +77,12 @@ jobs:
 
       - name: Run PHPUnit (MW master)
         if: matrix.mw == 'master'
-        run: composer phpunit -- -c extensions/ExternalContent/
+        run: |
+          # phpunit.xml.template is export-ignored from the GitHub tarball, fetch it separately
+          if [ ! -f phpunit.xml.template ]; then
+            wget -q -O phpunit.xml.template "https://raw.githubusercontent.com/wikimedia/mediawiki/${{ matrix.mw }}/phpunit.xml.template"
+          fi
+          composer phpunit -- extensions/ExternalContent/tests/
 
       - name: Run parser tests
         run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt
