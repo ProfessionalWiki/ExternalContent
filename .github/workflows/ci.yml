@@ -13,18 +13,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - mw: 'REL1_39'
-            php: 8.1
-            experimental: false
-          - mw: 'REL1_40'
-            php: 8.1
-            experimental: false
-          - mw: 'REL1_41'
-            php: 8.2
-            experimental: false
-          - mw: 'REL1_42'
-            php: 8.2
-            experimental: false
           - mw: 'REL1_43'
             php: 8.3
             experimental: false
@@ -83,16 +71,18 @@ jobs:
       - name: Run update.php
         run: php maintenance/update.php --quick
 
-      - name: Run PHPUnit
+      - name: Run PHPUnit (MW < master)
+        if: matrix.mw != 'master'
         run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/
 
-      - name: Run PHPUnit with code coverage
-        run: php tests/phpunit/phpunit.php -c extensions/ExternalContent/ --coverage-clover coverage.xml
+      - name: Run PHPUnit (MW master)
         if: matrix.mw == 'master'
-
-      - name: Upload code coverage
-        run: bash <(curl -s https://codecov.io/bash)
-        if: matrix.mw == 'master'
+        run: |
+          # phpunit.xml.template is export-ignored from the GitHub tarball, fetch it separately
+          if [ ! -f phpunit.xml.template ]; then
+            wget -q -O phpunit.xml.template "https://raw.githubusercontent.com/wikimedia/mediawiki/${{ matrix.mw }}/phpunit.xml.template"
+          fi
+          composer phpunit -- extensions/ExternalContent/tests/
 
       - name: Run parser tests
         run: php tests/parser/parserTests.php --file=extensions/ExternalContent/tests/parser/parserTests.txt

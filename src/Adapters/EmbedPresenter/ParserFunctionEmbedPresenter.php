@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Adapters\EmbedPresenter;
 
-use Html;
+use MediaWiki\Html\Html;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\UseCases\Embed\EmbedPresenter;
 
