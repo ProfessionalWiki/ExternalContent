@@ -8,9 +8,9 @@ use FileFetcher\StubFileFetcher;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
-use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use WikiPage;
 
 /**
  * @group Database

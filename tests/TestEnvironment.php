@@ -24,12 +24,13 @@ class TestEnvironment {
 	}
 
 	public function parse( string $textToParse, ?Title $contextPage = null ): string {
+		$parserOptions = new ParserOptions( User::newSystemUser( 'TestUser' ) );
 		return MediaWikiServices::getInstance()->getParser()
 			->parse(
 				$textToParse,
 				$contextPage ?? Title::newFromText( 'ContextPage' ),
-				new ParserOptions( User::newSystemUser( 'TestUser' ) )
-			)->runOutputPipeline( null, [] )->getRawText();
+				$parserOptions
+			)->runOutputPipeline( $parserOptions, [] )->getRawText();
 	}
 
 }

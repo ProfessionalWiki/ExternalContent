@@ -6,12 +6,12 @@ namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 use SearchEngine;
+use WikiPage;
 
 final class MediaWikiHooks {
 

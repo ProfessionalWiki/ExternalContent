@@ -54,12 +54,13 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 		$this->extensionFactory->setFileFetcher( new InMemoryFileFetcher( [] ) );
 
 		$parser = MediaWikiServices::getInstance()->getParser();
+		$parserOptions = new ParserOptions( User::newSystemUser( 'TestUser' ) );
 
 		$parser->parse(
 			'{{#embed:https://example.com/KITTENS.md}}',
 			Title::newFromText( 'EmbedFunctionIntegrationTest' ),
-			new ParserOptions( User::newSystemUser( 'TestUser' ) )
-		)->runOutputPipeline( null, [] )->getRawText();
+			$parserOptions
+		)->runOutputPipeline( $parserOptions, [] )->getRawText();
 
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {
