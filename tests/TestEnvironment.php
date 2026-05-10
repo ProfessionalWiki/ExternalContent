@@ -30,7 +30,7 @@ class TestEnvironment {
 				$textToParse,
 				$contextPage ?? Title::newFromText( 'ContextPage' ),
 				$parserOptions
-			)->runOutputPipeline( $parserOptions, [] )->getRawText();
+			)->runOutputPipeline( $parserOptions, [] )->getContentHolderText();
 	}
 
 }
