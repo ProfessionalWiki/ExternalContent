@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
-use Html;
+use MediaWiki\Html\Html;
 use ProfessionalWiki\ExternalContent\Domain\ContentRenderer;
 
 class CodeRenderer implements ContentRenderer {

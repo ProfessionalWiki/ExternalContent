@@ -7,6 +7,9 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 use FileFetcher\InMemoryFileFetcher;
 use FileFetcher\StubFileFetcher;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use ProfessionalWiki\ExternalContent\Tests\TestEnvironment;
 
 /**
@@ -54,9 +57,9 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 
 		$parser->parse(
 			'{{#embed:https://example.com/KITTENS.md}}',
-			\MediaWiki\Title\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
-			new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
-		)->getText();
+			Title::newFromText( 'EmbedFunctionIntegrationTest' ),
+			new ParserOptions( User::newSystemUser( 'TestUser' ) )
+		)->runOutputPipeline( null, [] )->getRawText();
 
 		// Since the category name depends on the wiki language, we need to skip this test when it is not English.
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() === 'en' ) {

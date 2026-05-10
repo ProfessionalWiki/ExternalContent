@@ -5,7 +5,9 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\ExternalContent\Tests;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 class TestEnvironment {
 
@@ -26,8 +28,8 @@ class TestEnvironment {
 			->parse(
 				$textToParse,
 				$contextPage ?? Title::newFromText( 'ContextPage' ),
-				new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
-			)->getText();
+				new ParserOptions( User::newSystemUser( 'TestUser' ) )
+			)->runOutputPipeline( null, [] )->getRawText();
 	}
 
 }

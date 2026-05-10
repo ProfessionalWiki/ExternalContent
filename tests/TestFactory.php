@@ -6,7 +6,7 @@ namespace ProfessionalWiki\ExternalContent\Tests;
 
 use FileFetcher\FileFetcher;
 use FileFetcher\NullFileFetcher;
-use Message;
+use MediaWiki\Message\Message;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 

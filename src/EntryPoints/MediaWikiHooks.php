@@ -4,14 +4,14 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\EntryPoints;
 
-use ContentHandler;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
+use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
-use Parser;
-use ParserOutput;
 use ProfessionalWiki\ExternalContent\EmbedExtensionFactory;
 use SearchEngine;
-use WikiPage;
 
 final class MediaWikiHooks {
 

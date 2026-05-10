@@ -6,7 +6,7 @@ namespace ProfessionalWiki\ExternalContent;
 
 use FileFetcher\FileFetcher;
 use MediaWiki\MediaWikiServices;
-use Message;
+use MediaWiki\Message\Message;
 use MessageLocalizer;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\DomainCredentials;
 use ProfessionalWiki\ExternalContent\Adapters\FileFetcher\MediaWikiFileFetcher;

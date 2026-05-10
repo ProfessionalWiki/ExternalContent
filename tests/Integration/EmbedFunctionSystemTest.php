@@ -4,11 +4,13 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 
-use CommentStoreComment;
 use FileFetcher\StubFileFetcher;
+use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
-use User;
-use WikiPage;
+use MediaWiki\User\User;
 
 /**
  * @group Database
@@ -56,11 +58,11 @@ class EmbedFunctionSystemTest extends ExternalContentIntegrationTestCase {
 
 		return $this->createPageWithContent(
 			$title,
-			\ContentHandler::makeContent( $content, $titleObject )
+			ContentHandler::makeContent( $content, $titleObject )
 		);
 	}
 
-	private function createPageWithContent( string $title, \Content $content ): WikiPage {
+	private function createPageWithContent( string $title, Content $content ): WikiPage {
 		$titleObject = Title::newFromText( $title );
 		$page = new WikiPage( $titleObject );
 
