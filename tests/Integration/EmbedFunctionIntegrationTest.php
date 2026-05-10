@@ -54,7 +54,7 @@ class EmbedFunctionIntegrationTest extends ExternalContentIntegrationTestCase {
 
 		$parser->parse(
 			'{{#embed:https://example.com/KITTENS.md}}',
-			\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
+			\MediaWiki\Title\Title::newFromText( 'EmbedFunctionIntegrationTest' ),
 			new \ParserOptions( \User::newSystemUser( 'TestUser' ) )
 		)->getText();
 

@@ -6,7 +6,7 @@ namespace ProfessionalWiki\ExternalContent\Tests\Integration;
 
 use CommentStoreComment;
 use FileFetcher\StubFileFetcher;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 use WikiPage;
 
