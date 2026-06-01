@@ -1,8 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"HakanIST",
 			"Hedda"
 		]
 	},
-	"external-content-desc": "İşaretleme dosyaları gibi harici içeriği, viki sayfalarınıza gömmeye izin verir"
+	"external-content-desc": "İşaretleme dosyaları gibi harici içeriği, viki sayfalarınıza gömmeye izin verir",
+	"external-content-fetch-failed": "Dosya alınamadı",
+	"external-content-domain-not-allowed": "Bu alan adından dosya gömmeye izin verilmiyor",
+	"external-content-extension-not-allowed": "Bu uzantıya sahip dosyaların gömülmesine izin verilmiyor",
+	"external-content-url-missing-host": "URL'de sunucu adı eksik",
+	"external-content-url-missing-path": "URL'de dosya yolu eksik",
+	"external-content-url-not-bitbucket": "Geçerli bir Bitbucket URL'si değil",
+	"external-content-url-missing-repository": "URL'de depo adı eksik",
+	"external-content-tracking-category": "Harici içerikli sayfalar",
+	"external-content-tracking-category-desc": "Bu sayfa harici içerik gömmektedir",
+	"external-content-broken-tracking-category": "Bozuk harici içerikli sayfalar",
+	"external-content-broken-tracking-category-desc": "Bu sayfa harici içerik gömme işleminde başarısız oldu"
 }
