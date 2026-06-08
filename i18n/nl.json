@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie"
+			"McDutchie",
+			"Siebrand"
 		]
 	},
 	"external-content-desc": "Maakt het invoegen van externe inhoud, zoals Markdown-bestanden, in uw wikipagina’s mogelijk",
 	"external-content-fetch-failed": "Kan bestand niet ophalen",
 	"external-content-domain-not-allowed": "Het invoegen van bestanden uit dit domein is niet toegestaan",
-	"external-content-extension-not-allowed": "Het invoegen van bestanden met deze extensie is niet toegestaan",
+	"external-content-extension-not-allowed": "Het invoegen van bestanden met dit achtervoegsel is niet toegestaan",
 	"external-content-url-missing-host": "In de URL ontbreekt de host",
 	"external-content-url-missing-path": "In de URL ontbreekt het bestandspad",
 	"external-content-url-not-bitbucket": "Geen geldige Bitbucket-URL",
