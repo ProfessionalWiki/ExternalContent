@@ -11,7 +11,7 @@
 	"external-content-extension-not-allowed": "Het invoegen van bestanden met dit achtervoegsel is niet toegestaan",
 	"external-content-url-missing-host": "In de URL ontbreekt de host",
 	"external-content-url-missing-path": "In de URL ontbreekt het bestandspad",
-	"external-content-url-not-bitbucket": "Geen geldige Bitbucket-URL",
+	"external-content-url-not-bitbucket": "Geen geldige Bitbucket-url",
 	"external-content-url-missing-repository": "In de URL ontbreekt de naam van de repository",
 	"external-content-tracking-category": "Pagina's met externe inhoud",
 	"external-content-tracking-category-desc": "Op deze pagina’s wordt externe inhoud ingevoegd",
