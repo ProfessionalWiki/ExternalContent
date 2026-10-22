@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"external-content-desc": "Umožňuje vkladať do stránok wiki externý obsah, napríklad súbory markdown",
+	"external-content-fetch-failed": "Súbor sa nepodarilo získať",
+	"external-content-domain-not-allowed": "Vkladanie súborov z tejto domény nie je povolené",
+	"external-content-extension-not-allowed": "Vkladanie súborov s touto príponou nie je povolené",
+	"external-content-url-missing-host": "V URL chýba hostiteľ",
+	"external-content-url-missing-path": "V URL chýba cesta k súboru",
+	"external-content-url-not-bitbucket": "Neplatná URL Bitbucketu",
+	"external-content-url-missing-repository": "V URL chýba názov repozitára",
+	"external-content-tracking-category": "Stránky s externým obsahom",
+	"external-content-tracking-category-desc": "Táto stránka vkladá externý obsah",
+	"external-content-broken-tracking-category": "Stránky s nefunkčným externým obsahom",
+	"external-content-broken-tracking-category-desc": "Tejto stránke sa nepodarilo vložiť externý obsah"
+}
