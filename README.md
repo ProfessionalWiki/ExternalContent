@@ -108,7 +108,7 @@ The recommended way to install External Content is using [Composer] with
 On the commandline, go to your wikis root directory. Then run these two commands:
 
 ```shell script
-COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~3.0
+COMPOSER=composer.local.json composer require --no-update professional-wiki/external-content:~4.0
 ```
 ```shell script
 composer update professional-wiki/external-content --no-dev -o
@@ -243,6 +243,14 @@ Alternatively, you can execute commands from the MediaWiki root directory:
 * Psalm: `php vendor/bin/psalm --config=extensions/ExternalContent/psalm.xml`
 
 ## Release notes
+
+### Version 4.0.0 - 2026-10-24
+
+* Raised minimum MediaWiki version from 1.39 to 1.43
+* Raised minimum PHP version from 8.0 to 8.1
+* Fixed compatibility with MediaWiki 1.44 and above (`Class "Html" not found` error)
+* Fixed conflict with the Network extension that caused "invalid magic word" errors
+* Translation updates
 
 ### Version 3.0.1 - 2025-04-06
 
