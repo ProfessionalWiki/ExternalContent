@@ -99,7 +99,7 @@ Parameters: none
 
 Platform requirements:
 
-* [PHP] 8.0 or later (tested up to 8.3)
+* [PHP] 8.1 or later (tested up to 8.3)
 * [MediaWiki] 1.39 or later (tested up to 1.43 and master)
 
 The recommended way to install External Content is using [Composer] with
