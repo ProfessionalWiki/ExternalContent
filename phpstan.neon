@@ -4,6 +4,7 @@ parameters:
 		- src
 		- tests
 	scanDirectories:
+		- maintenance
 		- ../../includes
 		- ../../tests/phpunit
 		- ../../vendor
