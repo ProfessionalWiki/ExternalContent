@@ -4,9 +4,8 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\ExternalContent\Maintenance;
 
-use Maintenance;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\Category\Category;
+use MediaWiki\Maintenance\Maintenance;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../../..';
 require_once $basePath . '/maintenance/Maintenance.php';
@@ -21,34 +20,17 @@ class RefreshExternalContent extends Maintenance {
 	}
 
 	public function execute() {
-		$this->invalidateCacheOfPagesInCategory(
-			'Pages_with_external_content', // TODO
-			MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY )
-		);
+		$trackingCategories = $this->getServiceContainer()->getTrackingCategories()->getTrackingCategories();
+
+		foreach ( $trackingCategories['external-content-tracking-category']['cats'] as $category ) {
+			$this->invalidateCacheOfPagesInCategory( $category->getDBkey() );
+		}
 	}
 
-	private function invalidateCacheOfPagesInCategory( string $categoryName, IDatabase $db ): void {
-		// TODO: optimize
-		// TODO: automated test
-		// TODO: extract?
-
-		$pageIds = $db->selectFieldValues(
-			'categorylinks',
-			'cl_from',
-			[
-				'cl_to' => $categoryName
-			]
-		);
-
-		$db->update(
-			'page',
-			[
-				'page_touched' => $db->timestamp()
-			],
-			[
-				'page_id' => $pageIds
-			]
-		);
+	private function invalidateCacheOfPagesInCategory( string $categoryName ): void {
+		foreach ( Category::newFromName( $categoryName )->getMembers() as $page ) {
+			$page->invalidateCache();
+		}
 	}
 
 }
