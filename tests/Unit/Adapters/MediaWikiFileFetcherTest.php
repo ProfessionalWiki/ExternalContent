@@ -75,4 +75,19 @@ class MediaWikiFileFetcherTest extends TestCase {
 		( new MediaWikiFileFetcher( $requestFactory, $domainCredentials ) )->fetchFile( 'https://example.com' );
 	}
 
+	public function testNoCredentialsArePassedForUnparseableUrl(): void {
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
+		$requestFactory->expects( $this->once() )
+			->method( 'get' )
+			->with(
+				'https://example.com:abc/README.md',
+				[]
+			)->willReturn( '~=[,,_,,]:3' );
+
+		$domainCredentials = new DomainCredentials();
+		$domainCredentials->add( 'example.com', new BasicAuthCredentials( 'Wrong', 'Wrong' ) );
+
+		( new MediaWikiFileFetcher( $requestFactory, $domainCredentials ) )->fetchFile( 'https://example.com:abc/README.md' );
+	}
+
 }

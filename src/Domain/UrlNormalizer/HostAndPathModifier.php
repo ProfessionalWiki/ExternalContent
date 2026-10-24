@@ -21,8 +21,8 @@ class HostAndPathModifier {
 		return $this->buildUrl( $parsedUrl );
 	}
 
-	private function assertRequiredUrlPartsArePresent( array $parsedUrl ): void {
-		if ( !array_key_exists( 'host', $parsedUrl ) ) {
+	private function assertRequiredUrlPartsArePresent( array|false $parsedUrl ): void {
+		if ( $parsedUrl === false || !array_key_exists( 'host', $parsedUrl ) ) {
 			throw new \RuntimeException( 'url-missing-host' );
 		}
 	}
