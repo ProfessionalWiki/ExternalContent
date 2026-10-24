@@ -95,6 +95,7 @@ class BitbucketUrlNormalizerTest extends TestCase {
 		yield 'Path is entirely wrong' => [ 'https://git.example.com/foo/bar/baz', 'url-not-bitbucket' ];
 		yield 'Empty' => [ '', 'url-missing-host' ];
 		yield 'Slash' => [ '/', 'url-missing-host' ];
+		yield 'Unparseable' => [ 'http:///projects/KNOW/repos/fluffy-kittens/', 'url-missing-host' ];
 	}
 
 	/**

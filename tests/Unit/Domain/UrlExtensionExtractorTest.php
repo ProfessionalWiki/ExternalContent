@@ -30,6 +30,24 @@ class UrlExtensionExtractorTest extends TestCase {
 		);
 	}
 
+	public function testUrlWithoutPathHasNoExtension(): void {
+		$this->assertSame(
+			'',
+			( new UrlExtensionExtractor() )->extractExtension(
+				'https://example.com'
+			)
+		);
+	}
+
+	public function testUnparseableUrlHasNoExtension(): void {
+		$this->assertSame(
+			'',
+			( new UrlExtensionExtractor() )->extractExtension(
+				'https://example.com:abc/README.md'
+			)
+		);
+	}
+
 	public function testUrlWithQuery(): void {
 		$this->assertSame(
 			'md',

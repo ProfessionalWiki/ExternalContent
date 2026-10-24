@@ -8,7 +8,7 @@ class UrlExtensionExtractor {
 
 	public function extractExtension( string $url ): string {
 		return pathinfo(
-			parse_url( $url, PHP_URL_PATH ),
+			(string)parse_url( $url, PHP_URL_PATH ),
 			PATHINFO_EXTENSION
 		);
 	}
